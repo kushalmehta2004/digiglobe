@@ -110,9 +110,15 @@ export default function Home() {
             transition={{ delay: 0.9, duration: 0.6, ease: "easeOut" }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <a href="https://wa.me/919104668367" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-3.5 bg-[#3461FF] text-[0.75rem] font-semibold tracking-[0.08em] text-white rounded-full transition-transform hover:-translate-y-0.5">
+            <button 
+              onClick={() => {
+                // @ts-ignore
+                if(typeof window !== "undefined" && window.Calendly) window.Calendly.initPopupWidget({url: 'https://calendly.com/digiglobeconsulting/30min'});
+              }}
+              className="inline-flex items-center justify-center px-8 py-3.5 bg-[#3461FF] text-[0.75rem] font-semibold tracking-[0.08em] text-white rounded-full transition-transform hover:-translate-y-0.5"
+            >
               Start a Project →
-            </a>
+            </button>
             <Link href="/work" className="inline-flex items-center justify-center px-8 py-3.5 border border-[rgba(255,255,255,0.2)] text-[0.75rem] font-semibold tracking-[0.08em] text-white rounded-full transition-colors hover:bg-[rgba(255,255,255,0.05)] hover:border-[rgba(255,255,255,0.4)]">
               View Our Work
             </Link>
@@ -284,9 +290,15 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <Link href="/work" className="inline-flex items-center justify-center px-8 py-3.5 bg-[#3461FF] text-[0.75rem] font-semibold tracking-[0.08em] text-white rounded-full transition-transform hover:-translate-y-0.5">
+            <button 
+              onClick={() => {
+                // @ts-ignore
+                if(typeof window !== "undefined" && window.Calendly) window.Calendly.initPopupWidget({url: 'https://calendly.com/digiglobeconsulting/30min'});
+              }}
+              className="inline-flex items-center justify-center px-8 py-3.5 bg-[#3461FF] text-[0.75rem] font-semibold tracking-[0.08em] text-white rounded-full transition-transform hover:-translate-y-0.5"
+            >
               Work With Us →
-            </Link>
+            </button>
           </Reveal>
         </div>
       </section>
