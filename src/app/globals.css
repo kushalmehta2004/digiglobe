@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #050B1A;
+  --color-surface: #080F22;
+  --color-accent: #3461FF;
+  --color-body: rgba(230,236,248,0.5);
+  --color-border: rgba(230,236,248,0.07);
+  --color-white: #FFFFFF;
+  
+  --font-sans: var(--font-plus-jakarta);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-navy);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    cursor: none;
+    font-weight: 300;
+  }
+
+  ::selection {
+    background: rgba(52, 97, 255, 0.3);
+    color: white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-white);
+    font-weight: 700;
+  }
+
+  a, button {
+    cursor: none;
+  }
+}
+
+/* Base styles for Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
