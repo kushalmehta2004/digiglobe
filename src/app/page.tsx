@@ -111,9 +111,15 @@ export default function Home() {
             className="flex flex-col sm:flex-row gap-4"
           >
             <button 
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 // @ts-ignore
-                if(typeof window !== "undefined" && window.Calendly) window.Calendly.initPopupWidget({url: 'https://calendly.com/digiglobeconsulting/30min'});
+                if(typeof window !== "undefined" && window.Calendly) {
+                  // @ts-ignore
+                  window.Calendly.initPopupWidget({url: 'https://calendly.com/digiglobeconsulting/30min'});
+                } else {
+                  window.open('https://calendly.com/digiglobeconsulting/30min', '_blank');
+                }
               }}
               className="inline-flex items-center justify-center px-8 py-3.5 bg-[#3461FF] text-[0.75rem] font-semibold tracking-[0.08em] text-white rounded-full transition-transform hover:-translate-y-0.5"
             >
@@ -291,9 +297,15 @@ export default function Home() {
           </Reveal>
           <Reveal delay={0.1}>
             <button 
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 // @ts-ignore
-                if(typeof window !== "undefined" && window.Calendly) window.Calendly.initPopupWidget({url: 'https://calendly.com/digiglobeconsulting/30min'});
+                if(typeof window !== "undefined" && window.Calendly) {
+                  // @ts-ignore
+                  window.Calendly.initPopupWidget({url: 'https://calendly.com/digiglobeconsulting/30min'});
+                } else {
+                  window.open('https://calendly.com/digiglobeconsulting/30min', '_blank');
+                }
               }}
               className="inline-flex items-center justify-center px-8 py-3.5 bg-[#3461FF] text-[0.75rem] font-semibold tracking-[0.08em] text-white rounded-full transition-transform hover:-translate-y-0.5"
             >
@@ -322,9 +334,15 @@ export default function Home() {
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button 
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   // @ts-ignore
-                  if(typeof window !== "undefined" && window.Calendly) window.Calendly.initPopupWidget({url: 'https://calendly.com/digiglobeconsulting/30min'});
+                  if(typeof window !== "undefined" && window.Calendly) {
+                    // @ts-ignore
+                    window.Calendly.initPopupWidget({url: 'https://calendly.com/digiglobeconsulting/30min'});
+                  } else {
+                    window.open('https://calendly.com/digiglobeconsulting/30min', '_blank');
+                  }
                 }}
                 className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-[#3461FF] text-[0.75rem] font-semibold tracking-[0.08em] uppercase rounded-full text-white transition-transform hover:-translate-y-0.5"
               >
