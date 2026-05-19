@@ -3,11 +3,11 @@ import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { MouseEvent } from "react";
 
 const brandsRow1 = [
-  "CEPA COUNCIL", "GENEX PHARMA", "NRICH SKYOTEL", "ASIAN DIAMONDS EU", "SUBHAM CONSTRUCTION"
+  "THE DRESSING ROOM", "DURFSHAN", "BAYROUTE", "UTOPIAN VILLAS"
 ];
 
 const brandsRow2 = [
-  "SANGHVI STAR", "GLOBAL COLOURS", "SANGHVI SONS", "THE TRAVEL LIBRARY", "AMOGH PANDIT STUDIO"
+  "CEPA COUNCIL", "COCA-COLA", "HYRO", "ANTARIKSH"
 ];
 
 function SpotlightCard({ brand, index }: { brand: string, index: number }) {

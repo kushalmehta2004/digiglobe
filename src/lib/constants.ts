@@ -27,6 +27,13 @@ export type ProjectData = {
     logoLink?: string;
     details?: string;
   };
+  shoot?: string[];
+  instaReels?: string;
+  campaign?: {
+    name: string;
+    video: string;
+    theme: string;
+  };
 };
 
 export const PROJECTS: Record<string, ProjectData> = {
@@ -42,9 +49,9 @@ export const PROJECTS: Record<string, ProjectData> = {
       meta: [{ l: 'Industry', v: 'Policy / Trade' }, { l: 'Market', v: 'India & UAE' }, { l: 'Deliverables', v: 'Web + Branding' }]
     },
     social: [
-      { type: 'Brand Awareness', copy: 'Where Trade Policy Meets Progress.', bg: 'linear-gradient(135deg,#050B1A,#0c1e50)', link: 'https://www.instagram.com/p/DU5r6YGE51F/?igsh=MTVtbWZrODV5ZjBmZg==', image: '/social-previews/cepa-1.jpg' },
-      { type: 'Event Promotion', copy: 'Annual Trade Summit 2024 — Register Now.', bg: 'linear-gradient(135deg,#071040,#1535C8)', link: 'https://www.instagram.com/reel/DVBEOCagRj8/?igsh=MTR2ZHZ4NWNkajYzbA==', video: '/social-previews/cepa-2.mp4' },
-      { type: 'Insight Post', copy: 'How India-UAE CEPA is reshaping bilateral trade.', bg: 'linear-gradient(135deg,#08103a,#1a2d70)', link: 'https://www.instagram.com/p/DVtQmhtE8Zl/?igsh=ZWs1ZHVyd3Z3Mmtz', image: '/social-previews/cepa-3.jpg' },
+      { type: 'Brand Awareness', copy: 'Where Trade Policy Meets Progress.', bg: 'linear-gradient(135deg,#050B1A,#0c1e50)', link: 'https://www.instagram.com/p/C9e_d7dSkyG/?igsh=YjZzczBwZXF2MWdh', image: '/social-previews/cepa-1.jpg' },
+      { type: 'Event Promotion', copy: 'Annual Trade Summit 2024 — Register Now.', bg: 'linear-gradient(135deg,#071040,#1535C8)', link: 'https://www.instagram.com/p/C9cJp4Dp1pQ/?igsh=NXQ4ZTR0cmNtb3Nj', image: '/social-previews/cepa-2.jpg' },
+      { type: 'Insight Post', copy: 'How India-UAE CEPA is reshaping bilateral trade.', bg: 'linear-gradient(135deg,#08103a,#1a2d70)', link: 'https://www.instagram.com/p/C-ZYPxvyRTO/?igsh=b3B3YnVyZjRvNGN5', image: '/social-previews/cepa-3.jpg' },
     ],
     brand: {
       name: 'CEPA Council',
@@ -55,114 +62,7 @@ export const PROJECTS: Record<string, ProjectData> = {
       logo: '/brand-logos/cepa.jpg'
     }
   },
-  genex: {
-    title: 'Genex Pharma',
-    category: 'Healthcare · Web Design · Identity',
-    web: {
-      url: 'genexpharma.co.in',
-      title: 'Pharmaceutical Brand Website',
-      desc: 'A trust-first digital presence for a pharmaceutical manufacturer. Designed to communicate clinical excellence, regulatory compliance, and product portfolio with clarity.',
-      gradient: 'radial-gradient(ellipse at 40% 60%,rgba(21,53,200,.2) 0%,#050B1A 70%)',
-      meta: [{ l: 'Industry', v: 'Healthcare / Pharma' }, { l: 'Market', v: 'India' }, { l: 'Deliverables', v: 'Web + Branding' }]
-    },
-    social: [
-      { type: 'Product Launch', copy: 'Introducing our new pharmaceutical range — trusted by doctors nationwide.', bg: 'linear-gradient(135deg,#050B1A,#0B1630)' },
-      { type: 'Awareness', copy: 'Your health, our commitment. 25 years of pharmaceutical excellence.', bg: 'linear-gradient(135deg,#071228,#1535C8)' },
-      { type: 'CSR Post', copy: 'Bringing quality healthcare to communities across India.', bg: 'linear-gradient(135deg,#050F30,#0c1d5a)' },
-    ],
-    brand: { name: 'Genex Pharma', colors: ['#1535C8', '#FFFFFF', '#050B1A', '#3461FF'], colorNames: ['Blue', 'White', 'Navy', 'Accent'], font: 'Plus Jakarta Sans', style: 'Clinical · Trusted · Professional' }
-  },
-  nrich: {
-    title: 'Nrich Skyotel',
-    category: 'Hospitality · Web · Social Media',
-    web: {
-      url: 'nrichskyotel.com',
-      title: 'Boutique Hotel Website',
-      desc: 'An immersive hospitality web experience that converts browsers into bookers. Stunning visuals, seamless room booking flow, and a brand story guests actually read.',
-      gradient: 'radial-gradient(ellipse at 70% 40%,rgba(91,130,255,.2) 0%,#050B1A 70%)',
-      meta: [{ l: 'Industry', v: 'Hospitality' }, { l: 'Market', v: 'India' }, { l: 'Deliverables', v: 'Web + Social + Photos' }]
-    },
-    social: [
-      { type: 'Lifestyle', copy: 'Wake up to views that take your breath away. Book your stay.', bg: 'linear-gradient(135deg,#050B1A,#111D3E)' },
-      { type: 'Offer', copy: 'Weekend Getaway Package — 20% Off This Month Only.', bg: 'linear-gradient(135deg,#071228,#1535C8)' },
-      { type: 'Review', copy: '"Best hotel experience in the city." — Our Guests.', bg: 'linear-gradient(135deg,#08103a,#0c1d5a)' },
-    ],
-    brand: { name: 'Nrich Skyotel', colors: ['#1535C8', '#E6ECF8', '#050B1A', '#5B82FF'], colorNames: ['Blue', 'Light', 'Navy', 'Sky'], font: 'Plus Jakarta Sans', style: 'Luxury · Warm · Aspirational' }
-  },
-  asian: {
-    title: 'Asian Diamonds EU',
-    category: 'Luxury E-commerce · Europe · Branding',
-    web: {
-      url: 'asiandiamonds.eu',
-      title: 'Luxury Diamond E-commerce',
-      desc: 'A premium European e-commerce platform for bespoke diamond jewellery. Crafted for a luxury audience with immaculate product presentation and seamless purchase experience.',
-      gradient: 'radial-gradient(ellipse at 50% 30%,rgba(30,69,224,.25) 0%,#050B1A 70%)',
-      meta: [{ l: 'Industry', v: 'Luxury / Jewellery' }, { l: 'Market', v: 'Europe' }, { l: 'Deliverables', v: 'E-com + Branding' }]
-    },
-    social: [
-      { type: 'Product Showcase', copy: 'Eternal brilliance, crafted to perfection. Explore our collection.', bg: 'linear-gradient(135deg,#050B1A,#0c1530)' },
-      { type: 'Brand Story', copy: 'From Asia to Europe — bringing heritage craftsmanship to the world.', bg: 'linear-gradient(135deg,#08103a,#1535C8)' },
-      { type: 'Occasion', copy: 'Celebrate every milestone with a diamond that lasts forever.', bg: 'linear-gradient(135deg,#050B1A,#111D3E)' },
-    ],
-    brand: { name: 'Asian Diamonds EU', colors: ['#1535C8', '#E6ECF8', '#050B1A', '#B8C8F8'], colorNames: ['Royal', 'Pearl', 'Navy', 'Ice'], font: 'Plus Jakarta Sans', style: 'Luxury · Refined · Timeless' }
-  },
-  subham: {
-    title: 'Subham Construction',
-    category: 'Real Estate · Web Design · Social Media',
-    web: {
-      url: 'subhamconstruction.com',
-      title: 'Real Estate Developer Website',
-      desc: 'A credibility-first web presence for a growing construction firm. Project showcase, testimonials, and a lead capture system designed to convert serious buyers.',
-      gradient: 'radial-gradient(ellipse at 30% 60%,rgba(52,97,255,.2) 0%,#050B1A 70%)',
-      meta: [{ l: 'Industry', v: 'Real Estate' }, { l: 'Market', v: 'India' }, { l: 'Deliverables', v: 'Web + Social' }]
-    },
-    social: [
-      { type: 'Project Launch', copy: 'Presenting our newest residential township — where families thrive.', bg: 'linear-gradient(135deg,#050B1A,#0B1630)' },
-      { type: 'Milestone', copy: '500+ families now call Subham home. Thank you for your trust.', bg: 'linear-gradient(135deg,#071228,#1535C8)' },
-      { type: 'Testimonial', copy: '"The best investment decision we ever made." — Happy Homeowner.', bg: 'linear-gradient(135deg,#050B1A,#111D3E)' },
-    ],
-    brand: { name: 'Subham Construction', colors: ['#1535C8', '#FFFFFF', '#050B1A', '#3461FF'], colorNames: ['Blue', 'White', 'Navy', 'Accent'], font: 'Plus Jakarta Sans', style: 'Trustworthy · Bold · Community' }
-  },
-  sanghvi: {
-    title: 'Sanghvi Star',
-    category: 'Manufacturing · Branding · Web',
-    web: {
-      url: 'sanghvistar.com',
-      title: 'Manufacturing Company Website',
-      desc: 'A professional digital presence for a manufacturing leader. Showcases product range, capabilities, certifications, and a strong B2B enquiry system.',
-      gradient: 'radial-gradient(ellipse at 60% 40%,rgba(21,53,200,.2) 0%,#050B1A 70%)',
-      meta: [{ l: 'Industry', v: 'Manufacturing' }, { l: 'Market', v: 'India' }, { l: 'Deliverables', v: 'Web + Branding' }]
-    },
-    social: [
-      { type: 'Product Feature', copy: 'Precision engineered. Built to perform. Explore our range.', bg: 'linear-gradient(135deg,#050B1A,#0c1530)' },
-      { type: 'Certification', copy: 'ISO Certified. Industry trusted. Quality never compromised.', bg: 'linear-gradient(135deg,#071228,#1535C8)' },
-      { type: 'Company Post', copy: '30 years of manufacturing excellence. The Sanghvi Star legacy continues.', bg: 'linear-gradient(135deg,#050B1A,#111D3E)' },
-    ],
-    brand: { name: 'Sanghvi Star', colors: ['#1535C8', '#E6ECF8', '#050B1A', '#5B82FF'], colorNames: ['Blue', 'Light', 'Navy', 'Accent'], font: 'Plus Jakarta Sans', style: 'Industrial · Reliable · Established' }
-  },
-  ttl: {
-    title: 'The Travel Library',
-    category: 'Luxury Travel · Brand Identity · Website · Social Media',
-    web: {
-      url: 'thetravellibrary.in',
-      title: 'Luxury Travel Agency — Beyond Experience',
-      desc: 'A full-brand build for a luxury travel agency — combining an elegant visual identity, a bespoke website with destination showcases, and a refined social media presence. Built to attract discerning travellers seeking private, curated experiences.',
-      gradient: 'linear-gradient(160deg,#0D1220 0%,#1D2439 60%,#131825 100%)',
-      meta: [{ l: 'Industry', v: 'Luxury Travel' }, { l: 'Deliverables', v: 'Brand + Web + Social' }, { l: 'Live at', v: 'thetravellibrary.in' }]
-    },
-    social: [
-      { type: 'Brand Launch', copy: 'Beyond Experience. The Travel Library — redefining luxury travel, one journey at a time.', bg: 'linear-gradient(160deg,#1D2439,#0D1220)' },
-      { type: 'Destination Reel', copy: 'Maldives. Private villa. No itinerary. Just you and the horizon.', bg: 'linear-gradient(160deg,#0D1A2E,#1D2439)' },
-      { type: 'Service Highlight', copy: 'Private jets. Yacht charters. Michelin-starred picnics. Your wish, curated.', bg: 'linear-gradient(160deg,#131825,#2a3352)' },
-    ],
-    brand: {
-      name: 'The Travel Library',
-      colors: ['#1D2439', '#D2BB95', '#F4F2F0', '#AB8F71'],
-      colorNames: ['Navy', 'Gold', 'Ivory', 'Deep Gold'],
-      font: 'Butler (Headers) · Montserrat (Body)',
-      style: 'Luxury · Refined · Bespoke · Timeless'
-    }
-  },
+
   dressingroom: {
     title: 'The Dressing Room',
     category: 'Fashion · Social Media · Branding',
@@ -218,9 +118,18 @@ export const PROJECTS: Record<string, ProjectData> = {
       colorNames: ['Mocha', 'Ivory', 'Navy', 'Gold'],
       font: 'Montserrat',
       style: 'Exotic · Rich · Authentic',
+      logo: '/brand-logos/bayroute.png',
       logoLink: 'https://drive.google.com/drive/folders/1tGqNiX--dZ_63pVDku_JLeZvjOXNAe3k',
       details: 'A premium Middle Eastern dining experience. We conducted an extensive shoot to capture the rich culinary heritage and exotic ambiance.'
-    }
+    },
+    shoot: [
+      '/shoot/1.jpg',
+      '/shoot/2.jpg',
+      '/shoot/3.jpg',
+      '/shoot/4.jpg',
+      '/shoot/5.jpg',
+      '/shoot/6.jpg'
+    ]
   },
   utopianvillas: {
     title: 'Utopian Villas',
@@ -252,18 +161,19 @@ export const PROJECTS: Record<string, ProjectData> = {
     title: 'Coca-Cola',
     category: 'F&B · Campaign · Video',
     web: null,
-    social: [
-      { type: 'Campaign Reel', copy: 'Hyderabad After Sunset ft. Coca-Cola x LBB', bg: 'linear-gradient(135deg,#050B1A,#330000)', link: 'https://drive.google.com/drive/folders/16SvUUryxM5aF0aLDKC2ddaXeAIvYCrRC?usp=drive_link' },
-      { type: 'Brand Story', copy: 'Real Magic in every sip.', bg: 'linear-gradient(135deg,#1a0000,#440000)' },
-      { type: 'Food Pairing', copy: 'The perfect companion for your iftar.', bg: 'linear-gradient(135deg,#0c0000,#220000)' }
-    ],
+    social: [],
+    campaign: {
+      name: '“Hyderabad After Sunset ft. Coca-Cola x LBB”',
+      video: '/social-previews/cocacola-campaign.mp4',
+      theme: 'Celebrating the essence of Ramadan nights in Hyderabad — where streets come alive after iftar, families gather for authentic food, and every meal feels complete with an ice-cold sip of The Coca-Cola Company. Partnering with LBB (Little Black Book) helps position it as a discovery-led food experience for audiences looking for the best Ramadan spots.'
+    },
     brand: {
       name: 'Coca-Cola',
       colors: ['#E31837', '#FFFFFF', '#050B1A', '#FF5555'],
       colorNames: ['Coke Red', 'White', 'Navy', 'Light Red'],
       font: 'Inter',
       style: 'Vibrant · Authentic · Refreshing',
-      details: 'Campaign Name: “Hyderabad After Sunset ft. Coca-Cola x LBB”\n\nTheme: Celebrating the essence of Ramadan nights in Hyderabad — where streets come alive after iftar, families gather for authentic food, and every meal feels complete with an ice-cold sip of The Coca-Cola Company. Partnering with LBB (Little Black Book) helps position it as a discovery-led food experience for audiences looking for the best Ramadan spots.'
+      logo: '/brand-logos/coca-cola.png'
     }
   },
   hyro: {
@@ -271,10 +181,11 @@ export const PROJECTS: Record<string, ProjectData> = {
     category: 'Real Estate · Video · Social',
     web: null,
     social: [
-      { type: 'Property Walkthrough', copy: 'Step into luxury living in South Mumbai.', bg: 'linear-gradient(135deg,#050B1A,#111a22)', link: 'https://www.instagram.com/hyro_realty?igsh=c3kzdnp3bjV2cmhw' },
-      { type: 'Virtual Furnishing', copy: 'Imagine your life, fully styled.', bg: 'linear-gradient(135deg,#080d11,#223344)' },
-      { type: 'Amenities', copy: 'Experience world-class facilities at your doorstep.', bg: 'linear-gradient(135deg,#06090c,#1a2633)' }
+      { type: 'Insta Post', copy: 'Experience the walkthrough of prime flats in South Mumbai.', bg: 'linear-gradient(135deg,#050B1A,#111a22)', link: 'https://www.instagram.com/p/DTCyx80iIxW/?img_index=4&igsh=d2pzeTVvemk2ZGRh', image: '/social-previews/hyro-insta-1.jpg' },
+      { type: 'Insta Post', copy: 'Visualizing spaces with AI-powered furnishing.', bg: 'linear-gradient(135deg,#080d11,#223344)', link: 'https://www.instagram.com/p/DSb8ldgCHDS/?igsh=MWQ1cDM1OWc4aHlrdQ==', image: '/social-previews/hyro-insta-2.jpg' },
+      { type: 'Insta Post', copy: 'Premium amenities that define modern living.', bg: 'linear-gradient(135deg,#06090c,#1a2633)', link: 'https://www.instagram.com/p/DSWnemSCF9V/?igsh=MXExeWZxeTRkanhyaw==', image: '/social-previews/hyro-insta-3.jpg' }
     ],
+    instaReels: 'https://drive.google.com/drive/folders/1NTW29_J-0m97_OsMKNkkb9DHT6nF_ywi?usp=sharing',
     brand: {
       name: 'Hyro Realty',
       colors: ['#223344', '#E6ECF8', '#050B1A', '#557799'],
@@ -282,7 +193,7 @@ export const PROJECTS: Record<string, ProjectData> = {
       font: 'Plus Jakarta Sans',
       style: 'Modern · Premium · Innovative',
       logo: '/brand-logos/hyro.jpg',
-      details: 'The reel concept focused on creating visually engaging walkthroughs of premium flats in South Mumbai, featuring both newly launched and upcoming residential properties.\n\nThe idea was to move beyond standard empty flat walkthroughs by integrating AI-powered virtual furnishing, which transformed vacant spaces into fully styled interiors. This helped potential buyers visualize how the apartments could look once furnished, making the spaces feel more aspirational, warm, and livable.\n\nThe reels highlighted: Detailed flat walkthroughs, AI-generated furnished versions, Building amenities, Location and project highlights.'
+      details: 'The reel concept focused on creating visually engaging walkthroughs of premium flats in South Mumbai, featuring both newly launched and upcoming residential properties.\n\nThe idea was to move beyond standard empty flat walkthroughs by integrating AI-powered virtual furnishing, which transformed vacant spaces into fully styled interiors. This helped potential buyers visualize how the apartments could look once furnished, making the spaces feel more aspirational, warm, and livable.\n\nThe reels highlighted:\n• Detailed flat walkthroughs showcasing layout, space, and design elements\n• AI-generated furnished versions of empty rooms to provide a realistic lifestyle preview\n• Building amenities such as gyms, pools, lounges, parking spaces, terraces, and other premium facilities\n• Location and project highlights to position the properties as desirable investments in South Mumbai\n\nThe overall objective was to create reels that felt modern, immersive, and informative, helping audiences better imagine themselves living in these luxury spaces while also showcasing the full value of the property.'
     }
   },
   antariksh: {
@@ -291,7 +202,7 @@ export const PROJECTS: Record<string, ProjectData> = {
     web: null,
     social: [
       { type: 'Collection Showcase', copy: 'Brilliance that outshines the stars.', bg: 'linear-gradient(135deg,#050B1A,#1a1a22)', link: 'https://www.instagram.com/p/DITgzuBv22T/?igsh=MWZnZDE4MnA1NjExNw==', image: '/social-previews/antariksh-1.jpg' },
-      { type: 'Craftsmanship Reel', copy: 'Every facet tells a story of perfection.', bg: 'linear-gradient(135deg,#0d0d11,#333344)', link: 'https://www.instagram.com/reel/DIRKNm4PuFW/?igsh=MWJsNWgxZnpyMDY0dA==', video: '/social-previews/antariksh-2.mp4' },
+      { type: 'Craftsmanship Reel', copy: 'Every facet tells a story of perfection.', bg: 'linear-gradient(135deg,#0d0d11,#333344)', link: 'https://www.instagram.com/reel/DIRKNm4PuFW/?igsh=MWJsNWgxZnpyMDY0dA==', image: '/social-previews/antariksh-2.jpg' },
       { type: 'Statement Pieces', copy: 'Adorn yourself in timeless luxury.', bg: 'linear-gradient(135deg,#09090c,#222233)', link: 'https://www.instagram.com/p/DIB3mW7vvme/?igsh=MXZmenUyanhzb2MxZg==', image: '/social-previews/antariksh-3.jpg' }
     ],
     brand: {
