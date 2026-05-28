@@ -205,17 +205,14 @@ h2.sh {
   position: relative;
   height: 1.05em;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .cycle-word {
   display: block;
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 50%;
   top: 0;
-  width: 100%;
-  text-align: center;
   color: var(--soft);
   white-space: nowrap;
 }

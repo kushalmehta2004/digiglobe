@@ -110,9 +110,9 @@ export default function Home() {
               <AnimatePresence mode="wait">
                 <motion.span
                   key={currentWord}
-                  initial={{ y: "105%", opacity: 0 }}
-                  animate={{ y: "0%", opacity: 1 }}
-                  exit={{ y: "-105%", opacity: 0 }}
+                  initial={{ y: "105%", opacity: 0, x: "-50%" }}
+                  animate={{ y: "0%", opacity: 1, x: "-50%" }}
+                  exit={{ y: "-105%", opacity: 0, x: "-50%" }}
                   transition={{ duration: 0.6, ease: [0.77, 0, 0.175, 1] }}
                   className="cycle-word active"
                 >
