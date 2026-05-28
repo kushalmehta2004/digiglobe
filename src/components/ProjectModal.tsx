@@ -1,10 +1,153 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink } from "lucide-react";
+import { X, ExternalLink, ChevronLeft, ChevronRight, Heart, MessageCircle, Send } from "lucide-react";
 import { ProjectData } from "@/lib/constants";
 
 type TabType = "website" | "social" | "branding" | "shoot" | "insta posts" | "insta reels" | "reel concept" | "concept" | "theme";
+
+function SMMPostCard({ 
+  post, 
+  postIndex,
+  brandName,
+  brandLogo,
+  brandUrl
+}: { 
+  post: { id: string; name: string; type: string; link: string }[]; 
+  postIndex: number;
+  brandName: string;
+  brandLogo?: string;
+  brandUrl?: string;
+}) {
+  const [currentIdx, setCurrentIdx] = useState(0);
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentIdx((prev) => (prev === 0 ? post.length - 1 : prev - 1));
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentIdx((prev) => (prev === post.length - 1 ? 0 : prev + 1));
+  };
+
+  const activeMedia = post[currentIdx];
+  if (!activeMedia) return null;
+
+  const getThumbnailUrl = (id: string) => {
+    return `https://lh3.googleusercontent.com/d/${id}=w600`;
+  };
+
+
+  return (
+    <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.04)] rounded-lg overflow-hidden flex flex-col p-2 select-none">
+      {/* Top Header */}
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-1.5">
+          <div className="w-5 h-5 rounded-full bg-[#1B274A] border border-[rgba(230,236,248,0.08)] flex items-center justify-center overflow-hidden">
+            {brandLogo ? (
+              <img src={brandLogo} alt={brandName} className="w-3.5 h-3.5 object-contain" />
+            ) : (
+              <div className="w-3.5 h-3.5 rounded bg-blue-500/20 text-[0.4rem] flex items-center justify-center font-bold text-white uppercase">
+                {brandName.substring(0, 2)}
+              </div>
+            )}
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[0.58rem] font-bold text-white leading-none mb-0.5">{brandUrl || brandName.toLowerCase()}</span>
+            <span className="text-[0.45rem] text-[rgba(230,236,248,0.35)] leading-none font-medium">Post {postIndex + 1}</span>
+          </div>
+        </div>
+        <a 
+          href={activeMedia.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-5 h-5 rounded-full bg-[rgba(230,236,248,0.02)] hover:bg-[#3461FF] flex items-center justify-center text-[rgba(230,236,248,0.4)] hover:text-white transition-colors"
+        >
+          <ExternalLink size={9} />
+        </a>
+      </div>
+
+      {/* Media Box */}
+      <div className="relative aspect-square w-full bg-black/40 rounded-md overflow-hidden border border-[rgba(230,236,248,0.02)] group">
+        {/* Click to open in drive */}
+        <a href={activeMedia.link} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
+          <img 
+            src={getThumbnailUrl(activeMedia.id)} 
+            alt={activeMedia.name}
+            className="w-full h-full object-cover transition-transform duration-[600ms] group-hover:scale-[1.02]"
+            loading="lazy"
+            referrerPolicy="no-referrer"
+          />
+          {activeMedia.type === 'video' && (
+            <div className="absolute inset-0 bg-black/20 flex items-center justify-center pointer-events-none">
+              <div className="w-8 h-8 rounded-full bg-[#3461FF]/90 flex items-center justify-center text-white shadow-md transform group-hover:scale-105 transition-transform">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+            </div>
+          )}
+        </a>
+
+        {/* Carousel Navigation */}
+        {post.length > 1 && (
+          <>
+            <button 
+              onClick={handlePrev}
+              className="absolute left-1 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none z-10"
+            >
+              <ChevronLeft size={12} />
+            </button>
+            <button 
+              onClick={handleNext}
+              className="absolute right-1 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none z-10"
+            >
+              <ChevronRight size={12} />
+            </button>
+            
+            {/* Carousel Dot Indicators */}
+            <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 flex gap-0.5 bg-black/40 px-1 py-0.5 rounded-full backdrop-blur-[1px]">
+              {post.map((_, dotIdx) => (
+                <div 
+                  key={dotIdx} 
+                  className={`w-1.5 h-1.5 rounded-full transition-all ${
+                    dotIdx === currentIdx ? "bg-[#3461FF] scale-110" : "bg-white/40"
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Footer Info / Action Row */}
+      <div className="mt-2 flex items-center justify-between text-[rgba(230,236,248,0.35)]">
+        <div className="flex gap-2">
+          <button className="hover:text-red-500 transition-colors">
+            <Heart size={12} />
+          </button>
+          <button className="hover:text-white transition-colors">
+            <MessageCircle size={12} />
+          </button>
+          <button className="hover:text-white transition-colors">
+            <Send size={11} />
+          </button>
+        </div>
+        <a 
+          href={activeMedia.link}
+          target="_blank"
+          rel="noopener noreferrer" 
+          className="text-[0.52rem] font-bold text-[#3461FF] hover:underline"
+        >
+          View file &rarr;
+        </a>
+      </div>
+    </div>
+  );
+}
 
 export default function ProjectModal({ 
   project, 
@@ -15,11 +158,15 @@ export default function ProjectModal({
   isOpen: boolean; 
   onClose: () => void; 
 }) {
-  const [activeTab, setActiveTab] = useState<TabType>("website");
+  const [activeTab, setActiveTab] = useState<string>("website");
 
   // Reset tab on open
   useEffect(() => {
     if (isOpen && project) {
+      if (project.tabs && project.tabs.length > 0) {
+        setActiveTab(project.tabs[0]);
+        return;
+      }
       const isHyro = project.brand.name.toLowerCase().includes("hyro");
       const isCoke = project.brand.name.toLowerCase().includes("coca-cola");
       
@@ -99,11 +246,17 @@ export default function ProjectModal({
 
             {/* Tabs */}
             <div className="flex-none px-6 lg:px-8 pt-6 pb-2 flex flex-wrap gap-2">
-              {(["website", "social", "branding", "shoot", "insta posts", "insta reels", "reel concept", "concept", "theme"] as TabType[])
+              {(project.tabs || ["website", "social", "branding", "shoot", "insta posts", "insta reels", "reel concept", "concept", "theme"])
                 .filter(tab => {
+                  if (project.tabs) return true;
                   const isBayroute = project.brand.name.toLowerCase() === "bayroute";
                   const isHyro = project.brand.name.toLowerCase().includes("hyro");
                   const isCoke = project.brand.name.toLowerCase().includes("coca-cola");
+                  const isBunkout = project.brand.name.toLowerCase() === "bunkout";
+                  
+                  if (isBunkout) {
+                    if (tab === "branding") return false;
+                  }
                   
                   if (isBayroute) {
                     return tab === "shoot";
@@ -117,7 +270,8 @@ export default function ProjectModal({
                     return tab === "concept" || tab === "theme";
                   }
                   
-                  if (["shoot", "insta posts", "insta reels", "reel concept", "concept", "theme"].includes(tab)) return false;
+                  if (tab === "shoot") return (project.shoot !== undefined && project.shoot.length > 0) || (project.smmPosts !== undefined && project.smmPosts.length > 0);
+                  if (["insta posts", "insta reels", "reel concept", "concept", "theme"].includes(tab)) return false;
                   if (tab === "website") return project.web !== null;
                   if (tab === "social") return project.social && project.social.length > 0;
                   return true;
@@ -158,7 +312,7 @@ export default function ProjectModal({
                   className="flex-1 flex flex-col justify-between h-full"
                 >
                   {/* WEBSITE TAB */}
-                  {activeTab === "website" && project.web !== null && (
+                  {(activeTab.toLowerCase().includes("web") || activeTab === "website") && project.web !== null && (
                     <div className="flex-1 flex flex-col justify-between gap-3 h-full">
                       {/* Browser mock container */}
                       <div className="border border-[rgba(230,236,248,0.07)] rounded-lg overflow-hidden flex flex-col flex-1">
@@ -231,7 +385,7 @@ export default function ProjectModal({
                   )}
 
                   {/* SOCIAL TAB */}
-                  {activeTab === "social" && (
+                  {(activeTab.toLowerCase().includes("social") || activeTab === "social") && (
                     <div className="space-y-4">
                       {project.social[0]?.link && (
                         <div className="mb-2">
@@ -282,22 +436,70 @@ export default function ProjectModal({
                   )}
 
                   {/* SHOOT TAB */}
-                  {activeTab === "shoot" && project.shoot && (
-                    <div className="flex-1 flex flex-col h-full">
-                      <div className="grid grid-cols-3 grid-rows-2 gap-3 flex-1 h-full">
-                        {project.shoot.slice(0, 6).map((img, i) => (
-                          <div key={i} className="relative rounded-lg overflow-hidden border border-[rgba(230,236,248,0.07)] group h-full">
-                            <img 
-                              src={img} 
-                              alt={`Shoot ${i + 1}`} 
-                              loading="lazy"
-                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-[600ms] group-hover:scale-105" 
+                  {(activeTab.toLowerCase().includes("shoot") || activeTab === "shoot") && (
+                    project.smmPosts ? (
+                      <div className="flex-1 overflow-y-auto pr-1 custom-scrollbar flex flex-col gap-6 justify-between">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {project.smmPosts.slice(0, 3).map((post, i) => (
+                            <SMMPostCard 
+                              key={i} 
+                              post={post} 
+                              postIndex={i} 
+                              brandName={project.brand.name}
+                              brandLogo={project.brand.logo}
+                              brandUrl={project.web?.url}
                             />
-                            <div className="absolute inset-0 bg-[rgba(5,11,26,0.1)] transition-colors duration-300 group-hover:bg-transparent" />
+                          ))}
+                        </div>
+                        {project.smmDriveLink && (
+                          <div className="flex justify-center mt-2 mb-4">
+                            <a
+                              href={project.smmDriveLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-6 py-2.5 bg-[rgba(230,236,248,0.02)] hover:bg-[#3461FF] text-white text-[0.7rem] font-bold tracking-[0.1em] uppercase rounded border border-[rgba(230,236,248,0.1)] hover:border-[#3461FF] transition-all flex items-center gap-2 group"
+                            >
+                              view more of our work
+                              <ExternalLink size={12} className="text-[rgba(230,236,248,0.5)] group-hover:text-white transition-colors" />
+                            </a>
                           </div>
-                        ))}
+                        )}
                       </div>
-                    </div>
+                    ) : project.shoot ? (
+                      <div className="flex-1 flex flex-col h-full">
+                        <div className="grid grid-cols-3 grid-rows-2 gap-3 flex-1 h-full">
+                          {project.shoot.slice(0, 6).map((img, i) => (
+                            <div key={i} className="relative rounded-lg overflow-hidden border border-[rgba(230,236,248,0.07)] group h-full">
+                              <img 
+                                src={img} 
+                                alt={`Shoot ${i + 1}`} 
+                                loading="lazy"
+                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[600ms] group-hover:scale-105" 
+                              />
+                              <div className="absolute inset-0 bg-[rgba(5,11,26,0.1)] transition-colors duration-300 group-hover:bg-transparent" />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ) : project.instaReels ? (
+                      <div className="space-y-4">
+                        <div className="flex flex-col items-center justify-center p-8 rounded-xl border border-[rgba(230,236,248,0.05)] text-center min-h-[260px]" style={{ background: '#0C1530' }}>
+                          <div className="w-12 h-12 rounded-full bg-[#3461FF] bg-opacity-20 flex items-center justify-center mb-4">
+                            <ExternalLink size={20} className="text-[#3461FF]" />
+                          </div>
+                          <h3 className="text-lg font-bold text-white mb-1.5">View Campaign Shoot</h3>
+                          <p className="text-[rgba(230,236,248,0.6)] text-[0.75rem] mb-6 max-w-[360px]">Access the complete library of high-quality campaign reel and shoot content we produced on Google Drive.</p>
+                          <a 
+                            href={project.instaReels} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="px-6 py-2.5 bg-[#3461FF] hover:bg-[#204af5] text-white text-[0.7rem] font-bold tracking-[0.1em] uppercase rounded transition-colors"
+                          >
+                            Open Drive Folder
+                          </a>
+                        </div>
+                      </div>
+                    ) : null
                   )}
 
                   {/* INSTA POSTS TAB (Hyro) */}
@@ -363,30 +565,55 @@ export default function ProjectModal({
                     </div>
                   )}
 
-                  {/* CONCEPT TAB (Coca-Cola) */}
-                  {activeTab === "concept" && project.campaign && (
-                    <div className="flex-1 flex flex-col h-full">
-                      <div className="p-5 lg:p-6 rounded-xl border border-[rgba(230,236,248,0.05)] text-center flex-1 flex flex-col justify-between h-full" style={{ background: '#0C1530' }}>
-                        <div>
-                          <h4 className="text-[0.6rem] font-bold text-[#FF5555] uppercase tracking-[0.15em] mb-1.5">Campaign Name</h4>
-                          <h3 className="text-[1.1rem] lg:text-[1.3rem] font-bold text-white tracking-[-0.02em] leading-tight mb-3">
-                            {project.campaign.name}
-                          </h3>
-                        </div>
-                        
-                        <div className="flex-1 w-full max-w-[680px] mx-auto relative rounded-lg overflow-hidden border border-[rgba(230,236,248,0.1)] shadow-2xl min-h-[220px]">
-                          <video 
-                            src={project.campaign.video} 
-                            controls 
-                            playsInline 
-                            autoPlay
-                            muted
-                            loop
-                            className="absolute inset-0 w-full h-full object-contain bg-black/40"
-                          />
+                  {/* CONCEPT TAB */}
+                  {(activeTab.toLowerCase() === "concept" || activeTab.toLowerCase().includes("campaign")) && (
+                    project.campaign ? (
+                      <div className="flex-1 flex flex-col h-full">
+                        <div className="p-5 lg:p-6 rounded-xl border border-[rgba(230,236,248,0.05)] text-center flex-1 flex flex-col justify-between h-full" style={{ background: '#0C1530' }}>
+                          <div>
+                            <h4 className="text-[0.6rem] font-bold text-[#FF5555] uppercase tracking-[0.15em] mb-1.5">Campaign Name</h4>
+                            <h3 className="text-[1.1rem] lg:text-[1.3rem] font-bold text-white tracking-[-0.02em] leading-tight mb-3">
+                              {project.campaign.name}
+                            </h3>
+                          </div>
+                          
+                          <div className="flex-1 w-full max-w-[680px] mx-auto relative rounded-lg overflow-hidden border border-[rgba(230,236,248,0.1)] shadow-2xl min-h-[220px]">
+                            <video 
+                              src={project.campaign.video} 
+                              controls 
+                              playsInline 
+                              autoPlay
+                              muted
+                              loop
+                              className="absolute inset-0 w-full h-full object-contain bg-black/40"
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    ) : project.conceptText ? (
+                      <div className="space-y-4 h-full flex flex-col justify-center">
+                        <div className="p-6 lg:p-8 rounded-xl border border-[rgba(230,236,248,0.05)] min-h-[260px] flex flex-col items-center justify-center relative overflow-hidden" style={{ background: '#0C1530' }}>
+                          {/* Decorative Background Element */}
+                          <div 
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] rounded-full blur-[100px] opacity-10 pointer-events-none" 
+                            style={{ backgroundColor: project.brand.colors[0] || '#3461FF' }}
+                          />
+                          
+                          <h4 
+                            className="text-[0.6rem] font-bold uppercase tracking-[0.15em] mb-4 relative z-10"
+                            style={{ color: project.brand.colors[3] || project.brand.colors[0] || '#3461FF' }}
+                          >
+                            The Concept
+                          </h4>
+                          <div 
+                            className="text-[0.95rem] lg:text-[1.1rem] leading-[1.7] text-[rgba(230,236,248,0.9)] relative z-10 max-w-[800px] text-center font-medium whitespace-pre-line"
+                            style={{ fontFamily: project.brand.font || 'Inter' }}
+                          >
+                            {project.conceptText}
+                          </div>
+                        </div>
+                      </div>
+                    ) : null
                   )}
 
                   {/* THEME TAB (Coca-Cola) */}
@@ -405,7 +632,7 @@ export default function ProjectModal({
                   )}
 
                   {/* BRANDING TAB */}
-                  {activeTab === "branding" && (
+                  {(activeTab.toLowerCase().includes("brand") || activeTab.toLowerCase().includes("logo") || activeTab === "branding") && (
                     <div className="flex-1 flex flex-col justify-between gap-3 h-full">
                       {project.brand.details && (
                         <div 
@@ -484,6 +711,80 @@ export default function ProjectModal({
                           </div>
                         </div>
                       </div>
+                    </div>
+                  )}
+
+                  {/* MAGAZINE TAB */}
+                  {activeTab.toLowerCase().includes("magazine") && project.magazines && (
+                    <div className="flex-1 flex flex-col justify-center h-full">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[800px] mx-auto w-full">
+                        {project.magazines.map((mag, i) => (
+                          <div 
+                            key={i} 
+                            className="bg-[#0C1530] border border-[rgba(230,236,248,0.06)] rounded-xl overflow-hidden flex flex-col group transition-all duration-300 hover:border-[#005F54] hover:shadow-[0_0_20px_rgba(0,95,84,0.15)]"
+                          >
+                            {/* Magazine Cover Thumbnail */}
+                            <div className="relative aspect-[3/4] w-full bg-black/40 overflow-hidden">
+                              <img 
+                                src={`https://lh3.googleusercontent.com/d/${mag.id}=w600`}
+                                alt={mag.name}
+                                className="w-full h-full object-cover transition-transform duration-[600ms] group-hover:scale-[1.03]"
+                                loading="lazy"
+                                referrerPolicy="no-referrer"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-[#0C1530] via-[#0C1530]/40 to-transparent opacity-80" />
+                              
+                              {/* Glowing Accent */}
+                              <div className="absolute top-4 left-4 px-2.5 py-1 rounded bg-[#005F54]/85 border border-[#005F54] text-[0.55rem] font-bold tracking-[0.1em] text-white uppercase backdrop-blur-sm">
+                                Editorial
+                              </div>
+                            </div>
+                            
+                            {/* Card Footer */}
+                            <div className="p-5 flex flex-col justify-between flex-1 gap-4">
+                              <div>
+                                <h4 className="text-[0.88rem] font-bold text-white tracking-tight leading-snug group-hover:text-[#005F54] transition-colors">
+                                  {mag.name}
+                                </h4>
+                                <p className="text-[0.68rem] text-[rgba(230,236,248,0.4)] mt-1.5 leading-relaxed font-medium">
+                                  Flip through our curated travel publication and explore the art of visual storytelling.
+                                </p>
+                              </div>
+                              
+                              <a 
+                                href={mag.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full py-2.5 bg-[#005F54] hover:bg-[#007C6E] text-white text-[0.68rem] font-bold tracking-[0.1em] uppercase rounded transition-colors text-center flex items-center justify-center gap-1.5"
+                              >
+                                Read Magazine
+                                <ExternalLink size={11} />
+                              </a>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* CUSTOM TABS FALLBACK */}
+                  {!["website", "social", "branding", "shoot", "insta posts", "insta reels", "reel concept", "concept", "theme", "magazine", "campaign"].some(std => activeTab.toLowerCase().includes(std.substring(0, 5))) && (
+                    <div className="flex-1 flex flex-col h-full items-center justify-center p-8 text-center rounded-xl border border-[rgba(230,236,248,0.05)] relative overflow-hidden" style={{ background: '#0C1530' }}>
+                      {/* Decorative gradient blur background */}
+                      <div 
+                        className="absolute w-[240px] h-[240px] rounded-full blur-[100px] opacity-10 pointer-events-none" 
+                        style={{ backgroundColor: project.brand.colors[0] || '#3461FF' }}
+                      />
+                      <div 
+                        className="w-14 h-14 rounded-full flex items-center justify-center mb-5 border"
+                        style={{ borderColor: `rgba(230,236,248,0.1)`, backgroundColor: 'rgba(230,236,248,0.02)' }}
+                      >
+                        <span className="text-xl text-[rgba(230,236,248,0.8)] font-serif">{activeTab.substring(0, 1).toUpperCase()}</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-2 tracking-tight">{activeTab}</h3>
+                      <p className="text-[rgba(230,236,248,0.5)] text-[0.8rem] max-w-[420px] leading-[1.7] font-medium">
+                        Case study details, design assets, and content for the <strong className="text-white font-semibold">{activeTab}</strong> showcase of {project.brand.name} will be added here soon.
+                      </p>
                     </div>
                   )}
                 </motion.div>
