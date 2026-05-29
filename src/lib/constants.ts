@@ -26,6 +26,8 @@ export type ProjectData = {
     logo?: string;
     logoLink?: string;
     details?: string;
+    tagline?: string;
+    bodyFont?: string;
   };
   shoot?: string[];
   instaReels?: string;
@@ -39,187 +41,439 @@ export type ProjectData = {
   tabs?: string[];
   magazines?: { name: string; link: string; id: string }[];
   conceptText?: string;
+  airbnb?: {
+    url: string;
+    title: string;
+    desc: string;
+    meta: { l: string; v: string }[];
+  };
 };
 
 export const BUNKOUT_SMM_POSTS = [
+  // Post 1 (6 items)
   [
     {
       id: '1Fq0JMg9_LkCNDggYFfVCaNfoU-HuIlJr',
-      name: 'row 1 post 1 a',
+      name: 'row 1 post 1 a .heic',
       type: 'image',
       link: 'https://drive.google.com/file/d/1Fq0JMg9_LkCNDggYFfVCaNfoU-HuIlJr/view?usp=drive_web'
     },
     {
       id: '1HD9mvlnWw29HDbekUBzLX8PBomJW82ZE',
-      name: 'row 1 post 1 b',
+      name: 'row 1 post 1 b .heic',
       type: 'image',
       link: 'https://drive.google.com/file/d/1HD9mvlnWw29HDbekUBzLX8PBomJW82ZE/view?usp=drive_web'
     },
     {
       id: '1gNse3BRX24YlKRf93pDCnEHh-5RXmhHA',
-      name: 'row 1 post 1 c',
+      name: 'row 1 post 1 c .heic',
       type: 'image',
       link: 'https://drive.google.com/file/d/1gNse3BRX24YlKRf93pDCnEHh-5RXmhHA/view?usp=drive_web'
     },
     {
       id: '1eAnRkzo3JPCxwbxSv-j1RJTsQdgM84_z',
-      name: 'row 1 post 1 d',
+      name: 'row 1 post 1 d .heic',
       type: 'image',
       link: 'https://drive.google.com/file/d/1eAnRkzo3JPCxwbxSv-j1RJTsQdgM84_z/view?usp=drive_web'
     },
     {
       id: '1KORmNbVBooAMSy5ootNrOTZM7_2FH2wI',
-      name: 'row 1 post 1 e',
+      name: 'row 1 post 1 e .heic',
       type: 'image',
       link: 'https://drive.google.com/file/d/1KORmNbVBooAMSy5ootNrOTZM7_2FH2wI/view?usp=drive_web'
     },
     {
       id: '1nHQQpd3-iWsJAH0CsCuBG-n1nYkNsJCW',
-      name: 'row 1 post 1 f',
+      name: 'row 1 post 1 f .heic',
       type: 'image',
       link: 'https://drive.google.com/file/d/1nHQQpd3-iWsJAH0CsCuBG-n1nYkNsJCW/view?usp=drive_web'
     },
   ],
+  // Post 2 (6 items)
   [
     {
-      id: '1yve5H4tTD8tSwPvN_UeuXISTCg3WaRnC',
-      name: 'row 1 post 2 a',
-      type: 'image',
-      link: 'https://drive.google.com/file/d/1yve5H4tTD8tSwPvN_UeuXISTCg3WaRnC/view?usp=drive_web'
-    },
-    {
       id: '1mNDr4sFHraeoU1rci-ElP0mHab7MphEZ',
-      name: 'row 1 post 2',
+      name: 'row 1 post 2.jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/1mNDr4sFHraeoU1rci-ElP0mHab7MphEZ/view?usp=drive_web'
     },
     {
+      id: '1yve5H4tTD8tSwPvN_UeuXISTCg3WaRnC',
+      name: 'row 1 post 2 a  .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1yve5H4tTD8tSwPvN_UeuXISTCg3WaRnC/view?usp=drive_web'
+    },
+    {
       id: '1HHV3zsEAkqshmzFC4JiTWoUCwscYRUx5',
-      name: 'row 1 post 2 b',
+      name: 'row 1 post 2  b .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/1HHV3zsEAkqshmzFC4JiTWoUCwscYRUx5/view?usp=drive_web'
     },
     {
       id: '1S9tuJ8x6_ufe8NxrgT0i62jl7LyE_1oM',
-      name: 'row 1 post 2 c',
+      name: 'row 1 post 2 c .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/1S9tuJ8x6_ufe8NxrgT0i62jl7LyE_1oM/view?usp=drive_web'
     },
     {
       id: '14eTVbLN3i_MUQUrZfsfeYmIEYtlBB7cu',
-      name: 'row 1 post 2 d',
+      name: 'row 1 post 2 d .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/14eTVbLN3i_MUQUrZfsfeYmIEYtlBB7cu/view?usp=drive_web'
     },
     {
       id: '1dXMhoH5khkk697IqRDjjeWhzZgSyWmoc',
-      name: 'row 1 post 2 e',
+      name: 'row 1 post 2 e .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/1dXMhoH5khkk697IqRDjjeWhzZgSyWmoc/view?usp=drive_web'
     },
   ],
+  // Post 3 (1 items)
   [
     {
       id: '1JhaBgpZB9zDAnb0EWHYvHan84ifkKh5i',
-      name: 'ROW 1 POST 3',
+      name: 'ROW 1 POST 3 .mp4',
       type: 'video',
       link: 'https://drive.google.com/file/d/1JhaBgpZB9zDAnb0EWHYvHan84ifkKh5i/view?usp=drive_web'
     },
   ],
+  // Post 4 (1 items)
   [
     {
       id: '1x3Kef3TdextJ8kXMlbxpdeRfQUuyXPPG',
-      name: 'Row 2 Post 4',
+      name: 'Row 2 Post 4.mp4',
       type: 'video',
       link: 'https://drive.google.com/file/d/1x3Kef3TdextJ8kXMlbxpdeRfQUuyXPPG/view?usp=drive_web'
     },
   ],
+  // Post 5 (9 items)
   [
     {
-      id: '1umZRcaxZxohrW9W9z9LmeEQIov9km0aC',
-      name: 'Row 2 Post 5 a',
-      type: 'image',
-      link: 'https://drive.google.com/file/d/1umZRcaxZxohrW9W9z9LmeEQIov9km0aC/view?usp=drive_web'
-    },
-    {
       id: '1SWwIQz2rxYZmpGoEhQ3PrgmiDfOLCuez',
-      name: 'Row 2 Post 5',
+      name: 'Row 2 Post 5 .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/1SWwIQz2rxYZmpGoEhQ3PrgmiDfOLCuez/view?usp=drive_web'
     },
     {
+      id: '1umZRcaxZxohrW9W9z9LmeEQIov9km0aC',
+      name: 'Row 2 Post 5  a .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1umZRcaxZxohrW9W9z9LmeEQIov9km0aC/view?usp=drive_web'
+    },
+    {
       id: '1ALrcK5tWRDeEVC6GRg0LjvWbDHEd9Avb',
-      name: 'Row 2 Post 5 b',
+      name: 'Row 2 Post 5  b .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/1ALrcK5tWRDeEVC6GRg0LjvWbDHEd9Avb/view?usp=drive_web'
     },
     {
       id: '13_L_LoPujgKjhtEtJBAcUiFJk-vVFeuA',
-      name: 'Row 2 Post 5 c',
+      name: 'Row 2 Post 5  c .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/13_L_LoPujgKjhtEtJBAcUiFJk-vVFeuA/view?usp=drive_web'
     },
     {
       id: '13AfjMV9uu1fxhftECXF2AK2cM0G4KkFV',
-      name: 'Row 2 Post 5 d',
+      name: 'Row 2 Post 5  d .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/13AfjMV9uu1fxhftECXF2AK2cM0G4KkFV/view?usp=drive_web'
     },
     {
       id: '1kEDpeTu6yMOlQIW24Dr10tYqcqphFJfk',
-      name: 'Row 2 Post 5 e',
+      name: 'Row 2 Post 5  e .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/1kEDpeTu6yMOlQIW24Dr10tYqcqphFJfk/view?usp=drive_web'
     },
     {
       id: '1vvRrnIg0kEKZjfZoQQedf2GIE8ugXTaP',
-      name: 'Row 2 Post 5 f',
+      name: 'Row 2 Post 5  f .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/1vvRrnIg0kEKZjfZoQQedf2GIE8ugXTaP/view?usp=drive_web'
     },
     {
       id: '18-0s-8Rm1eWosz_8TC3XCEMYYOjpzfVS',
-      name: 'Row 2 Post 5 g',
+      name: 'Row 2 Post 5  g .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/18-0s-8Rm1eWosz_8TC3XCEMYYOjpzfVS/view?usp=drive_web'
     },
     {
       id: '14qXd-vsO2myO9X1gsEq2ibWaUad2jUJA',
-      name: 'Row 2 Post 5 h',
+      name: 'Row 2 Post 5 h  .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/14qXd-vsO2myO9X1gsEq2ibWaUad2jUJA/view?usp=drive_web'
     },
   ],
+  // Post 6 (5 items)
   [
     {
       id: '1a_vtSc7__VnMYw6AtpQQbUNi41Bj1RkW',
-      name: 'Row 2 Post 6',
+      name: 'Row 2 Post 6 .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/1a_vtSc7__VnMYw6AtpQQbUNi41Bj1RkW/view?usp=drive_web'
     },
     {
       id: '1GKb2qMR-rUy0tQpPzwssDAffSCJrn3GY',
-      name: 'Row 2 Post 6 a',
+      name: 'Row 2 Post 6 a .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/1GKb2qMR-rUy0tQpPzwssDAffSCJrn3GY/view?usp=drive_web'
     },
     {
       id: '1XlDui4szKJYKvAFW1MvYZje24WP3XQOO',
-      name: 'Row 2 Post 6 b',
+      name: 'Row 2 Post 6  b .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/1XlDui4szKJYKvAFW1MvYZje24WP3XQOO/view?usp=drive_web'
     },
     {
       id: '1O1I2X1SSYFNecYYgf02jCAZwVXGM6AXE',
-      name: 'Row 2 Post 6 c',
+      name: 'Row 2 Post 6  c .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/1O1I2X1SSYFNecYYgf02jCAZwVXGM6AXE/view?usp=drive_web'
     },
     {
       id: '1zNyqp1o-EUi5CMbaugMB09nXJkRBge-K',
-      name: 'Row 2 Post 6 d',
+      name: 'Row 2 Post 6  d .jpg',
       type: 'image',
       link: 'https://drive.google.com/file/d/1zNyqp1o-EUi5CMbaugMB09nXJkRBge-K/view?usp=drive_web'
+    },
+  ],
+  // Post 7 (7 items)
+  [
+    {
+      id: '1ghoAVwlNi5N3Zk7z5YPmHdFcpXCsTgks',
+      name: 'Row 3 Post 7  .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1ghoAVwlNi5N3Zk7z5YPmHdFcpXCsTgks/view?usp=drive_web'
+    },
+    {
+      id: '1ImUbZyJt-arbZsGizl5tx-d81ufTUPPk',
+      name: 'Row 3 Post 7 a .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1ImUbZyJt-arbZsGizl5tx-d81ufTUPPk/view?usp=drive_web'
+    },
+    {
+      id: '16l8P1qo3BV-7IyAZxHhyU9q448TV9INd',
+      name: 'Row 3 Post 7 b .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/16l8P1qo3BV-7IyAZxHhyU9q448TV9INd/view?usp=drive_web'
+    },
+    {
+      id: '1rNBpWLe52gRFZrV3yaafe2oDnHLfvuMk',
+      name: 'Row 3 Post 7 c .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1rNBpWLe52gRFZrV3yaafe2oDnHLfvuMk/view?usp=drive_web'
+    },
+    {
+      id: '1oiCuS07rjHyL8DjsgMKDIiHu02NmGkF0',
+      name: 'Row 3 Post 7 d .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1oiCuS07rjHyL8DjsgMKDIiHu02NmGkF0/view?usp=drive_web'
+    },
+    {
+      id: '1aMMF-MfVfuCpa60V_1ihpsGL8LQWxm0F',
+      name: 'Row 3 Post 7 e .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1aMMF-MfVfuCpa60V_1ihpsGL8LQWxm0F/view?usp=drive_web'
+    },
+    {
+      id: '11GLSvlH5Mk7cbeq9qqBj8wbDBEk_Reib',
+      name: 'Row 3 Post 7 f .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/11GLSvlH5Mk7cbeq9qqBj8wbDBEk_Reib/view?usp=drive_web'
+    },
+  ],
+  // Post 8 (1 items)
+  [
+    {
+      id: '1_k6LVe5uHluee-GHQLtVZMeny-fmb_0x',
+      name: 'Row 3 Post 8 .mp4',
+      type: 'video',
+      link: 'https://drive.google.com/file/d/1_k6LVe5uHluee-GHQLtVZMeny-fmb_0x/view?usp=drive_web'
+    },
+  ],
+  // Post 9 (6 items)
+  [
+    {
+      id: '1k2tDtpWIvc4Nvucw4IiezyTTooj5WWEg',
+      name: 'Row 3 Post 9.jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1k2tDtpWIvc4Nvucw4IiezyTTooj5WWEg/view?usp=drive_web'
+    },
+    {
+      id: '19e7hUp_rnPVjH8mVTrlrCOZaFlWfWvsG',
+      name: 'Row 3 Post 9 a .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/19e7hUp_rnPVjH8mVTrlrCOZaFlWfWvsG/view?usp=drive_web'
+    },
+    {
+      id: '1F8fbzx8yuzL-hzPpvYZz4njZ_HDrt5MR',
+      name: 'Row 3 Post 9 b .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1F8fbzx8yuzL-hzPpvYZz4njZ_HDrt5MR/view?usp=drive_web'
+    },
+    {
+      id: '1pZn_RgyA5pWrj3OE8sLfU_O0IYwdV74E',
+      name: 'Row 3 Post 9 c .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1pZn_RgyA5pWrj3OE8sLfU_O0IYwdV74E/view?usp=drive_web'
+    },
+    {
+      id: '18FCV84SNAiJOrRZVo-lmciRAAGpZ93lC',
+      name: 'Row 3 Post 9 d .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/18FCV84SNAiJOrRZVo-lmciRAAGpZ93lC/view?usp=drive_web'
+    },
+    {
+      id: '17TL_s5uarupfofCrA8ZoYLQHWkwG4zqv',
+      name: 'Row 3 Post 9 e .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/17TL_s5uarupfofCrA8ZoYLQHWkwG4zqv/view?usp=drive_web'
+    },
+  ],
+  // Post 10 (5 items)
+  [
+    {
+      id: '1ANU_JDFpV0e3t_DSpLuvUF-C6sogdA-b',
+      name: 'Row 3 Post 10 .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1ANU_JDFpV0e3t_DSpLuvUF-C6sogdA-b/view?usp=drive_web'
+    },
+    {
+      id: '15mfJ9kBnNgCJ9-GTVIxuLRKLzuoctOAd',
+      name: 'Row 3 Post 10 a .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/15mfJ9kBnNgCJ9-GTVIxuLRKLzuoctOAd/view?usp=drive_web'
+    },
+    {
+      id: '1C9drYZx7X9tet3Eb0Kdm-1-i33gnCxBR',
+      name: 'Row 3 Post 10 b .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1C9drYZx7X9tet3Eb0Kdm-1-i33gnCxBR/view?usp=drive_web'
+    },
+    {
+      id: '156UGHDWApdG1MS-Pe7po-dytyx-WRGbl',
+      name: 'Row 3 Post 10 c .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/156UGHDWApdG1MS-Pe7po-dytyx-WRGbl/view?usp=drive_web'
+    },
+    {
+      id: '1FP1cIXW-X6e-QG8zPj2A_mJZllkqgcrd',
+      name: 'Row 3 Post 10 d .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1FP1cIXW-X6e-QG8zPj2A_mJZllkqgcrd/view?usp=drive_web'
+    },
+  ],
+  // Post 11 (10 items)
+  [
+    {
+      id: '1TqPAjIp-3D1GL6EqVo-He9jhBc31pH9Q',
+      name: 'Row 3 Post 11 .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1TqPAjIp-3D1GL6EqVo-He9jhBc31pH9Q/view?usp=drive_web'
+    },
+    {
+      id: '1YlfIWa-np-KQf_Vg0u44LEntK5006vhu',
+      name: 'Row 3 Post 11 a .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1YlfIWa-np-KQf_Vg0u44LEntK5006vhu/view?usp=drive_web'
+    },
+    {
+      id: '1uYgAruSIqVeY2kxFE8PH5e6c0AqxrjwY',
+      name: 'Row 3 Post 11 b .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1uYgAruSIqVeY2kxFE8PH5e6c0AqxrjwY/view?usp=drive_web'
+    },
+    {
+      id: '1BWyiRMtuV2IhSILz9cXCjrjAob3ojWkq',
+      name: 'Row 3 Post 11 c .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1BWyiRMtuV2IhSILz9cXCjrjAob3ojWkq/view?usp=drive_web'
+    },
+    {
+      id: '1BzqGtD8QiERqdTKrqp5hEILDop3MD0WM',
+      name: 'Row 3 Post 11 d .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1BzqGtD8QiERqdTKrqp5hEILDop3MD0WM/view?usp=drive_web'
+    },
+    {
+      id: '1S75HYHjGVMfJuOa0Rk0x02TsUCG7gRmH',
+      name: 'Row 3 Post 11 e .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1S75HYHjGVMfJuOa0Rk0x02TsUCG7gRmH/view?usp=drive_web'
+    },
+    {
+      id: '1ipTjVB0IC6c1Xf8o8ZIpK03wBZjFmY5a',
+      name: 'Row 3 Post 11 f .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1ipTjVB0IC6c1Xf8o8ZIpK03wBZjFmY5a/view?usp=drive_web'
+    },
+    {
+      id: '1OOlg6_0Orw3oSu90yCOSWZKbN5McqyPb',
+      name: 'Row 3 Post 11 g .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1OOlg6_0Orw3oSu90yCOSWZKbN5McqyPb/view?usp=drive_web'
+    },
+    {
+      id: '1ZkL0qD8Dg6tG3IupM_wlsmUtyOaVt0Qe',
+      name: 'Row 3 Post 11 h .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1ZkL0qD8Dg6tG3IupM_wlsmUtyOaVt0Qe/view?usp=drive_web'
+    },
+    {
+      id: '1w2LG0a2PlxNNLsJzHbzdHXmbLvoM4RfE',
+      name: 'Row 3 Post 11 i .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1w2LG0a2PlxNNLsJzHbzdHXmbLvoM4RfE/view?usp=drive_web'
+    },
+  ],
+  // Post 12 (8 items)
+  [
+    {
+      id: '18AbItJTiedaZn81KnAXgjGgbEz-1a9RF',
+      name: 'Row 3 Post 12 .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/18AbItJTiedaZn81KnAXgjGgbEz-1a9RF/view?usp=drive_web'
+    },
+    {
+      id: '1T9O5I1wlBlskpqQB-Ywq0lEZ3PR-FNOn',
+      name: 'Row 3 Post 12 a .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1T9O5I1wlBlskpqQB-Ywq0lEZ3PR-FNOn/view?usp=drive_web'
+    },
+    {
+      id: '13ZNGnEzftdvoZLIcr0HpfqZh7q6EWEic',
+      name: 'Row 3 Post 12 b .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/13ZNGnEzftdvoZLIcr0HpfqZh7q6EWEic/view?usp=drive_web'
+    },
+    {
+      id: '1vooneUM3VOX_T-wQ-oPlDOPMygO6KbjE',
+      name: 'Row 3 Post 12 c .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1vooneUM3VOX_T-wQ-oPlDOPMygO6KbjE/view?usp=drive_web'
+    },
+    {
+      id: '1cDsM3eWnmWbvRyn24IYjrwEHRiFrezY5',
+      name: 'Row 3 Post 12 d .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1cDsM3eWnmWbvRyn24IYjrwEHRiFrezY5/view?usp=drive_web'
+    },
+    {
+      id: '1fO-1Ba67OHe-4Pmc7EnbRYmDW3xL5vvS',
+      name: 'Row 3 Post 12 e .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1fO-1Ba67OHe-4Pmc7EnbRYmDW3xL5vvS/view?usp=drive_web'
+    },
+    {
+      id: '1oJh9g0y53ox4FUwZxlsbKzdYHNsO7kH9',
+      name: 'Row 3 Post 12 f .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1oJh9g0y53ox4FUwZxlsbKzdYHNsO7kH9/view?usp=drive_web'
+    },
+    {
+      id: '1A3Y9_N4Kt-zhm56tpYJg-lads6gsNSSm',
+      name: 'Row 3 Post 12 g .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1A3Y9_N4Kt-zhm56tpYJg-lads6gsNSSm/view?usp=drive_web'
     },
   ],
 ];
@@ -455,11 +709,7 @@ export const PROJECTS: Record<string, ProjectData> = {
       gradient: 'radial-gradient(ellipse at 40% 60%,rgba(50,200,150,.2) 0%,#050B1A 70%)',
       meta: [{ l: 'Industry', v: 'Hospitality' }, { l: 'Market', v: 'India' }, { l: 'Deliverables', v: 'Web + Social' }]
     },
-    social: [
-      { type: 'Property Tour', copy: 'Your private paradise awaits.', bg: 'linear-gradient(135deg,#050B1A,#002211)', link: 'https://www.instagram.com/p/DI3q-kKspN8/?igsh=MTRuc211Nnh4bDlsNQ==', image: '/social-previews/utopian-1.png' },
-      { type: 'Staycation', copy: 'Unwind in the lap of luxury.', bg: 'linear-gradient(135deg,#001108,#004422)', link: 'https://www.instagram.com/p/DLcSC-KMV4o/?igsh=MWhub2ZjY245ZjM5NQ==', image: '/social-previews/utopian-2.png' },
-      { type: 'Guest Experience', copy: 'Memories that last a lifetime.', bg: 'linear-gradient(135deg,#000c06,#00331a)', link: 'https://www.instagram.com/p/DIi-OUNzOuC/?igsh=MXFlYjdnMTBkb25iZg==', image: '/social-previews/utopian-3.png' }
-    ],
+    social: [],
     smmPosts: UTOPIAN_VILLAS_SMM_POSTS,
     smmDriveLink: 'https://drive.google.com/drive/folders/19ODNOA1j87L1bHgiJWzsxPtwmznyq7Jy?usp=sharing',
     brand: {
@@ -471,6 +721,17 @@ export const PROJECTS: Record<string, ProjectData> = {
       logo: '/brand-logos/utopianvillas.png',
       logoLink: 'https://drive.google.com/drive/folders/1-Fci_j6eCO8K1W9rP0fPWhDbGVAhK4HQ?usp=drive_link',
       details: 'Exclusive luxury villa rentals offering premium hospitality. The branding focuses on serenity, escape, and high-end living.'
+    },
+    tabs: ['Website', 'Social Media', 'Airbnb Listing'],
+    airbnb: {
+      url: 'https://www.airbnb.co.in/users/profile/1469222464763297439?previous_page_name=PdpHomeMarketplace',
+      title: 'Airbnb Host Profile',
+      desc: 'Optimized Airbnb profiles and property listings that drive direct bookings and visibility. Every listing is positioned as an aspirational escape to engage premium travelers.',
+      meta: [
+        { l: 'Platform', v: 'Airbnb' },
+        { l: 'Properties', v: 'Exclusive Villas' },
+        { l: 'Host Profile', v: 'Utopian Villas' }
+      ]
     }
   },
   cocacola: {
@@ -540,7 +801,7 @@ export const PROJECTS: Record<string, ProjectData> = {
       url: 'bunkout.in',
       title: 'Vacation Rental Experience',
       desc: 'A premium vacation rental experience booking portal. Seamless villa tours, real-time availability check, and modern design reflecting luxury holiday stays.',
-      gradient: 'radial-gradient(ellipse at 50% 50%, #3461FF26 0%, #050B1A 70%)',
+      gradient: 'radial-gradient(ellipse at 50% 50%, #123E3F26 0%, #050B1A 70%)',
       meta: [{ l: 'Industry', v: 'Hospitality / Travel' }, { l: 'Deliverables', v: 'Web + Brand + SMM' }, { l: 'Market', v: 'India & Global' }]
     },
     social: [],
@@ -548,14 +809,17 @@ export const PROJECTS: Record<string, ProjectData> = {
     smmDriveLink: 'https://drive.google.com/drive/folders/1jxXsVWq1FnyegBhdZQLNTS37a-3Gjvez?usp=sharing',
     brand: {
       name: 'Bunkout',
-      colors: ['#3461FF', '#050B1A', '#FFFFFF', '#E6ECF8'],
-      colorNames: ['Blue', 'Navy', 'White', 'Off-White'],
-      font: 'Plus Jakarta Sans',
+      colors: ['#123E3F', '#C4A56F', '#F7F8F8', '#050B1A'],
+      colorNames: ['Green', 'Beige', 'Ivory', 'Navy'],
+      font: 'Kiona',
+      bodyFont: 'Montserrat',
+      tagline: 'Stay Somewhere Amazing',
       style: 'Modern · Cozy · Luxurious',
       logo: '/brand-logos/BUNKOUT.png',
       logoLink: 'https://drive.google.com/drive/folders/1gVakXanQAFVZoJa2LmvNTpUFh0cbrzXj?usp=sharing',
       details: 'A premium vacation rental brand offering luxury escape villas. The visual system incorporates cozy modern colors, bold branding, and high-converting marketing campaigns.'
-    }
+    },
+    tabs: ['Website', 'Branding & Logo', 'Social Media']
   },
   travellibrary: {
     title: 'The Travel Library',
@@ -564,20 +828,21 @@ export const PROJECTS: Record<string, ProjectData> = {
       url: 'thetravellibrary.in',
       title: 'Curated Journeys',
       desc: 'A premium digital travel guide and editorial magazine for modern explorers.',
-      gradient: 'radial-gradient(ellipse at 50% 50%, #005F5426 0%, #050B1A 70%)',
+      gradient: 'radial-gradient(ellipse at 50% 50%, #1D243926 0%, #050B1A 70%)',
       meta: [{ l: 'Deliverables', v: 'Brand + Web + Editorial' }, { l: 'Niche', v: 'Luxury Travel' }]
     },
     social: [],
     brand: {
       name: 'The Travel Library',
-      colors: ['#005F54', '#050B1A', '#FFFFFF', '#E6ECF8'],
-      colorNames: ['Forest Teal', 'Navy', 'White', 'Light Grey'],
-      font: 'Playfair Display',
+      colors: ['#1D2439', '#D2BB95', '#F4F2F0', '#A88F71'],
+      colorNames: ['Blue', 'Gold', 'Ivory', 'Dark Gold'],
+      font: 'Butler',
+      bodyFont: 'Montserrat',
       style: 'Editorial · Curated · Luxurious',
       logo: '/brand-logos/Logo (2).png',
       details: 'The Travel Library represents luxury travel positioning, translating the romance of physical magazines into a modern, interactive web portal.'
     },
-    tabs: ['Website', 'Social Media', 'Magazine'],
+    tabs: ['Website', 'Branding & Logo', 'Social Media', 'Magazine'],
     magazines: [
       {
         name: 'The Travel Library - Edition 1',
