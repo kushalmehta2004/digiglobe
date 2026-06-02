@@ -20,6 +20,7 @@ function SMMPostCard({
   brandUrl?: string;
 }) {
   const [currentIdx, setCurrentIdx] = useState(0);
+  const [showVideoPopup, setShowVideoPopup] = useState(false);
 
   const handlePrev = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -37,61 +38,67 @@ function SMMPostCard({
   if (!activeMedia) return null;
 
   const getThumbnailUrl = (id: string) => {
+    if (id.startsWith('/') || id.startsWith('http')) {
+      return id;
+    }
     return `https://lh3.googleusercontent.com/d/${id}=w600`;
   };
 
 
   return (
-    <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.04)] rounded-lg overflow-hidden flex flex-col p-2 select-none">
-      {/* Top Header */}
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-1.5">
-          <div className="w-5 h-5 rounded-full bg-[#1B274A] border border-[rgba(230,236,248,0.08)] flex items-center justify-center overflow-hidden">
-            {brandLogo ? (
-              <img src={brandLogo} alt={brandName} className="w-3.5 h-3.5 object-contain" />
-            ) : (
-              <div className="w-3.5 h-3.5 rounded bg-blue-500/20 text-[0.4rem] flex items-center justify-center font-bold text-white uppercase">
-                {brandName.substring(0, 2)}
-              </div>
-            )}
+    <>
+      <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.04)] rounded-lg overflow-hidden flex flex-col p-2 select-none">
+        {/* Top Header */}
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-1.5">
+            <div className="w-5 h-5 rounded-full bg-[#1B274A] border border-[rgba(230,236,248,0.08)] flex items-center justify-center overflow-hidden">
+              {brandLogo ? (
+                <img src={brandLogo} alt={brandName} className="w-3.5 h-3.5 object-contain" />
+              ) : (
+                <div className="w-3.5 h-3.5 rounded bg-blue-500/20 text-[0.4rem] flex items-center justify-center font-bold text-white uppercase">
+                  {brandName.substring(0, 2)}
+                </div>
+              )}
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[0.58rem] font-bold text-white leading-none mb-0.5">{brandUrl || brandName.toLowerCase()}</span>
+              <span className="text-[0.45rem] text-[rgba(230,236,248,0.35)] leading-none font-medium">Post {postIndex + 1}</span>
+            </div>
           </div>
-          <div className="flex flex-col">
-            <span className="text-[0.58rem] font-bold text-white leading-none mb-0.5">{brandUrl || brandName.toLowerCase()}</span>
-            <span className="text-[0.45rem] text-[rgba(230,236,248,0.35)] leading-none font-medium">Post {postIndex + 1}</span>
-          </div>
+          <a 
+            href={activeMedia.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-5 h-5 rounded-full bg-[rgba(230,236,248,0.02)] hover:bg-[#3461FF] flex items-center justify-center text-[rgba(230,236,248,0.4)] hover:text-white transition-colors"
+          >
+            <ExternalLink size={9} />
+          </a>
         </div>
-        <a 
-          href={activeMedia.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-5 h-5 rounded-full bg-[rgba(230,236,248,0.02)] hover:bg-[#3461FF] flex items-center justify-center text-[rgba(230,236,248,0.4)] hover:text-white transition-colors"
-        >
-          <ExternalLink size={9} />
-        </a>
-      </div>
 
-      {/* Media Box */}
-      <div className="relative aspect-[4/5] w-full bg-black/40 rounded-md overflow-hidden border border-[rgba(230,236,248,0.02)] group">
-        {activeMedia.type === 'video' && activeMedia.videoUrl ? (
-          <video 
-            src={activeMedia.videoUrl}
-            controls
-            playsInline
-            muted
-            loop
-            className="w-full h-full object-contain bg-black"
-          />
-        ) : (
-          /* Click to open in drive */
-          <a href={activeMedia.link} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
-            <img 
-              src={getThumbnailUrl(activeMedia.id)} 
-              alt={activeMedia.name}
-              className="w-full h-full object-cover transition-transform duration-[600ms] group-hover:scale-[1.02]"
-              loading="lazy"
-              referrerPolicy="no-referrer"
+        {/* Media Box */}
+        <div className="relative aspect-[4/5] w-full bg-black/40 rounded-md overflow-hidden border border-[rgba(230,236,248,0.02)] group">
+          {activeMedia.type === 'video' && activeMedia.videoUrl ? (
+            <video 
+              src={activeMedia.videoUrl}
+              controls
+              playsInline
+              muted
+              loop
+              className="w-full h-full object-contain bg-black"
             />
-            {activeMedia.type === 'video' && (
+          ) : activeMedia.type === 'video' ? (
+            /* Click to open popup video player */
+            <button 
+              onClick={() => setShowVideoPopup(true)} 
+              className="block w-full h-full relative cursor-pointer text-left focus:outline-none"
+            >
+              <img 
+                src={getThumbnailUrl(activeMedia.id)} 
+                alt={activeMedia.name}
+                className="w-full h-full object-cover transition-transform duration-[600ms] group-hover:scale-[1.02]"
+                loading="lazy"
+                referrerPolicy="no-referrer"
+              />
               <div className="absolute inset-0 bg-black/20 flex items-center justify-center pointer-events-none">
                 <div className="w-8 h-8 rounded-full bg-[#3461FF]/90 flex items-center justify-center text-white shadow-md transform group-hover:scale-105 transition-transform">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
@@ -99,64 +106,121 @@ function SMMPostCard({
                   </svg>
                 </div>
               </div>
-            )}
-          </a>
-        )}
-
-        {/* Carousel Navigation */}
-        {post.length > 1 && (
-          <>
-            <button 
-              onClick={handlePrev}
-              className="absolute left-1 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none z-10"
-            >
-              <ChevronLeft size={12} />
             </button>
-            <button 
-              onClick={handleNext}
-              className="absolute right-1 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none z-10"
-            >
-              <ChevronRight size={12} />
-            </button>
-            
-            {/* Carousel Dot Indicators */}
-            <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 flex gap-0.5 bg-black/40 px-1 py-0.5 rounded-full backdrop-blur-[1px]">
-              {post.map((_, dotIdx) => (
-                <div 
-                  key={dotIdx} 
-                  className={`w-1.5 h-1.5 rounded-full transition-all ${
-                    dotIdx === currentIdx ? "bg-[#3461FF] scale-110" : "bg-white/40"
-                  }`}
-                />
-              ))}
-            </div>
-          </>
-        )}
-      </div>
+          ) : (
+            /* Click to open in drive */
+            <a href={activeMedia.link} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
+              <img 
+                src={getThumbnailUrl(activeMedia.id)} 
+                alt={activeMedia.name}
+                className="w-full h-full object-cover transition-transform duration-[600ms] group-hover:scale-[1.02]"
+                loading="lazy"
+                referrerPolicy="no-referrer"
+              />
+            </a>
+          )}
 
-      {/* Footer Info / Action Row */}
-      <div className="mt-2 flex items-center justify-between text-[rgba(230,236,248,0.35)]">
-        <div className="flex gap-2">
-          <button className="hover:text-red-500 transition-colors">
-            <Heart size={12} />
-          </button>
-          <button className="hover:text-white transition-colors">
-            <MessageCircle size={12} />
-          </button>
-          <button className="hover:text-white transition-colors">
-            <Send size={11} />
-          </button>
+          {/* Carousel Navigation */}
+          {post.length > 1 && (
+            <>
+              <button 
+                onClick={handlePrev}
+                className="absolute left-1 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none z-10"
+              >
+                <ChevronLeft size={12} />
+              </button>
+              <button 
+                onClick={handleNext}
+                className="absolute right-1 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none z-10"
+              >
+                <ChevronRight size={12} />
+              </button>
+              
+              {/* Carousel Dot Indicators */}
+              <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 flex gap-0.5 bg-black/40 px-1 py-0.5 rounded-full backdrop-blur-[1px]">
+                {post.map((_, dotIdx) => (
+                  <div 
+                    key={dotIdx} 
+                    className={`w-1.5 h-1.5 rounded-full transition-all ${
+                      dotIdx === currentIdx ? "bg-[#3461FF] scale-110" : "bg-white/40"
+                    }`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
-        <a 
-          href={activeMedia.link}
-          target="_blank"
-          rel="noopener noreferrer" 
-          className="text-[0.52rem] font-bold text-[#3461FF] hover:underline"
-        >
-          View file &rarr;
-        </a>
+
+        {/* Footer Info / Action Row */}
+        <div className="mt-2 flex items-center justify-between text-[rgba(230,236,248,0.35)]">
+          <div className="flex gap-2">
+            <button className="hover:text-red-500 transition-colors">
+              <Heart size={12} />
+            </button>
+            <button className="hover:text-white transition-colors">
+              <MessageCircle size={12} />
+            </button>
+            <button className="hover:text-white transition-colors">
+              <Send size={11} />
+            </button>
+          </div>
+          <a 
+            href={activeMedia.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[0.52rem] font-bold text-[#3461FF] hover:underline"
+          >
+            View file &rarr;
+          </a>
+        </div>
       </div>
-    </div>
+
+      <AnimatePresence>
+        {showVideoPopup && (
+          <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
+            {/* Backdrop Click to Close */}
+            <div className="absolute inset-0" onClick={() => setShowVideoPopup(false)} />
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="relative w-full max-w-[420px] aspect-[4/5] bg-black border border-[rgba(230,236,248,0.1)] rounded-xl overflow-hidden shadow-2xl flex flex-col z-10"
+            >
+              {/* Close Button */}
+              <div className="absolute top-3 right-3 z-50">
+                <button 
+                  onClick={() => setShowVideoPopup(false)}
+                  className="w-7 h-7 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center border border-white/10 hover:border-white/30 transition-all focus:outline-none"
+                >
+                  <X size={14} />
+                </button>
+              </div>
+
+              {/* Video Content */}
+              <div className="flex-1 w-full h-full bg-black flex items-center justify-center">
+                {activeMedia.videoUrl ? (
+                  <video 
+                    src={activeMedia.videoUrl}
+                    controls
+                    autoPlay
+                    playsInline
+                    className="w-full h-full object-contain"
+                  />
+                ) : (
+                  <iframe 
+                    src={`https://drive.google.com/file/d/${activeMedia.id}/preview`} 
+                    className="w-full h-full border-none"
+                    allow="autoplay; fullscreen"
+                    allowFullScreen
+                  />
+                )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
@@ -171,13 +235,25 @@ export default function ProjectModal({
 }) {
   const [activeTab, setActiveTab] = useState<string>("website");
   const [ttlBgTheme, setTtlBgTheme] = useState<"dark" | "light">("dark");
+  const [nogahTheme, setNogahTheme] = useState<"gold-teal" | "gold-terracotta" | "white-gold" | "teal-ivory">("gold-teal");
   const [ttlLogoView, setTtlLogoView] = useState<"primary" | "submark" | "wordmark">("primary");
+
+  const getLogoFilter = (theme: string) => {
+    if (theme.startsWith("white")) {
+      return "brightness(0) invert(1)";
+    }
+    if (theme.startsWith("teal")) {
+      return "brightness(0) saturate(100%) invert(15%) sepia(36%) saturate(632%) hue-rotate(126deg) brightness(94%) contrast(92%)";
+    }
+    return "none";
+  };
 
   // Reset tab on open
   useEffect(() => {
     if (isOpen && project) {
       setTtlBgTheme("dark");
       setTtlLogoView("primary");
+      setNogahTheme("gold-teal");
       if (project.tabs && project.tabs.length > 0) {
         setActiveTab(project.tabs[0]);
         return;
@@ -526,7 +602,10 @@ export default function ProjectModal({
                     ) : project.smmPosts ? (
                       <div className="w-full pr-1 flex flex-col gap-6 pb-6">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                          {project.smmPosts.map((post, i) => (
+                          {(project.brand.name.toLowerCase() === 'bunkout' 
+                            ? project.smmPosts.slice(0, 3) 
+                            : project.smmPosts
+                          ).map((post, i) => (
                             <SMMPostCard 
                               key={i} 
                               post={post} 
@@ -537,15 +616,15 @@ export default function ProjectModal({
                             />
                           ))}
                         </div>
-                        {project.smmDriveLink && project.brand.name.toLowerCase() !== 'bunkout' && (
+                        {project.smmDriveLink && (
                           <div className="flex justify-center mt-6 mb-4">
                             <a
-                              href={project.smmDriveLink}
+                              href={project.brand.name.toLowerCase() === 'bunkout' ? "https://drive.google.com/drive/folders/1jxXsVWq1FnyegBhdZQLNTS37a-3Gjvez?usp=sharing" : project.smmDriveLink}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="px-6 py-2.5 bg-[rgba(230,236,248,0.02)] hover:bg-[#3461FF] text-white text-[0.7rem] font-bold tracking-[0.1em] uppercase rounded border border-[rgba(230,236,248,0.1)] hover:border-[#3461FF] transition-all flex items-center gap-2 group"
                             >
-                              view more of our work
+                              {project.brand.name.toLowerCase() === 'bunkout' ? 'view more of our brand work' : 'view more of our work'}
                               <ExternalLink size={12} className="text-[rgba(230,236,248,0.5)] group-hover:text-white transition-colors" />
                             </a>
                           </div>
@@ -619,6 +698,25 @@ export default function ProjectModal({
                         </div>
                       </div>
                     ) : null
+                  )}
+
+                  {/* PACKAGING TAB */}
+                  {(activeTab.toLowerCase().includes("packag") || activeTab === "packaging") && project.packaging && (
+                    <div className="flex-1 flex flex-col h-full pb-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 flex-1 h-full">
+                        {project.packaging.map((img, i) => (
+                          <div key={i} className="relative rounded-xl overflow-hidden border border-[rgba(230,236,248,0.07)] group aspect-[4/5] sm:aspect-square md:aspect-[4/5]">
+                            <img 
+                              src={img} 
+                              alt={`Packaging ${i + 1}`} 
+                              loading="lazy"
+                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-[600ms] group-hover:scale-105" 
+                            />
+                            <div className="absolute inset-0 bg-[rgba(5,11,26,0.1)] transition-colors duration-300 group-hover:bg-transparent" />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   )}
 
                   {/* INSTA POSTS TAB (Hyro) */}
@@ -753,75 +851,75 @@ export default function ProjectModal({
                   {/* BRANDING TAB */}
                   {(activeTab.toLowerCase().includes("brand") || activeTab.toLowerCase().includes("logo") || activeTab === "branding") && (
                     project.brand.name.toLowerCase() === "bunkout" ? (
-                      <div className="flex-1 flex flex-col gap-6 pr-1">
-                        {/* Top Row: Submark and Wordmark */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="flex-1 flex flex-col gap-4 pr-1 h-full">
+                        {/* Row 1: Logos (Submark & Wordmark beside each other) */}
+                        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
                           {/* Submark Card */}
-                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-6 flex flex-col items-center justify-center min-h-[220px]">
-                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-4">SUBMARK</span>
-                            <div className="w-[120px] h-[120px] bg-white rounded-lg flex items-center justify-center p-4 shadow-inner">
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-4 flex flex-col items-center justify-center h-full">
+                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-3">SUBMARK</span>
+                            <div className="w-[80px] h-[80px] bg-white rounded-lg flex items-center justify-center p-2 shadow-inner">
                               <img src="/brand-logos/bunkout-submark.png" alt="Submark" className="max-w-full max-h-full object-contain" />
                             </div>
                           </div>
 
                           {/* Wordmark Card */}
-                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-6 flex flex-col items-center justify-center min-h-[220px]">
-                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-4">WORDMARK</span>
-                            <div className="w-full max-w-[280px] h-[120px] bg-white rounded-lg flex items-center justify-center p-4 shadow-inner">
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-4 flex flex-col items-center justify-center h-full">
+                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-3">WORDMARK</span>
+                            <div className="w-full max-w-[200px] h-[80px] bg-white rounded-lg flex items-center justify-center p-2 shadow-inner">
                               <img src="/brand-logos/bunkout-wordmark.png" alt="Wordmark" className="max-w-full max-h-full object-contain" />
                             </div>
                           </div>
                         </div>
 
-                        {/* Middle Row: Typography */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {/* Row 2: Typography & Colour Palette */}
+                        <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4">
                           {/* Primary Font: Kiona */}
-                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-6 flex flex-col justify-center min-h-[160px]">
-                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-3">PRIMARY FONT: KIONA</span>
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-4 flex flex-col justify-center h-full">
+                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-2.5">PRIMARY FONT: KIONA</span>
                             <div style={{ fontFamily: 'Kiona' }} className="text-white">
-                              <div className="text-[1.3rem] tracking-wider leading-none mb-2">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
-                              <div className="text-[1.1rem] tracking-wider leading-none">0 1 2 3 4 5 6 7 8 9</div>
+                              <div className="text-[1.05rem] tracking-wider leading-none mb-1.5">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+                              <div className="text-[0.9rem] tracking-wider leading-none">0 1 2 3 4 5 6 7 8 9</div>
                             </div>
                           </div>
 
                           {/* Paragraph Font: Montserrat */}
-                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-6 flex flex-col justify-center min-h-[160px]">
-                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-3">PARAGRAPH FONT: MONTSERRAT</span>
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-4 flex flex-col justify-center h-full">
+                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-2.5">PARAGRAPH FONT: MONTSERRAT</span>
                             <div style={{ fontFamily: 'Montserrat' }} className="text-white font-medium">
-                              <div className="text-[1.2rem] tracking-normal leading-none mb-2">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
-                              <div className="text-[1rem] tracking-normal leading-none">0 1 2 3 4 5 6 7 8 9</div>
+                              <div className="text-[0.95rem] tracking-normal leading-none mb-1.5">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+                              <div className="text-[0.8rem] tracking-normal leading-none">0 1 2 3 4 5 6 7 8 9</div>
                             </div>
                           </div>
-                        </div>
 
-                        {/* Bottom Row: Colour Palette */}
-                        <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-6 flex flex-col items-center">
-                          <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-6">COLOUR PALETTE</span>
-                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-[600px] justify-center">
-                            {/* Green Block */}
-                            <div className="flex flex-col items-center gap-2">
-                              <div className="w-full aspect-[2/1] rounded-lg shadow-sm border border-[rgba(255,255,255,0.05)]" style={{ backgroundColor: '#123E3F' }} />
-                              <div className="text-center mt-1">
-                                <div className="text-[0.7rem] font-bold text-white tracking-[0.1em] uppercase">GREEN</div>
-                                <div className="text-[0.62rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5">#123E3F</div>
+                          {/* Colour Palette */}
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-4 flex flex-col justify-center items-center h-full">
+                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-4">COLOUR PALETTE</span>
+                            <div className="grid grid-cols-3 gap-3 w-full justify-center">
+                              {/* Green Block */}
+                              <div className="flex flex-col items-center gap-1">
+                                <div className="w-full aspect-[2/1] rounded border border-[rgba(255,255,255,0.05)]" style={{ backgroundColor: '#123E3F' }} />
+                                <div className="text-center">
+                                  <div className="text-[0.6rem] font-bold text-white tracking-[0.05em] uppercase">GREEN</div>
+                                  <div className="text-[0.5rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5">#123E3F</div>
+                                </div>
                               </div>
-                            </div>
 
-                            {/* Beige Block */}
-                            <div className="flex flex-col items-center gap-2">
-                              <div className="w-full aspect-[2/1] rounded-lg shadow-sm border border-[rgba(255,255,255,0.05)]" style={{ backgroundColor: '#C4A56F' }} />
-                              <div className="text-center mt-1">
-                                <div className="text-[0.7rem] font-bold text-white tracking-[0.1em] uppercase">BEIGE</div>
-                                <div className="text-[0.62rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5">#C4A56F</div>
+                              {/* Beige Block */}
+                              <div className="flex flex-col items-center gap-1">
+                                <div className="w-full aspect-[2/1] rounded border border-[rgba(255,255,255,0.05)]" style={{ backgroundColor: '#C4A56F' }} />
+                                <div className="text-center">
+                                  <div className="text-[0.6rem] font-bold text-white tracking-[0.05em] uppercase">BEIGE</div>
+                                  <div className="text-[0.5rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5">#C4A56F</div>
+                                </div>
                               </div>
-                            </div>
 
-                            {/* Ivory Block */}
-                            <div className="flex flex-col items-center gap-2">
-                              <div className="w-full aspect-[2/1] rounded-lg shadow-sm border border-[rgba(255,255,255,0.05)]" style={{ backgroundColor: '#F7F8F8' }} />
-                              <div className="text-center mt-1">
-                                <div className="text-[0.7rem] font-bold text-white tracking-[0.1em] uppercase">IVORY</div>
-                                <div className="text-[0.62rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5">#F7F8F8</div>
+                              {/* Ivory Block */}
+                              <div className="flex flex-col items-center gap-1">
+                                <div className="w-full aspect-[2/1] rounded border border-[rgba(255,255,255,0.05)]" style={{ backgroundColor: '#F7F8F8' }} />
+                                <div className="text-center">
+                                  <div className="text-[0.6rem] font-bold text-white tracking-[0.05em] uppercase">IVORY</div>
+                                  <div className="text-[0.5rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5">#F7F8F8</div>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -1248,6 +1346,212 @@ export default function ProjectModal({
                           </div>
                         </div>
                       </div>
+                    ) : project.brand.name.toLowerCase().includes("nogah") ? (
+                      <div className="flex-1 flex flex-col gap-3 pr-1 h-full justify-between min-h-0">
+                        {/* Row 1: Logo Showcase Grid */}
+                        <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-3 min-h-0">
+                          {/* Card 1: Primary Logo */}
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-4 flex flex-col justify-between h-full min-h-0">
+                            <div className="flex-1 w-full bg-[#173331] rounded-lg flex flex-col items-center justify-center gap-2 shadow-inner min-h-0 overflow-hidden p-4">
+                              <img 
+                                src="/brands/nogah/nogah-submark.png" 
+                                alt="Nogah Submark" 
+                                className="w-[75%] h-auto object-contain"
+                              />
+                              <img 
+                                src="/brands/nogah/nogah-wordmark.png" 
+                                alt="Nogah Wordmark" 
+                                className="w-[65%] h-auto object-contain"
+                              />
+                            </div>
+                            <div className="mt-3 text-left flex-none">
+                              <span className="text-[0.55rem] font-mono tracking-wider text-[#E5D1A3] font-bold">01.</span>
+                              <h3 className="text-[0.78rem] font-bold text-white uppercase tracking-wider mt-0.5 mb-1">Primary Logo</h3>
+                              <p className="text-[0.62rem] text-[rgba(230,236,248,0.5)] leading-relaxed font-medium">
+                                The primary logo unit combines the circular submark symbol with the elegant Nogah wordmark.
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* Card 2: Brand Submark */}
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-4 flex flex-col justify-between h-full min-h-0">
+                            <div className="flex-1 w-full bg-[#173331] rounded-lg flex items-center justify-center p-4 shadow-inner min-h-0">
+                              <img 
+                                src="/brands/nogah/nogah-submark.png" 
+                                alt="Nogah Submark Only" 
+                                className="max-h-[65%] w-auto object-contain"
+                              />
+                            </div>
+                            <div className="mt-3 text-left flex-none">
+                              <span className="text-[0.55rem] font-mono tracking-wider text-[#E5D1A3] font-bold">02.</span>
+                              <h3 className="text-[0.78rem] font-bold text-white uppercase tracking-wider mt-0.5 mb-1">Brand Submark</h3>
+                              <p className="text-[0.62rem] text-[rgba(230,236,248,0.5)] leading-relaxed font-medium">
+                                The submark is a simplified geometric emblem. It represents delicate metalwork and is optimized for smaller spaces such as profile pictures or watermarks.
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* Card 3: Brand Wordmark */}
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-4 flex flex-col justify-between h-full min-h-0">
+                            <div className="flex-1 w-full bg-[#173331] rounded-lg flex items-center justify-center p-4 shadow-inner min-h-0">
+                              <img 
+                                src="/brands/nogah/nogah-wordmark.png" 
+                                alt="Nogah Wordmark Only" 
+                                className="max-h-[38%] w-auto object-contain"
+                              />
+                            </div>
+                            <div className="mt-3 text-left flex-none">
+                              <span className="text-[0.55rem] font-mono tracking-wider text-[#E5D1A3] font-bold">03.</span>
+                              <h3 className="text-[0.78rem] font-bold text-white uppercase tracking-wider mt-0.5 mb-1">Brand Wordmark</h3>
+                              <p className="text-[0.62rem] text-[rgba(230,236,248,0.5)] leading-relaxed font-medium">
+                                The brand wordmark, or logotype, includes only the brand name—no symbols, icons, or shapes. Used when spelling out the brand name is essential.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Row 2: Typography & Colours Grid */}
+                        <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-3 min-h-0">
+                          {/* Card 4: Brand Colours */}
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-4 flex flex-col justify-between h-full min-h-0">
+                            <div className="flex-none">
+                              <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-0.5 block">04. BRAND COLOURS</span>
+                              <p className="text-[0.62rem] text-[rgba(230,236,248,0.5)] leading-relaxed font-medium mb-2.5 text-left">
+                                Colour is the most widely recalled element of any brand identity. Please refer to the exact colour codes for consistency across digital and print mediums.
+                              </p>
+                            </div>
+                            
+                            <div className="flex-1 flex flex-col justify-center w-full min-h-0 gap-2">
+                              <div className="grid grid-cols-2 gap-2 w-full flex-1 min-h-0">
+                                {/* Teal Block */}
+                                <div className="flex flex-col rounded-lg overflow-hidden border border-[rgba(255,255,255,0.04)] bg-[#080F22] p-1.5 justify-between">
+                                  <div className="w-full flex-1 rounded-md min-h-[25px]" style={{ backgroundColor: '#173331' }} />
+                                  <div className="mt-1 text-left">
+                                    <div className="text-[0.58rem] font-bold text-white tracking-[0.05em] uppercase">TEAL</div>
+                                    <div className="text-[0.5rem] font-mono text-[rgba(230,236,248,0.4)] leading-tight">HEX: #173331</div>
+                                    <div className="text-[0.5rem] font-mono text-[rgba(230,236,248,0.4)]">RGB: 23, 51, 49</div>
+                                    <div className="text-[0.5rem] font-mono text-[rgba(230,236,248,0.4)]">CMYK: 84, 58, 65, 60</div>
+                                  </div>
+                                </div>
+
+                                {/* Gold Block */}
+                                <div className="flex flex-col rounded-lg overflow-hidden border border-[rgba(255,255,255,0.04)] bg-[#080F22] p-1.5 justify-between">
+                                  <div className="w-full flex-1 rounded-md min-h-[25px]" style={{ background: 'linear-gradient(135deg, #E5D1A3 0%, #917D46 100%)' }} />
+                                  <div className="mt-1 text-left">
+                                    <div className="text-[0.58rem] font-bold text-white tracking-[0.05em] uppercase">GOLD</div>
+                                    <div className="text-[0.5rem] font-mono text-[rgba(230,236,248,0.4)] leading-tight">HEX: #E5D1A3 + #917D46</div>
+                                    <div className="text-[0.5rem] font-mono text-[rgba(230,236,248,0.4)]">GRADIENT</div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="grid grid-cols-3 gap-2 w-full flex-none">
+                                {/* Terracotta Block */}
+                                <div className="flex flex-col rounded-lg overflow-hidden border border-[rgba(255,255,255,0.04)] bg-[#080F22] p-1.5">
+                                  <div className="w-full h-[28px] rounded-md" style={{ backgroundColor: '#A46850' }} />
+                                  <div className="mt-1 text-left">
+                                    <div className="text-[0.55rem] font-bold text-white tracking-[0.05em] uppercase leading-none">TERRACOTTA</div>
+                                    <div className="text-[0.48rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5 leading-none">#A46850</div>
+                                    <div className="text-[0.44rem] font-mono text-[rgba(230,236,248,0.35)] leading-none mt-0.5">RGB: 164,104,80</div>
+                                  </div>
+                                </div>
+
+                                {/* Beige Block */}
+                                <div className="flex flex-col rounded-lg overflow-hidden border border-[rgba(255,255,255,0.04)] bg-[#080F22] p-1.5">
+                                  <div className="w-full h-[28px] rounded-md" style={{ backgroundColor: '#DAD3C5' }} />
+                                  <div className="mt-1 text-left">
+                                    <div className="text-[0.55rem] font-bold text-white tracking-[0.05em] uppercase leading-none">BEIGE</div>
+                                    <div className="text-[0.48rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5 leading-none">#DAD3C5</div>
+                                    <div className="text-[0.44rem] font-mono text-[rgba(230,236,248,0.35)] leading-none mt-0.5">RGB: 218,211,197</div>
+                                  </div>
+                                </div>
+
+                                {/* Ivory Block */}
+                                <div className="flex flex-col rounded-lg overflow-hidden border border-[rgba(255,255,255,0.04)] bg-[#080F22] p-1.5">
+                                  <div className="w-full h-[28px] rounded-md" style={{ backgroundColor: '#EEEBE6' }} />
+                                  <div className="mt-1 text-left">
+                                    <div className="text-[0.55rem] font-bold text-white tracking-[0.05em] uppercase leading-none">IVORY</div>
+                                    <div className="text-[0.48rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5 leading-none">#EEEBE6</div>
+                                    <div className="text-[0.44rem] font-mono text-[rgba(230,236,248,0.35)] leading-none mt-0.5">RGB: 238,235,230</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Card 5: Brand Typography */}
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-4 flex flex-col justify-between h-full min-h-0">
+                            <div className="flex-none">
+                              <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-0.5 block">05. BRAND TYPOGRAPHY</span>
+                              <p className="text-[0.62rem] text-[rgba(230,236,248,0.5)] leading-relaxed font-medium mb-2.5 text-left">
+                                Consistency in typography builds recognition. Nogah utilizes two core typefaces for all heading and body applications.
+                              </p>
+                            </div>
+                            
+                            <div className="flex-1 flex flex-col gap-2 mt-auto justify-center min-h-0">
+                              {/* Header Font */}
+                              <div className="flex items-center gap-3 bg-[#080F22] p-2.5 rounded-lg border border-[rgba(255,255,255,0.02)]">
+                                <div 
+                                  style={{
+                                    WebkitTextStroke: '1.2px #E5D1A3',
+                                    color: 'transparent',
+                                    fontFamily: 'Futura, sans-serif',
+                                    fontWeight: 300
+                                  }} 
+                                  className="text-[2.2rem] leading-none select-none w-[50px] text-center"
+                                >
+                                  Aa
+                                </div>
+                                <div className="flex-1 text-left">
+                                  <span className="text-[0.45rem] font-bold tracking-[0.15em] uppercase text-[rgba(230,236,248,0.3)] block">HEADER FONT</span>
+                                  <h4 className="text-[0.75rem] font-bold text-white leading-none mt-0.5 mb-1" style={{ fontFamily: 'Futura, sans-serif', fontWeight: 300 }}>Futura Light BT</h4>
+                                  <div style={{ fontFamily: 'Futura, sans-serif', fontWeight: 300 }} className="text-[0.48rem] text-[rgba(230,236,248,0.4)] leading-tight tracking-wider uppercase font-light">
+                                    ABCDEFGHIJKLMNOPQRSTUVWXYZ
+                                    <br />
+                                    0123456789
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Body Font */}
+                              <div className="flex items-center gap-3 bg-[#080F22] p-2.5 rounded-lg border border-[rgba(255,255,255,0.02)]">
+                                <div 
+                                  style={{
+                                    color: '#E5D1A3',
+                                    fontFamily: 'Avenir, sans-serif',
+                                    fontWeight: 'normal'
+                                  }} 
+                                  className="text-[1.8rem] leading-none select-none w-[50px] text-center font-medium"
+                                >
+                                  Aa
+                                </div>
+                                <div className="flex-1 text-left">
+                                  <span className="text-[0.45rem] font-bold tracking-[0.15em] uppercase text-[rgba(230,236,248,0.3)] block">BODY & PARAGRAPH FONT</span>
+                                  <h4 className="text-[0.75rem] font-bold text-white leading-none mt-0.5 mb-1" style={{ fontFamily: 'Avenir, sans-serif' }}>Avenir</h4>
+                                  <div style={{ fontFamily: 'Avenir, sans-serif' }} className="text-[0.48rem] text-[rgba(230,236,248,0.4)] leading-tight tracking-wider uppercase">
+                                    ABCDEFGHIJKLMNOPQRSTUVWXYZ
+                                    <br />
+                                    0123456789
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Download Brand Guidelines Button */}
+                        <div className="flex-none flex justify-center mt-2">
+                          <a 
+                            href="https://drive.google.com/file/d/1jo6LWYdaVSr3WJ3wb7wreeRUYRPAnUfT/view?usp=sharing"
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="px-5 py-2 bg-[rgba(230,236,248,0.02)] hover:bg-[#3461FF] text-white text-[0.65rem] font-bold tracking-[0.1em] uppercase rounded border border-[rgba(230,236,248,0.1)] hover:border-[#3461FF] transition-all flex items-center gap-2 group"
+                          >
+                            Download Brand Guidelines
+                            <ExternalLink size={11} className="text-[rgba(230,236,248,0.5)] group-hover:text-white transition-colors" />
+                          </a>
+                        </div>
+                      </div>
                     ) : (
                       <div className="flex-1 flex flex-col justify-between gap-3 h-full">
                         {project.brand.details && (
@@ -1385,7 +1689,7 @@ export default function ProjectModal({
                   )}
 
                   {/* CUSTOM TABS FALLBACK */}
-                  {!["website", "social", "branding", "shoot", "insta posts", "insta reels", "reel concept", "concept", "theme", "magazine", "campaign", "airbnb"].some(std => activeTab.toLowerCase().includes(std.substring(0, 5))) && (
+                  {!["website", "social", "branding", "shoot", "insta posts", "insta reels", "reel concept", "concept", "theme", "magazine", "campaign", "airbnb", "packaging"].some(std => activeTab.toLowerCase().includes(std.substring(0, 5))) && (
                     <div className="flex-1 flex flex-col h-full items-center justify-center p-8 text-center rounded-xl border border-[rgba(230,236,248,0.05)] relative overflow-hidden" style={{ background: '#0C1530' }}>
                       {/* Decorative gradient blur background */}
                       <div 

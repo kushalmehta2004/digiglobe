@@ -30,6 +30,7 @@ export type ProjectData = {
     bodyFont?: string;
   };
   shoot?: string[];
+  packaging?: string[];
   instaReels?: string;
   campaign?: {
     name: string;
@@ -657,6 +658,114 @@ export const VININN_SMM_POSTS = [
   ]
 ];
 
+export const TRAVEL_LIBRARY_SMM_POSTS = [
+  // Post 1 (1 item)
+  [
+    {
+      id: '1yCR3dE3nWyQSgkpqrFrYfLX3bmivnbA3',
+      name: 'thetravellibrary.in_1',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1yCR3dE3nWyQSgkpqrFrYfLX3bmivnbA3/view?usp=drive_web'
+    }
+  ],
+  // Post 2 (1 item)
+  [
+    {
+      id: '1q0mJwBiooEojhX5rcgq-QV3hgS7iOpoz',
+      name: 'thetravellibrary.in_2',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1q0mJwBiooEojhX5rcgq-QV3hgS7iOpoz/view?usp=drive_web'
+    }
+  ],
+  // Post 3 (1 item)
+  [
+    {
+      id: '1DYWFrBBe7tyVuB3SMBLBAvMko_lA3H8G',
+      name: 'thetravellibrary.in_3',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1DYWFrBBe7tyVuB3SMBLBAvMko_lA3H8G/view?usp=drive_web'
+    }
+  ]
+];
+
+export const DURFSHAN_SMM_POSTS = [
+  // Post 1 (Single image)
+  [
+    {
+      id: '1wArkSBxqFffH-Ck6SEgfO6tsxPtI-oW3',
+      name: 'row 1 post 1 .webp',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1wArkSBxqFffH-Ck6SEgfO6tsxPtI-oW3/view?usp=drive_web'
+    }
+  ],
+  // Post 2 (Carousel)
+  [
+    {
+      id: '1rHlp7Eje-Iv6PfBdQkbC5k-SqpieAt6F',
+      name: 'row 1 post 2 .webp',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1rHlp7Eje-Iv6PfBdQkbC5k-SqpieAt6F/view?usp=drive_web'
+    },
+    {
+      id: '1X4rVtkeVJMLe_nuw0zyvEkeU8n0qdTZh',
+      name: 'row 1 post 2 a .webp',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1X4rVtkeVJMLe_nuw0zyvEkeU8n0qdTZh/view?usp=drive_web'
+    }
+  ],
+  // Post 3 (Carousel)
+  [
+    {
+      id: '18e_KpQtTaA2RWFO3KfNcPNCFQ-Ppne_g',
+      name: 'row 1 post 3 .webp',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/18e_KpQtTaA2RWFO3KfNcPNCFQ-Ppne_g/view?usp=drive_web'
+    },
+    {
+      id: '18FujoONpL1fsPViSxITRji6Mbt1ZAEJJ',
+      name: 'row 1 post 3 a .webp',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/18FujoONpL1fsPViSxITRji6Mbt1ZAEJJ/view?usp=drive_web'
+    },
+    {
+      id: '1L4TLCDGGHytOn_-tx7hM_yI6xpDkQIM1',
+      name: 'row 1 post 3 b .webp',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1L4TLCDGGHytOn_-tx7hM_yI6xpDkQIM1/view?usp=drive_web'
+    }
+  ]
+];
+
+export const NOGAH_SMM_POSTS = [
+  // Post 1 (1 item)
+  [
+    {
+      id: '/brands/nogah/nogah-smm-1.jpg',
+      name: 'row 1 post 1 .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1tNXmpB8Val4cdMBBBmwQNRKoNcy1xGy_/view?usp=drive_web'
+    }
+  ],
+  // Post 2 (1 item)
+  [
+    {
+      id: '/brands/nogah/nogah-smm-2.jpg',
+      name: 'row 1 post 2 .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1e0ENqFVOuP-PLViA7MNVVIZrzeCgCYyG/view?usp=drive_web'
+    }
+  ],
+  // Post 3 (1 item)
+  [
+    {
+      id: '/brands/nogah/nogah-smm-3.jpg',
+      name: 'row 1 post 3 .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1_duKxgoNaz5ng1v-Cq_6zFTzJcs3qylh/view?usp=drive_web'
+    }
+  ]
+];
+
 export const PROJECTS: Record<string, ProjectData> = {
   cepa: {
     title: 'CEPA Council',
@@ -714,11 +823,9 @@ export const PROJECTS: Record<string, ProjectData> = {
       gradient: 'radial-gradient(ellipse at 50% 50%, #333a2226 0%, #050B1A 70%)',
       meta: [{ l: 'Deliverables', v: 'Brand + Web + SMM' }, { l: 'Niche', v: 'Ethnic Luxury' }]
     },
-    social: [
-      { type: 'Collection Launch', copy: 'Tradition woven with modern threads.', bg: 'linear-gradient(135deg,#050B1A,#1a1c11)', link: 'https://www.instagram.com/p/DTCkuKVCYxH/?igsh=bWxsaDVvdzRvNDNu', image: '/social-previews/durfshan-1.webp' },
-      { type: 'Festive Edit', copy: 'Celebrate every moment in timeless grace.', bg: 'linear-gradient(135deg,#11130d,#333a22)', link: 'https://www.instagram.com/p/DRCLJYiiaaV/?igsh=ZnZ5ZmM3c2dnd2c3', image: '/social-previews/durfshan-2.webp' },
-      { type: 'Craftsmanship', copy: 'Handcrafted perfection for your special days.', bg: 'linear-gradient(135deg,#0a0c08,#222611)', link: 'https://www.instagram.com/p/DUcsg-OiJm_/?igsh=djhoZnQzczFnb3Nj', image: '/social-previews/durfshan-3.webp' }
-    ],
+    social: [],
+    smmPosts: DURFSHAN_SMM_POSTS,
+    smmDriveLink: 'https://drive.google.com/drive/folders/1msXga11GJ6n7-YtPILOpJb-R9mk757gd',
     brand: {
       name: 'Durfshan',
       colors: ['#333a22', '#F4F2F0', '#050B1A', '#889955'],
@@ -894,6 +1001,8 @@ export const PROJECTS: Record<string, ProjectData> = {
       meta: [{ l: 'Deliverables', v: 'Brand + Web + Editorial' }, { l: 'Niche', v: 'Luxury Travel' }]
     },
     social: [],
+    smmPosts: TRAVEL_LIBRARY_SMM_POSTS,
+    smmDriveLink: 'https://drive.google.com/drive/folders/10Kacgp2CZMMXqZBexGSLOWfVaWawiSr6',
     brand: {
       name: 'The Travel Library',
       colors: ['#1D2439', '#D2BB95', '#F4F2F0', '#A88F71'],
@@ -923,16 +1032,23 @@ export const PROJECTS: Record<string, ProjectData> = {
     category: 'Branding · Social Media · Packaging',
     web: null,
     social: [],
+    smmPosts: NOGAH_SMM_POSTS,
+    smmDriveLink: 'https://drive.google.com/drive/folders/1ZGyjxg9NJlJsyGrIAsG8CLmnzFoymVGs',
+    packaging: [
+      '/brands/nogah/nogah-packaging-1.jpg',
+      '/brands/nogah/nogah-packaging-2.jpg',
+      '/brands/nogah/nogah-packaging-3.jpg'
+    ],
     brand: {
       name: 'Nogah',
-      colors: ['#D4AF37', '#0A0811', '#FFFFFF', '#F7F5F0'],
-      colorNames: ['Champagne Gold', 'Deep Violet', 'White', 'Ivory'],
-      font: 'Cormorant Garamond',
+      colors: ['#173331', '#E5D1A3', '#A46850', '#DAD3C5', '#EEEBE6'],
+      colorNames: ['Teal', 'Gold', 'Terracotta', 'Beige', 'Ivory'],
+      font: 'Futura Light BT',
       style: 'Minimalist · Sophisticated · Timeless',
       logo: '/brand-logos/nogah.png',
       details: 'Nogah is a high-end artisanal jewellery brand. The visual identity revolves around delicate metalwork, tactile packaging surfaces, and a luxury social aesthetic.'
     },
-    tabs: ['Social Media', 'Packaging']
+    tabs: ['Branding & Logo', 'Social Media', 'Packaging']
   },
   greencarat: {
     title: 'The Green Carat',
