@@ -413,11 +413,11 @@ export default function Home() {
                 <div 
                   key={key} 
                   onClick={() => setSelectedProject(p)}
-                  className="pcard group cursor-none"
+                  className="relative aspect-[4/3] bg-[#080F22] hover:bg-[#0C1530] transition-colors duration-400 flex flex-col justify-end p-6 overflow-hidden cursor-none group"
                 >
                   {/* Background Layer / Full Cover Logo */}
                   <div 
-                    className="pcard-bg absolute inset-0 transition-transform duration-[400ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.02]"
+                    className="absolute inset-0 transition-transform duration-[400ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.02]"
                     style={{ 
                       background: isPlainLogoBrand
                         ? '#FFFFFF'
@@ -441,20 +441,28 @@ export default function Home() {
                     )}
                   </div>
 
-                <span className="pcard-num">0{i + 1}</span>
+                  <span className={`absolute top-4 left-5 text-[0.58rem] font-semibold tracking-[0.18em] z-10 ${
+                    isPlainLogoBrand ? 'text-[#050B1A]/30' : 'text-[rgba(230,236,248,0.18)]'
+                  }`}>
+                    0{i + 1}
+                  </span>
 
-                <div className="pcard-inner">
-                  <div className="pcard-cat">
-                    {p.category}
-                  </div>
-                  <div className="pcard-name">
-                    {p.brand.name}
-                  </div>
-                  <div className="pcard-open">
-                    View Case Study →
+                  <div className="relative z-10">
+                    <div className="text-[0.56rem] font-semibold tracking-[0.14em] uppercase text-[#3461FF] mb-1.5 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                      {p.category}
+                    </div>
+                    <div className={`text-base font-bold transition-colors duration-300 leading-tight ${
+                      isPlainLogoBrand ? 'text-[#050B1A] group-hover:text-[#3461FF]' : 'text-white group-hover:text-[rgba(230,236,248,0.9)]'
+                    }`}>
+                      {p.brand.name}
+                    </div>
+                    <div className={`inline-flex items-center gap-1.5 mt-2 text-[0.58rem] font-semibold tracking-[0.1em] uppercase opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-75 ${
+                      isPlainLogoBrand ? 'text-[#3461FF]' : 'text-[#5B82FF]'
+                    }`}>
+                      View Case Study →
+                    </div>
                   </div>
                 </div>
-              </div>
             );
           })}
           </div>

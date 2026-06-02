@@ -1367,209 +1367,117 @@ export default function ProjectModal({
                         </div>
                       </div>
                     ) : project.brand.name.toLowerCase().includes("nogah") ? (
-                      <div className="flex-1 flex flex-col gap-3 pr-1 h-full justify-between min-h-0">
-                        {/* Row 1: Logo Showcase Grid */}
-                        <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-3 min-h-0">
-                          {/* Card 1: Primary Logo */}
-                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-4 flex flex-col justify-between h-full min-h-0">
-                            <div className="flex-1 w-full bg-[#173331] rounded-lg flex flex-col items-center justify-center gap-2 shadow-inner min-h-0 overflow-hidden p-4">
-                              <img 
-                                src="/brands/nogah/nogah-submark.png" 
-                                alt="Nogah Submark" 
-                                className="w-[75%] h-auto object-contain"
-                              />
-                              <img 
-                                src="/brands/nogah/nogah-wordmark.png" 
-                                alt="Nogah Wordmark" 
-                                className="w-[65%] h-auto object-contain"
-                              />
-                            </div>
-                            <div className="mt-3 text-left flex-none">
-                              <span className="text-[0.55rem] font-mono tracking-wider text-[#E5D1A3] font-bold">01.</span>
-                              <h3 className="text-[0.78rem] font-bold text-white uppercase tracking-wider mt-0.5 mb-1">Primary Logo</h3>
-                              <p className="text-[0.62rem] text-[rgba(230,236,248,0.5)] leading-relaxed font-medium">
-                                The primary logo unit combines the circular submark symbol with the elegant Nogah wordmark.
-                              </p>
-                            </div>
+                      <div className="flex-1 grid grid-cols-2 gap-4 pr-1 h-full min-h-0 items-center overflow-y-auto custom-scrollbar">
+                        {/* 1. Brand Submark */}
+                        <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-3.5 flex flex-col justify-between aspect-[3/2] relative group overflow-hidden w-full">
+                          <div className="flex-none mb-1.5">
+                            <span className="text-[0.52rem] font-bold tracking-[0.2em] uppercase text-[#E5D1A3] block leading-none mb-1">01. Identity</span>
+                            <h3 className="text-[0.72rem] font-extrabold text-white uppercase tracking-wider leading-none">Brand Submark</h3>
                           </div>
-
-                          {/* Card 2: Brand Submark */}
-                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-4 flex flex-col justify-between h-full min-h-0">
-                            <div className="flex-1 w-full bg-[#173331] rounded-lg flex items-center justify-center p-4 shadow-inner min-h-0">
-                              <img 
-                                src="/brands/nogah/nogah-submark.png" 
-                                alt="Nogah Submark Only" 
-                                className="max-h-[65%] w-auto object-contain"
-                              />
-                            </div>
-                            <div className="mt-3 text-left flex-none">
-                              <span className="text-[0.55rem] font-mono tracking-wider text-[#E5D1A3] font-bold">02.</span>
-                              <h3 className="text-[0.78rem] font-bold text-white uppercase tracking-wider mt-0.5 mb-1">Brand Submark</h3>
-                              <p className="text-[0.62rem] text-[rgba(230,236,248,0.5)] leading-relaxed font-medium">
-                                The submark is a simplified geometric emblem. It represents delicate metalwork and is optimized for smaller spaces such as profile pictures or watermarks.
-                              </p>
-                            </div>
-                          </div>
-
-                          {/* Card 3: Brand Wordmark */}
-                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-4 flex flex-col justify-between h-full min-h-0">
-                            <div className="flex-1 w-full bg-[#173331] rounded-lg flex items-center justify-center p-4 shadow-inner min-h-0">
-                              <img 
-                                src="/brands/nogah/nogah-wordmark.png" 
-                                alt="Nogah Wordmark Only" 
-                                className="max-h-[38%] w-auto object-contain"
-                              />
-                            </div>
-                            <div className="mt-3 text-left flex-none">
-                              <span className="text-[0.55rem] font-mono tracking-wider text-[#E5D1A3] font-bold">03.</span>
-                              <h3 className="text-[0.78rem] font-bold text-white uppercase tracking-wider mt-0.5 mb-1">Brand Wordmark</h3>
-                              <p className="text-[0.62rem] text-[rgba(230,236,248,0.5)] leading-relaxed font-medium">
-                                The brand wordmark, or logotype, includes only the brand name—no symbols, icons, or shapes. Used when spelling out the brand name is essential.
+                          
+                          {/* Logo container bg is #173331 matching the image background for a seamless look */}
+                          <div className="flex-1 w-full bg-[#173331] rounded-lg flex items-center justify-center overflow-hidden relative min-h-0">
+                            <img 
+                              src="/brands/nogah/nogah-submark.png" 
+                              alt="Nogah Submark" 
+                              className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                            />
+                            
+                            {/* Hover description overlay so no scroll is needed */}
+                            <div className="absolute inset-0 bg-[#0C1530]/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center p-3 text-center">
+                              <span className="text-[0.62rem] text-[#E5D1A3] font-bold uppercase tracking-wider mb-1">Brand Submark</span>
+                              <p className="text-[0.52rem] text-[rgba(230,236,248,0.75)] leading-relaxed">
+                                A simplified emblem optimized for smaller spaces, packaging stamps, and digital icons.
                               </p>
                             </div>
                           </div>
                         </div>
 
-                        {/* Row 2: Typography & Colours Grid */}
-                        <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-3 min-h-0">
-                          {/* Card 4: Brand Colours */}
-                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-4 flex flex-col justify-between h-full min-h-0">
-                            <div className="flex-none">
-                              <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-0.5 block">04. BRAND COLOURS</span>
-                              <p className="text-[0.62rem] text-[rgba(230,236,248,0.5)] leading-relaxed font-medium mb-2.5 text-left">
-                                Colour is the most widely recalled element of any brand identity. Please refer to the exact colour codes for consistency across digital and print mediums.
-                              </p>
-                            </div>
-                            
-                            <div className="flex-1 flex flex-col justify-center w-full min-h-0 gap-2">
-                              <div className="grid grid-cols-2 gap-2 w-full flex-1 min-h-0">
-                                {/* Teal Block */}
-                                <div className="flex flex-col rounded-lg overflow-hidden border border-[rgba(255,255,255,0.04)] bg-[#080F22] p-1.5 justify-between">
-                                  <div className="w-full flex-1 rounded-md min-h-[25px]" style={{ backgroundColor: '#173331' }} />
-                                  <div className="mt-1 text-left">
-                                    <div className="text-[0.58rem] font-bold text-white tracking-[0.05em] uppercase">TEAL</div>
-                                    <div className="text-[0.5rem] font-mono text-[rgba(230,236,248,0.4)] leading-tight">HEX: #173331</div>
-                                    <div className="text-[0.5rem] font-mono text-[rgba(230,236,248,0.4)]">RGB: 23, 51, 49</div>
-                                    <div className="text-[0.5rem] font-mono text-[rgba(230,236,248,0.4)]">CMYK: 84, 58, 65, 60</div>
-                                  </div>
-                                </div>
-
-                                {/* Gold Block */}
-                                <div className="flex flex-col rounded-lg overflow-hidden border border-[rgba(255,255,255,0.04)] bg-[#080F22] p-1.5 justify-between">
-                                  <div className="w-full flex-1 rounded-md min-h-[25px]" style={{ background: 'linear-gradient(135deg, #E5D1A3 0%, #917D46 100%)' }} />
-                                  <div className="mt-1 text-left">
-                                    <div className="text-[0.58rem] font-bold text-white tracking-[0.05em] uppercase">GOLD</div>
-                                    <div className="text-[0.5rem] font-mono text-[rgba(230,236,248,0.4)] leading-tight">HEX: #E5D1A3 + #917D46</div>
-                                    <div className="text-[0.5rem] font-mono text-[rgba(230,236,248,0.4)]">GRADIENT</div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div className="grid grid-cols-3 gap-2 w-full flex-none">
-                                {/* Terracotta Block */}
-                                <div className="flex flex-col rounded-lg overflow-hidden border border-[rgba(255,255,255,0.04)] bg-[#080F22] p-1.5">
-                                  <div className="w-full h-[28px] rounded-md" style={{ backgroundColor: '#A46850' }} />
-                                  <div className="mt-1 text-left">
-                                    <div className="text-[0.55rem] font-bold text-white tracking-[0.05em] uppercase leading-none">TERRACOTTA</div>
-                                    <div className="text-[0.48rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5 leading-none">#A46850</div>
-                                    <div className="text-[0.44rem] font-mono text-[rgba(230,236,248,0.35)] leading-none mt-0.5">RGB: 164,104,80</div>
-                                  </div>
-                                </div>
-
-                                {/* Beige Block */}
-                                <div className="flex flex-col rounded-lg overflow-hidden border border-[rgba(255,255,255,0.04)] bg-[#080F22] p-1.5">
-                                  <div className="w-full h-[28px] rounded-md" style={{ backgroundColor: '#DAD3C5' }} />
-                                  <div className="mt-1 text-left">
-                                    <div className="text-[0.55rem] font-bold text-white tracking-[0.05em] uppercase leading-none">BEIGE</div>
-                                    <div className="text-[0.48rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5 leading-none">#DAD3C5</div>
-                                    <div className="text-[0.44rem] font-mono text-[rgba(230,236,248,0.35)] leading-none mt-0.5">RGB: 218,211,197</div>
-                                  </div>
-                                </div>
-
-                                {/* Ivory Block */}
-                                <div className="flex flex-col rounded-lg overflow-hidden border border-[rgba(255,255,255,0.04)] bg-[#080F22] p-1.5">
-                                  <div className="w-full h-[28px] rounded-md" style={{ backgroundColor: '#EEEBE6' }} />
-                                  <div className="mt-1 text-left">
-                                    <div className="text-[0.55rem] font-bold text-white tracking-[0.05em] uppercase leading-none">IVORY</div>
-                                    <div className="text-[0.48rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5 leading-none">#EEEBE6</div>
-                                    <div className="text-[0.44rem] font-mono text-[rgba(230,236,248,0.35)] leading-none mt-0.5">RGB: 238,235,230</div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                        {/* 2. Brand Wordmark */}
+                        <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-3.5 flex flex-col justify-between aspect-[3/2] relative group overflow-hidden w-full">
+                          <div className="flex-none mb-1.5">
+                            <span className="text-[0.52rem] font-bold tracking-[0.2em] uppercase text-[#E5D1A3] block leading-none mb-1">02. Logotype</span>
+                            <h3 className="text-[0.72rem] font-extrabold text-white uppercase tracking-wider leading-none">Brand Wordmark</h3>
                           </div>
-
-                          {/* Card 5: Brand Typography */}
-                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-4 flex flex-col justify-between h-full min-h-0">
-                            <div className="flex-none">
-                              <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-0.5 block">05. BRAND TYPOGRAPHY</span>
-                              <p className="text-[0.62rem] text-[rgba(230,236,248,0.5)] leading-relaxed font-medium mb-2.5 text-left">
-                                Consistency in typography builds recognition. Nogah utilizes two core typefaces for all heading and body applications.
-                              </p>
-                            </div>
+                          
+                          {/* Logo container bg is #173331 matching the image background for a seamless look */}
+                          <div className="flex-1 w-full bg-[#173331] rounded-lg flex items-center justify-center overflow-hidden relative min-h-0">
+                            <img 
+                              src="/brands/nogah/nogah-wordmark.png" 
+                              alt="Nogah Wordmark" 
+                              className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                            />
                             
-                            <div className="flex-1 flex flex-col gap-2 mt-auto justify-center min-h-0">
-                              {/* Header Font */}
-                              <div className="flex items-center gap-3 bg-[#080F22] p-2.5 rounded-lg border border-[rgba(255,255,255,0.02)]">
-                                <div 
-                                  style={{
-                                    WebkitTextStroke: '1.2px #E5D1A3',
-                                    color: 'transparent',
-                                    fontFamily: 'Futura, sans-serif',
-                                    fontWeight: 300
-                                  }} 
-                                  className="text-[2.2rem] leading-none select-none w-[50px] text-center"
-                                >
-                                  Aa
-                                </div>
-                                <div className="flex-1 text-left">
-                                  <span className="text-[0.45rem] font-bold tracking-[0.15em] uppercase text-[rgba(230,236,248,0.3)] block">HEADER FONT</span>
-                                  <h4 className="text-[0.75rem] font-bold text-white leading-none mt-0.5 mb-1" style={{ fontFamily: 'Futura, sans-serif', fontWeight: 300 }}>Futura Light BT</h4>
-                                  <div style={{ fontFamily: 'Futura, sans-serif', fontWeight: 300 }} className="text-[0.48rem] text-[rgba(230,236,248,0.4)] leading-tight tracking-wider uppercase font-light">
-                                    ABCDEFGHIJKLMNOPQRSTUVWXYZ
-                                    <br />
-                                    0123456789
-                                  </div>
-                                </div>
-                              </div>
-
-                              {/* Body Font */}
-                              <div className="flex items-center gap-3 bg-[#080F22] p-2.5 rounded-lg border border-[rgba(255,255,255,0.02)]">
-                                <div 
-                                  style={{
-                                    color: '#E5D1A3',
-                                    fontFamily: 'Avenir, sans-serif',
-                                    fontWeight: 'normal'
-                                  }} 
-                                  className="text-[1.8rem] leading-none select-none w-[50px] text-center font-medium"
-                                >
-                                  Aa
-                                </div>
-                                <div className="flex-1 text-left">
-                                  <span className="text-[0.45rem] font-bold tracking-[0.15em] uppercase text-[rgba(230,236,248,0.3)] block">BODY & PARAGRAPH FONT</span>
-                                  <h4 className="text-[0.75rem] font-bold text-white leading-none mt-0.5 mb-1" style={{ fontFamily: 'Avenir, sans-serif' }}>Avenir</h4>
-                                  <div style={{ fontFamily: 'Avenir, sans-serif' }} className="text-[0.48rem] text-[rgba(230,236,248,0.4)] leading-tight tracking-wider uppercase">
-                                    ABCDEFGHIJKLMNOPQRSTUVWXYZ
-                                    <br />
-                                    0123456789
-                                  </div>
-                                </div>
-                              </div>
+                            {/* Hover description overlay so no scroll is needed */}
+                            <div className="absolute inset-0 bg-[#0C1530]/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center p-3 text-center">
+                              <span className="text-[0.62rem] text-[#E5D1A3] font-bold uppercase tracking-wider mb-1">Brand Wordmark</span>
+                              <p className="text-[0.52rem] text-[rgba(230,236,248,0.75)] leading-relaxed">
+                                Clean typographic representation containing only the brand name. Used on official stationery and signage.
+                              </p>
                             </div>
                           </div>
                         </div>
 
-                        {/* Download Brand Guidelines Button */}
-                        <div className="flex-none flex justify-center mt-2">
-                          <a 
-                            href="https://drive.google.com/file/d/1jo6LWYdaVSr3WJ3wb7wreeRUYRPAnUfT/view?usp=sharing"
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="px-5 py-2 bg-[rgba(230,236,248,0.02)] hover:bg-[#3461FF] text-white text-[0.65rem] font-bold tracking-[0.1em] uppercase rounded border border-[rgba(230,236,248,0.1)] hover:border-[#3461FF] transition-all flex items-center gap-2 group"
-                          >
-                            Download Brand Guidelines
-                            <ExternalLink size={11} className="text-[rgba(230,236,248,0.5)] group-hover:text-white transition-colors" />
-                          </a>
+                        {/* 3. Brand Colours */}
+                        <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-3.5 flex flex-col justify-between aspect-[3/2] relative w-full">
+                          <div className="flex-none mb-1">
+                            <span className="text-[0.52rem] font-bold tracking-[0.2em] uppercase text-[#E5D1A3] block leading-none mb-1">03. Palette</span>
+                            <h3 className="text-[0.72rem] font-extrabold text-white uppercase tracking-wider leading-none">Brand Colours</h3>
+                          </div>
+
+                          {/* 5 color blocks taking up all available space */}
+                          <div className="flex-1 w-full grid grid-cols-5 gap-1.5 my-2 min-h-0 rounded-lg overflow-hidden">
+                            {/* Teal */}
+                            <div className="h-full flex flex-col justify-between p-2 text-left relative transition-all duration-300 hover:scale-[1.02] shadow-inner" style={{ backgroundColor: '#173331' }}>
+                              <span className="text-[0.48rem] font-bold text-white uppercase tracking-wider">Teal</span>
+                              <span className="text-[0.4rem] font-mono text-white/70">#173331</span>
+                            </div>
+                            {/* Gold */}
+                            <div className="h-full flex flex-col justify-between p-2 text-left relative transition-all duration-300 hover:scale-[1.02] shadow-inner" style={{ background: 'linear-gradient(180deg, #E5D1A3 0%, #917D46 100%)' }}>
+                              <span className="text-[0.48rem] font-bold text-[#0A1020] uppercase tracking-wider">Gold</span>
+                              <span className="text-[0.4rem] font-mono text-[#0A1020]/80">#E5D1A3</span>
+                            </div>
+                            {/* Terracotta */}
+                            <div className="h-full flex flex-col justify-between p-2 text-left relative transition-all duration-300 hover:scale-[1.02] shadow-inner" style={{ backgroundColor: '#A46850' }}>
+                              <span className="text-[0.48rem] font-bold text-white uppercase tracking-wider">Terra</span>
+                              <span className="text-[0.4rem] font-mono text-white/70">#A46850</span>
+                            </div>
+                            {/* Beige */}
+                            <div className="h-full flex flex-col justify-between p-2 text-left relative transition-all duration-300 hover:scale-[1.02] shadow-inner" style={{ backgroundColor: '#DAD3C5' }}>
+                              <span className="text-[0.48rem] font-bold text-[#0A1020] uppercase tracking-wider">Beige</span>
+                              <span className="text-[0.4rem] font-mono text-[#0A1020]/80">#DAD3C5</span>
+                            </div>
+                            {/* Ivory */}
+                            <div className="h-full flex flex-col justify-between p-2 text-left relative transition-all duration-300 hover:scale-[1.02] shadow-inner" style={{ backgroundColor: '#EEEBE6' }}>
+                              <span className="text-[0.48rem] font-bold text-[#0A1020] uppercase tracking-wider">Ivory</span>
+                              <span className="text-[0.4rem] font-mono text-[#0A1020]/80">#EEEBE6</span>
+                            </div>
+                          </div>
+                          
+                          <p className="text-[0.52rem] text-[rgba(230,236,248,0.45)] leading-tight flex-none">
+                            Luxury color harmony reflecting metalwork and earthy tones.
+                          </p>
+                        </div>
+
+                        {/* 4. Brand Typography */}
+                        <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-3.5 flex flex-col justify-between aspect-[3/2] relative w-full">
+                          <div className="flex-none mb-1">
+                            <span className="text-[0.52rem] font-bold tracking-[0.2em] uppercase text-[#E5D1A3] block leading-none mb-1">04. Typefaces</span>
+                            <h3 className="text-[0.72rem] font-extrabold text-white uppercase tracking-wider leading-none">Brand Typography</h3>
+                          </div>
+
+                          {/* Specimen image taking up the rest of the card space */}
+                          <div className="flex-1 my-2 bg-white rounded-lg flex items-center justify-center p-2.5 overflow-hidden min-h-0">
+                            <img 
+                              src="/brands/nogah/nogah-typography.png" 
+                              alt="Nogah Typography" 
+                              className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
+                            />
+                          </div>
+
+                          <p className="text-[0.52rem] text-[rgba(230,236,248,0.45)] leading-tight flex-none">
+                            Futura Light BT (Header) paired with Avenir (Body).
+                          </p>
                         </div>
                       </div>
                     ) : (

@@ -42,6 +42,9 @@ export type ProjectData = {
   tabs?: string[];
   magazines?: { name: string; link: string; id: string }[];
   conceptText?: string;
+  campaignMedia?: { id: string; type: 'image' | 'video'; link: string; name: string }[];
+  shootPosts?: { id: string; name: string; type: string; link: string }[][];
+  shootDriveLink?: string;
   airbnb?: {
     url: string;
     title: string;
@@ -973,6 +976,96 @@ export const SOUP_SMM_POSTS = [
   ]
 ];
 
+export const REDEFINE_SMM_POSTS = [
+  // Post 1
+  [
+    {
+      id: '1R9bBwT7cmNBe9lA7geFQ8J_1b1CDATek',
+      name: 'redefine-post-1',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1R9bBwT7cmNBe9lA7geFQ8J_1b1CDATek/view?usp=drive_link'
+    }
+  ],
+  // Post 2
+  [
+    {
+      id: '14koeSOAnsdSwhCpI0ntz_4T0IWAeLCER',
+      name: 'redefine-post-2',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/14koeSOAnsdSwhCpI0ntz_4T0IWAeLCER/view?usp=drive_link'
+    }
+  ],
+  // Post 3
+  [
+    {
+      id: '1P2j0zAPloEbWfvdLVxAokS1_rYqnLVmq',
+      name: 'redefine-post-3',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1P2j0zAPloEbWfvdLVxAokS1_rYqnLVmq/view?usp=drive_link'
+    }
+  ]
+];
+
+export const ANTARIKSH_SMM_POSTS = [
+  // Post 1
+  [
+    {
+      id: '1lbM74unt6QDaLLNZ6p4cuoXRoa08e5Q0',
+      name: 'antariksh-post-1',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1lbM74unt6QDaLLNZ6p4cuoXRoa08e5Q0/view?usp=drive_link'
+    }
+  ],
+  // Post 2
+  [
+    {
+      id: '1Ks-sST9ZnUMij8BglgorNVdX3nIc9m1g',
+      name: 'antariksh-post-2',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1Ks-sST9ZnUMij8BglgorNVdX3nIc9m1g/view?usp=drive_link'
+    }
+  ],
+  // Post 3
+  [
+    {
+      id: '1ljHj8Cx14etffjTXDqYKBWUsdzzeJT75',
+      name: 'antariksh-post-3',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1ljHj8Cx14etffjTXDqYKBWUsdzzeJT75/view?usp=drive_link'
+    }
+  ]
+];
+
+export const GREEN_CARAT_SMM_POSTS = [
+  // Post 1
+  [
+    {
+      id: '1tNXmpB8Val4cdMBBBmwQNRKoNcy1xGy_',
+      name: 'greencarat-post-1',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1tNXmpB8Val4cdMBBBmwQNRKoNcy1xGy_/view?usp=drive_link'
+    }
+  ],
+  // Post 2
+  [
+    {
+      id: '1e0ENqFVOuP-PLViA7MNVVIZrzeCgCYyG',
+      name: 'greencarat-post-2',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1e0ENqFVOuP-PLViA7MNVVIZrzeCgCYyG/view?usp=drive_link'
+    }
+  ],
+  // Post 3
+  [
+    {
+      id: '1_duKxgoNaz5ng1v-Cq_6zFTzJcs3qylh',
+      name: 'greencarat-post-3',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1_duKxgoNaz5ng1v-Cq_6zFTzJcs3qylh/view?usp=drive_link'
+    }
+  ]
+];
+
 export const PROJECTS: Record<string, ProjectData> = {
   cepa: {
     title: 'CEPA Council',
@@ -1152,11 +1245,9 @@ export const PROJECTS: Record<string, ProjectData> = {
     title: 'Antariksh Diamonds',
     category: 'Jewellery · Social Media · Branding',
     web: null,
-    social: [
-      { type: 'Collection Showcase', copy: 'Brilliance that outshines the stars.', bg: 'linear-gradient(135deg,#050B1A,#1a1a22)', link: 'https://www.instagram.com/p/DITgzuBv22T/?igsh=MWZnZDE4MnA1NjExNw==', image: '/social-previews/antariksh-1.jpg' },
-      { type: 'Craftsmanship Reel', copy: 'Every facet tells a story of perfection.', bg: 'linear-gradient(135deg,#0d0d11,#333344)', link: 'https://www.instagram.com/reel/DIRKNm4PuFW/?igsh=MWJsNWgxZnpyMDY0dA==', image: '/social-previews/antariksh-2.jpg' },
-      { type: 'Statement Pieces', copy: 'Adorn yourself in timeless luxury.', bg: 'linear-gradient(135deg,#09090c,#222233)', link: 'https://www.instagram.com/p/DIB3mW7vvme/?igsh=MXZmenUyanhzb2MxZg==', image: '/social-previews/antariksh-3.jpg' }
-    ],
+    social: [],
+    smmPosts: ANTARIKSH_SMM_POSTS,
+    smmDriveLink: 'https://drive.google.com/drive/folders/1sk49dl8SFu2iqUOEu2bnEnpbXlMlScWO',
     brand: {
       name: 'Antariksh',
       colors: ['#333344', '#F4F2F0', '#050B1A', '#888899'],
@@ -1165,7 +1256,8 @@ export const PROJECTS: Record<string, ProjectData> = {
       style: 'Luxurious · Brilliant · Timeless',
       logo: '/brand-logos/antariksh.jpg',
       details: 'A luxury diamond jewellery brand emphasizing exquisite craftsmanship and timeless designs. The social presence is curated to showcase the brilliance of their statement pieces.'
-    }
+    },
+    tabs: ['Website', 'Branding & Logo', 'Social Media']
   },
   bunkout: {
     title: 'Bunkout',
@@ -1265,6 +1357,35 @@ export const PROJECTS: Record<string, ProjectData> = {
       meta: [{ l: 'Industry', v: 'Sustainable Jewellery' }, { l: 'Platform', v: 'Next.js E-Commerce' }]
     },
     social: [],
+    smmPosts: GREEN_CARAT_SMM_POSTS,
+    smmDriveLink: 'https://drive.google.com/drive/folders/1ZGyjxg9NJlJsyGrIAsG8CLmnzFoymVGs',
+    shootPosts: [
+      [
+        {
+          id: '1ulTRvsIA3bAyYQw7IHtSL0zY1mFvj1U8',
+          name: 'shoot-1',
+          type: 'image',
+          link: 'https://drive.google.com/file/d/1ulTRvsIA3bAyYQw7IHtSL0zY1mFvj1U8/view?usp=drive_link'
+        }
+      ],
+      [
+        {
+          id: '1KMZxi0z43q-s9RUWD5KsJkfouI3XQv7o',
+          name: 'shoot-2',
+          type: 'image',
+          link: 'https://drive.google.com/file/d/1KMZxi0z43q-s9RUWD5KsJkfouI3XQv7o/view?usp=drive_link'
+        }
+      ],
+      [
+        {
+          id: '1-Xi9k8ZM11PkJhAgk4EkPvQrslfk88kK',
+          name: 'shoot-3',
+          type: 'image',
+          link: 'https://drive.google.com/file/d/1-Xi9k8ZM11PkJhAgk4EkPvQrslfk88kK/view?usp=drive_link'
+        }
+      ]
+    ],
+    shootDriveLink: 'https://drive.google.com/drive/folders/1OH9yiMPJIqMgjbiZwxQKvHeST2sWAU5Y',
     brand: {
       name: 'The Green Carat',
       colors: ['#1E4620', '#050B1A', '#FFFFFF', '#E8F0E8'],
@@ -1287,6 +1408,28 @@ export const PROJECTS: Record<string, ProjectData> = {
       meta: [{ l: 'Category', v: 'Athleisure' }, { l: 'Global Shoots', v: 'London / NY' }]
     },
     social: [],
+    smmPosts: REDEFINE_SMM_POSTS,
+    smmDriveLink: 'https://drive.google.com/drive/folders/16CvuzibJSJtG-foe4DVddzN-Zc81w5lA',
+    campaignMedia: [
+      {
+        id: '1AgMy0CgIKdqIQ6q0frf1j3QvxeZQkEyP',
+        type: 'image',
+        name: 'campaign-1',
+        link: 'https://drive.google.com/file/d/1AgMy0CgIKdqIQ6q0frf1j3QvxeZQkEyP/view?usp=drive_link'
+      },
+      {
+        id: '1oBCqidpCT7Ah6C2cvZicZ68MDcb76Buq',
+        type: 'image',
+        name: 'campaign-video',
+        link: 'https://drive.google.com/file/d/1oBCqidpCT7Ah6C2cvZicZ68MDcb76Buq/view?usp=drive_link'
+      },
+      {
+        id: '1KFz515o5bskjchFP6CDt1AnE59ds4V8D',
+        type: 'image',
+        name: 'campaign-2',
+        link: 'https://drive.google.com/file/d/1KFz515o5bskjchFP6CDt1AnE59ds4V8D/view?usp=drive_link'
+      }
+    ],
     brand: {
       name: 'Redefine',
       colors: ['#FF3E6C', '#050B1A', '#FFFFFF', '#F0E6EA'],
@@ -1295,7 +1438,7 @@ export const PROJECTS: Record<string, ProjectData> = {
       style: 'Energetic · Bold · Futuristic',
       details: 'Redefine activewear combines athletic aesthetics with urban fashion. Global campaigns in New York and London position it at the intersection of high fashion and street performance.'
     },
-    tabs: ['Website', 'Social Media', 'Shoot', 'Campaigns (NY / London / Etc)']
+    tabs: ['Website', 'Social Media', 'Campaigns (NY / London / Etc)']
   },
   soup: {
     title: 'SOUP',

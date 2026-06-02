@@ -596,14 +596,7 @@ h2.sh {
   z-index: 1;
   pointer-events: none;
 }
-.pcard::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(5,11,26,.88) 0%, rgba(5,11,26,.5) 40%, rgba(5,11,26,.0) 100%);
-  z-index: 2;
-  pointer-events: none;
-}
+
 
 /* Light background portfolio cards */
 .lt .port-grid, .lt2 .port-grid { background: var(--lt-line2); }

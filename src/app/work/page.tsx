@@ -101,14 +101,20 @@ export default function WorkPage() {
                 </div>
                 
                 {/* Bottom Strip */}
-                <div className="absolute bottom-0 left-0 right-0 p-8 z-30 flex flex-col items-start bg-gradient-to-t from-[rgba(5,11,26,0.8)] to-transparent">
-                  <div className="text-[0.62rem] font-semibold tracking-[0.1em] uppercase text-[rgba(230,236,248,0.5)] mb-1">
+                <div className="absolute bottom-0 left-0 right-0 p-8 z-30 flex flex-col items-start">
+                  <div className={`text-[0.62rem] font-semibold tracking-[0.1em] uppercase mb-1 ${
+                    isPlainLogoBrand ? 'text-[#050B1A]/60' : 'text-[rgba(230,236,248,0.5)]'
+                  }`}>
                     {p.category}
                   </div>
-                  <div className="text-[1rem] font-bold text-white mb-2">
+                  <div className={`text-[1rem] font-bold mb-2 ${
+                    isPlainLogoBrand ? 'text-[#050B1A]' : 'text-white'
+                  }`}>
                     {p.brand.name}
                   </div>
-                  <div className="text-[0.72rem] font-semibold tracking-[0.1em] text-[#3461FF] uppercase relative inline-block group-hover:text-white transition-colors duration-[400ms]">
+                  <div className={`text-[0.72rem] font-semibold tracking-[0.1em] uppercase relative inline-block transition-colors duration-[400ms] ${
+                    isPlainLogoBrand ? 'text-[#3461FF] group-hover:text-[#050B1A]' : 'text-[#3461FF] group-hover:text-white'
+                  }`}>
                     View Case Study →
                     <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-current scale-x-0 origin-left transition-transform duration-[400ms] group-hover:scale-x-100" />
                   </div>
