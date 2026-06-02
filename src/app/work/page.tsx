@@ -55,24 +55,32 @@ export default function WorkPage() {
               <div 
                 className="absolute inset-0 transition-transform duration-[400ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.02]"
                 style={{ 
-                  background: p.web?.gradient || `radial-gradient(ellipse at 50% 50%, ${p.brand.colors[0]}26 0%, #050B1A 70%)` 
+                  background: (p.brand.name.toLowerCase() === 'vinnin' || p.brand.name.toLowerCase().includes('dressing room'))
+                    ? '#FFFFFF'
+                    : (p.web?.gradient || `radial-gradient(ellipse at 50% 50%, ${p.brand.colors[0]}26 0%, #050B1A 70%)`) 
                 }}
               >
                 {p.brand.logo && (
                   <img 
                     src={p.brand.logo} 
                     alt={p.brand.name} 
-                    className={`w-full h-full opacity-40 transition-opacity duration-500 group-hover:opacity-70 ${
-                      p.brand.name.toLowerCase() === 'coca-cola' 
-                        ? 'object-contain p-12 lg:p-16' 
-                        : 'object-cover'
+                    className={`w-full h-full transition-all duration-500 ${
+                      (p.brand.name.toLowerCase() === 'vinnin' || p.brand.name.toLowerCase().includes('dressing room'))
+                        ? 'object-contain p-8 lg:p-12 opacity-100'
+                        : `opacity-40 group-hover:opacity-70 ${
+                            p.brand.name.toLowerCase() === 'coca-cola' 
+                              ? 'object-contain p-12 lg:p-16' 
+                              : 'object-cover'
+                          }`
                     }`} 
                   />
                 )}
               </div>
               
               {/* Dark Overlay */}
-              <div className="absolute inset-0 bg-[rgba(5,11,26,0.3)] transition-colors duration-[400ms] group-hover:bg-[rgba(5,11,26,0.5)] z-10" />
+              {(p.brand.name.toLowerCase() !== 'vinnin' && !p.brand.name.toLowerCase().includes('dressing room')) && (
+                <div className="absolute inset-0 bg-[rgba(5,11,26,0.3)] transition-colors duration-[400ms] group-hover:bg-[rgba(5,11,26,0.5)] z-10" />
+              )}
 
               {/* Centered Brand Name / Fake Logo (Only if no actual logo image) */}
               <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">

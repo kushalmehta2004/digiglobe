@@ -13,7 +13,7 @@ function SMMPostCard({
   brandLogo,
   brandUrl
 }: { 
-  post: { id: string; name: string; type: string; link: string }[]; 
+  post: { id: string; name: string; type: string; link: string; videoUrl?: string }[]; 
   postIndex: number;
   brandName: string;
   brandLogo?: string;
@@ -71,26 +71,37 @@ function SMMPostCard({
       </div>
 
       {/* Media Box */}
-      <div className="relative aspect-square w-full bg-black/40 rounded-md overflow-hidden border border-[rgba(230,236,248,0.02)] group">
-        {/* Click to open in drive */}
-        <a href={activeMedia.link} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
-          <img 
-            src={getThumbnailUrl(activeMedia.id)} 
-            alt={activeMedia.name}
-            className="w-full h-full object-cover transition-transform duration-[600ms] group-hover:scale-[1.02]"
-            loading="lazy"
-            referrerPolicy="no-referrer"
+      <div className="relative aspect-[4/5] w-full bg-black/40 rounded-md overflow-hidden border border-[rgba(230,236,248,0.02)] group">
+        {activeMedia.type === 'video' && activeMedia.videoUrl ? (
+          <video 
+            src={activeMedia.videoUrl}
+            controls
+            playsInline
+            muted
+            loop
+            className="w-full h-full object-contain bg-black"
           />
-          {activeMedia.type === 'video' && (
-            <div className="absolute inset-0 bg-black/20 flex items-center justify-center pointer-events-none">
-              <div className="w-8 h-8 rounded-full bg-[#3461FF]/90 flex items-center justify-center text-white shadow-md transform group-hover:scale-105 transition-transform">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
+        ) : (
+          /* Click to open in drive */
+          <a href={activeMedia.link} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
+            <img 
+              src={getThumbnailUrl(activeMedia.id)} 
+              alt={activeMedia.name}
+              className="w-full h-full object-cover transition-transform duration-[600ms] group-hover:scale-[1.02]"
+              loading="lazy"
+              referrerPolicy="no-referrer"
+            />
+            {activeMedia.type === 'video' && (
+              <div className="absolute inset-0 bg-black/20 flex items-center justify-center pointer-events-none">
+                <div className="w-8 h-8 rounded-full bg-[#3461FF]/90 flex items-center justify-center text-white shadow-md transform group-hover:scale-105 transition-transform">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
               </div>
-            </div>
-          )}
-        </a>
+            )}
+          </a>
+        )}
 
         {/* Carousel Navigation */}
         {post.length > 1 && (
@@ -299,11 +310,18 @@ export default function ProjectModal({
             <div className="flex-1 flex flex-col p-5 lg:p-6 overflow-y-auto custom-scrollbar relative">
               <style jsx global>{`
                 .custom-scrollbar::-webkit-scrollbar {
-                  display: none;
+                  width: 5px;
                 }
-                .custom-scrollbar {
-                  -ms-overflow-style: none;
-                  scrollbar-width: none;
+                .custom-scrollbar::-webkit-scrollbar-track {
+                  background: transparent;
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb {
+                  background: rgba(230, 236, 248, 0.12);
+                  border-radius: 9999px;
+                  transition: background 0.3s;
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                  background: #3461FF;
                 }
               `}</style>
               <AnimatePresence mode="wait">
@@ -506,7 +524,7 @@ export default function ProjectModal({
                         </div>
                       </div>
                     ) : project.smmPosts ? (
-                      <div className="flex-1 pr-1 flex flex-col gap-6 justify-between">
+                      <div className="w-full pr-1 flex flex-col gap-6 pb-6">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                           {project.smmPosts.map((post, i) => (
                             <SMMPostCard 
@@ -520,7 +538,7 @@ export default function ProjectModal({
                           ))}
                         </div>
                         {project.smmDriveLink && project.brand.name.toLowerCase() !== 'bunkout' && (
-                          <div className="flex justify-center mt-2 mb-4">
+                          <div className="flex justify-center mt-6 mb-4">
                             <a
                               href={project.smmDriveLink}
                               target="_blank"
@@ -539,7 +557,7 @@ export default function ProjectModal({
                   {/* SHOOT TAB */}
                   {(activeTab.toLowerCase().includes("shoot") || activeTab === "shoot") && (
                     project.smmPosts ? (
-                      <div className="flex-1 pr-1 flex flex-col gap-6 justify-between">
+                      <div className="w-full pr-1 flex flex-col gap-6 pb-6">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                           {project.smmPosts.map((post, i) => (
                             <SMMPostCard 
@@ -553,7 +571,7 @@ export default function ProjectModal({
                           ))}
                         </div>
                         {project.smmDriveLink && project.brand.name.toLowerCase() !== 'bunkout' && (
-                          <div className="flex justify-center mt-2 mb-4">
+                          <div className="flex justify-center mt-6 mb-4">
                             <a
                               href={project.smmDriveLink}
                               target="_blank"
@@ -804,6 +822,167 @@ export default function ProjectModal({
                               <div className="text-center mt-1">
                                 <div className="text-[0.7rem] font-bold text-white tracking-[0.1em] uppercase">IVORY</div>
                                 <div className="text-[0.62rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5">#F7F8F8</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : project.brand.name.toLowerCase().includes("dressing room") ? (
+                      <div className="flex-1 overflow-y-auto pr-1 custom-scrollbar flex flex-col gap-6 h-full">
+                        {/* Top Row: Submark and Logo spec */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {/* Brand Logo Card */}
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-6 flex flex-col items-center justify-center min-h-[220px]">
+                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-4">PRIMARY LOGO</span>
+                            <div className="w-[140px] h-[140px] bg-white rounded-lg flex items-center justify-center p-4 shadow-inner">
+                              <img src="/brand-logos/Tdr.png" alt="Primary Logo" className="max-w-full max-h-full object-contain" />
+                            </div>
+                          </div>
+
+                          {/* Brand Details / Style Card */}
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-6 flex flex-col justify-center min-h-[220px]">
+                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-3">BRAND IDENTIFIER</span>
+                            <h3 className="text-xl font-serif text-[#B29C8A] mb-2" style={{ fontFamily: 'Cinzel, serif' }}>The Dressing Room</h3>
+                            <p className="text-[0.72rem] leading-relaxed text-[rgba(230,236,248,0.6)] font-medium">
+                              A premium fashion brand focusing on chic, contemporary wear for women. The branding reflects elegance, sophisticated curation, and modern aesthetics.
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Middle Row: Typography */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {/* Primary Font Specimen: Cinzel */}
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-6 flex flex-col justify-center min-h-[160px]">
+                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-3">PRIMARY FONT: CINZEL</span>
+                            <div style={{ fontFamily: 'Cinzel, serif' }} className="text-white">
+                              <div className="text-[1.3rem] tracking-wider leading-none mb-2">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+                              <div className="text-[1.1rem] tracking-wider leading-none">0 1 2 3 4 5 6 7 8 9</div>
+                            </div>
+                          </div>
+
+                          {/* Paragraph Font Specimen: Montserrat */}
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-6 flex flex-col justify-center min-h-[160px]">
+                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-3">PARAGRAPH FONT: MONTSERRAT</span>
+                            <div style={{ fontFamily: 'Montserrat' }} className="text-white font-medium">
+                              <div className="text-[1.2rem] tracking-normal leading-none mb-2">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+                              <div className="text-[1rem] tracking-normal leading-none">0 1 2 3 4 5 6 7 8 9</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Bottom Row: Colour Palette */}
+                        <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-6 flex flex-col items-center">
+                          <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-6">COLOUR PALETTE</span>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-[600px] justify-center">
+                            {/* Ivory */}
+                            <div className="flex flex-col items-center gap-2">
+                              <div className="w-full aspect-[2/1] rounded-lg shadow-sm border border-[rgba(255,255,255,0.05)]" style={{ backgroundColor: '#FFF6EE' }} />
+                              <div className="text-center mt-1">
+                                <div className="text-[0.7rem] font-bold text-white tracking-[0.1em] uppercase">IVORY</div>
+                                <div className="text-[0.62rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5">#FFF6EE</div>
+                              </div>
+                            </div>
+
+                            {/* Taupe Brown */}
+                            <div className="flex flex-col items-center gap-2">
+                              <div className="w-full aspect-[2/1] rounded-lg shadow-sm border border-[rgba(255,255,255,0.05)]" style={{ backgroundColor: '#8E776B' }} />
+                              <div className="text-center mt-1">
+                                <div className="text-[0.7rem] font-bold text-white tracking-[0.1em] uppercase">TAUPE BROWN</div>
+                                <div className="text-[0.62rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5">#8E776B</div>
+                              </div>
+                            </div>
+
+                            {/* Beige */}
+                            <div className="flex flex-col items-center gap-2">
+                              <div className="w-full aspect-[2/1] rounded-lg shadow-sm border border-[rgba(255,255,255,0.05)]" style={{ backgroundColor: '#B29C8A' }} />
+                              <div className="text-center mt-1">
+                                <div className="text-[0.7rem] font-bold text-white tracking-[0.1em] uppercase">BEIGE</div>
+                                <div className="text-[0.62rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5">#B29C8A</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : project.brand.name.toLowerCase().includes("vinnin") ? (
+                      <div className="flex-1 overflow-y-auto pr-1 custom-scrollbar flex flex-col gap-6 h-full">
+                        {/* Top Row: Logo and Details */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {/* Brand Logo Card */}
+                          <div className="bg-[#05050A] border border-[rgba(138,43,226,0.15)] rounded-xl p-6 flex flex-col items-center justify-center min-h-[220px] shadow-[0_0_20px_rgba(138,43,226,0.05)]">
+                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-4">PRIMARY LOGO</span>
+                            <div className="w-[140px] h-[140px] bg-[#05050A] border border-[rgba(230,236,248,0.05)] rounded-lg flex items-center justify-center p-4">
+                              <img src="/brand-logos/Logo (4).png" alt="Primary Logo" className="max-w-full max-h-full object-contain" />
+                            </div>
+                          </div>
+
+                          {/* Brand Details / Style Card */}
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-6 flex flex-col justify-center min-h-[220px]">
+                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-3">BRAND IDENTIFIER</span>
+                            <h3 className="text-xl font-extrabold text-[#8A2BE2] mb-2 uppercase tracking-wide" style={{ fontFamily: 'Outfit, sans-serif' }}>Vinnin</h3>
+                            <p className="text-[0.72rem] leading-relaxed text-[rgba(230,236,248,0.6)] font-medium">
+                              Vinnin is a contemporary streetwear fashion brand. The visual identity emphasizes high-contrast purple hues, heavy typography, and underground culture vibes.
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Middle Row: Typography */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {/* Primary Font Specimen: Outfit */}
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-6 flex flex-col justify-center min-h-[160px]">
+                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-3">PRIMARY FONT: OUTFIT</span>
+                            <div style={{ fontFamily: 'Outfit, sans-serif' }} className="text-white">
+                              <div className="text-[1.4rem] font-black tracking-wide leading-none mb-2">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+                              <div className="text-[1.1rem] font-bold tracking-wide leading-none">0 1 2 3 4 5 6 7 8 9</div>
+                            </div>
+                          </div>
+
+                          {/* Paragraph Font Specimen: Montserrat */}
+                          <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-6 flex flex-col justify-center min-h-[160px]">
+                            <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-3">PARAGRAPH FONT: MONTSERRAT</span>
+                            <div style={{ fontFamily: 'Montserrat, sans-serif' }} className="text-white font-medium">
+                              <div className="text-[1.2rem] tracking-normal leading-none mb-2">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+                              <div className="text-[1rem] tracking-normal leading-none">0 1 2 3 4 5 6 7 8 9</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Bottom Row: Colour Palette */}
+                        <div className="bg-[#0C1530] border border-[rgba(230,236,248,0.05)] rounded-xl p-6 flex flex-col items-center">
+                          <span className="text-[0.55rem] font-bold tracking-[0.2em] uppercase text-[rgba(230,236,248,0.3)] mb-6">COLOUR PALETTE</span>
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-[640px] justify-center">
+                            {/* Electric Purple */}
+                            <div className="flex flex-col items-center gap-2">
+                              <div className="w-full aspect-[2/1] rounded-lg shadow-sm border border-[rgba(255,255,255,0.05)]" style={{ backgroundColor: '#8A2BE2' }} />
+                              <div className="text-center mt-1">
+                                <div className="text-[0.65rem] font-bold text-white tracking-[0.1em] uppercase">ELECTRIC PURPLE</div>
+                                <div className="text-[0.58rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5">#8A2BE2</div>
+                              </div>
+                            </div>
+
+                            {/* Void Black */}
+                            <div className="flex flex-col items-center gap-2">
+                              <div className="w-full aspect-[2/1] rounded-lg shadow-sm border border-[rgba(255,255,255,0.05)]" style={{ backgroundColor: '#05050A' }} />
+                              <div className="text-center mt-1">
+                                <div className="text-[0.65rem] font-bold text-white tracking-[0.1em] uppercase">VOID BLACK</div>
+                                <div className="text-[0.58rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5">#05050A</div>
+                              </div>
+                            </div>
+
+                            {/* White */}
+                            <div className="flex flex-col items-center gap-2">
+                              <div className="w-full aspect-[2/1] rounded-lg shadow-sm border border-[rgba(255,255,255,0.05)]" style={{ backgroundColor: '#FFFFFF' }} />
+                              <div className="text-center mt-1">
+                                <div className="text-[0.65rem] font-bold text-white tracking-[0.1em] uppercase">WHITE</div>
+                                <div className="text-[0.58rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5">#FFFFFF</div>
+                              </div>
+                            </div>
+
+                            {/* Soft Purple */}
+                            <div className="flex flex-col items-center gap-2">
+                              <div className="w-full aspect-[2/1] rounded-lg shadow-sm border border-[rgba(255,255,255,0.05)]" style={{ backgroundColor: '#F0E6FA' }} />
+                              <div className="text-center mt-1">
+                                <div className="text-[0.65rem] font-bold text-white tracking-[0.1em] uppercase">SOFT PURPLE</div>
+                                <div className="text-[0.58rem] font-mono text-[rgba(230,236,248,0.4)] mt-0.5">#F0E6FA</div>
                               </div>
                             </div>
                           </div>

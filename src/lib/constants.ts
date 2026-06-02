@@ -36,7 +36,7 @@ export type ProjectData = {
     video: string;
     theme: string;
   };
-  smmPosts?: { id: string; name: string; type: string; link: string }[][];
+  smmPosts?: { id: string; name: string; type: string; link: string; videoUrl?: string }[][];
   smmDriveLink?: string;
   tabs?: string[];
   magazines?: { name: string; link: string; id: string }[];
@@ -595,6 +595,68 @@ export const UTOPIAN_VILLAS_SMM_POSTS = [
   ],
 ];
 
+export const DRESSING_ROOM_SMM_POSTS = [
+  // Post 1 (1 item)
+  [
+    {
+      id: '1G_TEsVvfJhkJ31lCGahYaoUwzcc931_L',
+      name: 'post 1.jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1G_TEsVvfJhkJ31lCGahYaoUwzcc931_L/view?usp=drive_web'
+    }
+  ],
+  // Post 2 (1 item)
+  [
+    {
+      id: '1EFy8v-Wv6XaVNbIW7E5TgTlRK_loTItK',
+      name: 'post 2.mp4',
+      type: 'video',
+      link: 'https://drive.google.com/file/d/1EFy8v-Wv6XaVNbIW7E5TgTlRK_loTItK/view?usp=drive_web',
+      videoUrl: '/social-previews/dressingroom-video.mp4'
+    }
+  ],
+  // Post 3 (1 item)
+  [
+    {
+      id: '1ZCBvl0xdbLHHeO-GPi2gQUzftMGv412y',
+      name: 'post 3.jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1ZCBvl0xdbLHHeO-GPi2gQUzftMGv412y/view?usp=drive_web'
+    }
+  ]
+];
+
+export const VININN_SMM_POSTS = [
+  // Post 1 (1 item)
+  [
+    {
+      id: '1Lo8WPeoujmW_yQkDfpXcJxaKNODk0bQa',
+      name: 'vininn.interiors_1',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1Lo8WPeoujmW_yQkDfpXcJxaKNODk0bQa/view?usp=drive_web'
+    }
+  ],
+  // Post 2 (1 item)
+  [
+    {
+      id: '1u5kTZg-SPkaSSnX2s4yG91ZQfbLatamy',
+      name: 'vininn.interiors_2',
+      type: 'video',
+      link: 'https://drive.google.com/file/d/1u5kTZg-SPkaSSnX2s4yG91ZQfbLatamy/view?usp=drive_web',
+      videoUrl: '/social-previews/vininn-video.mp4'
+    }
+  ],
+  // Post 3 (1 item)
+  [
+    {
+      id: '14L1IKetG_jga7PibspHBBGZ3zD1yHpjF',
+      name: 'vininn.interiors_3',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/14L1IKetG_jga7PibspHBBGZ3zD1yHpjF/view?usp=drive_web'
+    }
+  ]
+];
+
 export const PROJECTS: Record<string, ProjectData> = {
   cepa: {
     title: 'CEPA Council',
@@ -626,21 +688,21 @@ export const PROJECTS: Record<string, ProjectData> = {
     title: 'The Dressing Room',
     category: 'Fashion · Social Media · Branding',
     web: null,
-    social: [
-      { type: 'Fashion Reel', copy: 'Elevate your everyday style with our new collection.', bg: 'linear-gradient(135deg,#050B1A,#1a1122)', link: 'https://www.instagram.com/p/DU5r6YGE51F/?igsh=MTVtbWZrODV5ZjBmZg==', image: '/social-previews/dressingroom-1.jpg' },
-      { type: 'Showcase', copy: 'Details that define you.', bg: 'linear-gradient(135deg,#0d0811,#332244)', link: 'https://www.instagram.com/reel/DVBEOCagRj8/?igsh=MTR2ZHZ4NWNkajYzbA==', video: '/social-previews/dressingroom-2.mp4' },
-      { type: 'Style Inspiration', copy: 'Where elegance meets comfort.', bg: 'linear-gradient(135deg,#110a1a,#221133)', link: 'https://www.instagram.com/p/DVtQmhtE8Zl/?igsh=ZWs1ZHVyd3Z3Mmtz', image: '/social-previews/dressingroom-3.jpg' }
-    ],
+    social: [],
+    smmPosts: DRESSING_ROOM_SMM_POSTS,
+    smmDriveLink: 'https://drive.google.com/drive/folders/1OflvOhEKvtCC5ST3JVfraD5_Vmn_FpBb',
     brand: {
       name: 'The Dressing Room',
-      colors: ['#332244', '#E6ECF8', '#050B1A', '#9977AA'],
-      colorNames: ['Plum', 'Light', 'Navy', 'Lavender'],
-      font: 'Playfair Display',
+      colors: ['#FFF6EE', '#8E776B', '#B29C8A', '#050B1A'],
+      colorNames: ['Ivory', 'Taupe Brown', 'Beige', 'Navy'],
+      font: 'Cinzel',
+      bodyFont: 'Montserrat',
       style: 'Chic · Elegant · Contemporary',
       logo: '/brand-logos/Tdr.png',
       logoLink: 'https://drive.google.com/drive/folders/1f0p83XUeZIc-MvvY-HaACMIQAae4i_LB?usp=drive_link',
       details: 'A premium fashion brand focusing on chic, contemporary wear for women. The branding reflects elegance and modern aesthetics.'
-    }
+    },
+    tabs: ['Branding & Logo', 'Social Media']
   },
   durfshan: {
     title: 'Durfshan',
@@ -973,13 +1035,16 @@ export const PROJECTS: Record<string, ProjectData> = {
     category: 'Branding · Social Media',
     web: null,
     social: [],
+    smmPosts: VININN_SMM_POSTS,
+    smmDriveLink: 'https://drive.google.com/drive/folders/19LhIO8-cKIx6wdJ7Ghn-a8k6NaFUd7ic',
     brand: {
       name: 'Vinnin',
       colors: ['#8A2BE2', '#05050A', '#FFFFFF', '#F0E6FA'],
       colorNames: ['Electric Purple', 'Void Black', 'White', 'Soft Purple'],
       font: 'Outfit',
+      bodyFont: 'Montserrat',
       style: 'Streetwear · Edgy · Urban',
-      logo: '/brand-logos/VININN.png',
+      logo: '/brand-logos/Logo (4).png',
       details: 'Vinnin is a contemporary streetwear fashion brand. The visual identity emphasizes high-contrast purple hues, heavy typography, and underground culture vibes.'
     },
     tabs: ['Social Media']
