@@ -381,25 +381,71 @@ export default function ProjectModal({
                 </button>
               ))}
 
-              {project.smmDriveLink && (
-                project.brand.name.toLowerCase().includes("avec amour") || 
-                project.brand.name.toLowerCase().includes("vinnin") || 
-                (project.brand.name.toLowerCase().includes("dressing room") && activeTab.toLowerCase().includes("social")) ||
-                (project.brand.name.toLowerCase().includes("bayroute") && activeTab.toLowerCase().includes("shoot")) ||
-                (project.brand.name.toLowerCase().includes("hyro") && activeTab.toLowerCase().includes("shoot")) ||
-                (project.brand.name.toLowerCase().includes("etnica") && activeTab.toLowerCase().includes("shoot")) ||
-                (project.brand.name.toLowerCase().includes("soup") && activeTab.toLowerCase().includes("social"))
-              ) && (
+                {project.smmDriveLink && (
+                  project.brand.name.toLowerCase().includes("avec amour") || 
+                  project.brand.name.toLowerCase().includes("vinnin") || 
+                  (project.brand.name.toLowerCase().includes("dressing room") && activeTab.toLowerCase().includes("social")) ||
+                  (project.brand.name.toLowerCase().includes("bayroute") && activeTab.toLowerCase().includes("shoot")) ||
+                  (project.brand.name.toLowerCase().includes("hyro") && activeTab.toLowerCase().includes("shoot")) ||
+                  (project.brand.name.toLowerCase().includes("etnica") && activeTab.toLowerCase().includes("shoot")) ||
+                  (project.brand.name.toLowerCase().includes("soup") && activeTab.toLowerCase().includes("social")) ||
+                  (project.brand.name.toLowerCase() === "bunkout" && activeTab.toLowerCase().includes("social")) ||
+                  (project.brand.name.toLowerCase() === "utopian villas" && activeTab.toLowerCase().includes("social")) ||
+                  (project.brand.name.toLowerCase() === "the travel library" && activeTab.toLowerCase().includes("social")) ||
+                  (project.brand.name.toLowerCase() === "durfshan" && activeTab.toLowerCase().includes("social")) ||
+                  (project.brand.name.toLowerCase() === "nogah" && activeTab.toLowerCase().includes("social")) ||
+                  (project.brand.name.toLowerCase() === "the green carat" && activeTab.toLowerCase().includes("social")) ||
+                  (project.brand.name.toLowerCase() === "antariksh" && activeTab.toLowerCase().includes("social")) ||
+                  (project.brand.name.toLowerCase() === "redefine" && activeTab.toLowerCase().includes("social"))
+               ) && (
                 <a
-                  href={project.smmDriveLink}
+                  href={
+                    project.brand.name.toLowerCase() === "bunkout" 
+                      ? "https://drive.google.com/drive/folders/1jxXsVWq1FnyegBhdZQLNTS37a-3Gjvez" 
+                      : project.brand.name.toLowerCase() === "utopian villas"
+                      ? "https://drive.google.com/drive/folders/19ODNOA1j87L1bHgiJWzsxPtwmznyq7Jy"
+                      : project.brand.name.toLowerCase() === "the travel library"
+                      ? "https://drive.google.com/drive/folders/10Kacgp2CZMMXqZBexGSLOWfVaWawiSr6"
+                      : project.brand.name.toLowerCase() === "durfshan"
+                      ? "https://drive.google.com/drive/folders/1msXga11GJ6n7-YtPILOpJb-R9mk757gd"
+                      : project.brand.name.toLowerCase() === "nogah"
+                      ? "https://drive.google.com/drive/folders/1ZGyjxg9NJlJsyGrIAsG8CLmnzFoymVGs"
+                      : project.brand.name.toLowerCase() === "redefine"
+                      ? "https://drive.google.com/drive/folders/16CvuzibJSJtG-foe4DVddzN-Zc81w5lA"
+                      : project.smmDriveLink
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-5 py-2 text-[0.72rem] font-semibold tracking-[0.1em] uppercase rounded border bg-transparent border-[rgba(230,236,248,0.12)] hover:border-[#3461FF] hover:bg-[#3461FF] text-[rgba(230,236,248,0.75)] hover:text-white transition-all flex items-center gap-1.5"
                 >
-                  {(project.brand.name.toLowerCase().includes("etnica") || project.brand.name.toLowerCase().includes("soup")) ? "View All Of Our Work" : "View More Work"}
+                  {(project.brand.name.toLowerCase().includes("etnica") || project.brand.name.toLowerCase().includes("soup") || project.brand.name.toLowerCase() === "bunkout" || project.brand.name.toLowerCase() === "utopian villas" || project.brand.name.toLowerCase() === "the travel library" || project.brand.name.toLowerCase() === "durfshan" || project.brand.name.toLowerCase() === "nogah" || project.brand.name.toLowerCase() === "the green carat" || project.brand.name.toLowerCase() === "antariksh" || project.brand.name.toLowerCase() === "redefine") ? "View all of our work" : "View More Work"}
                   <ExternalLink size={11} className="opacity-80" />
                 </a>
-              )}
+               )}
+
+               {project.shootDriveLink && project.brand.name.toLowerCase() === "the green carat" && activeTab.toLowerCase().includes("shoot") && (
+                <a
+                  href={project.shootDriveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2 text-[0.72rem] font-semibold tracking-[0.1em] uppercase rounded border bg-transparent border-[rgba(230,236,248,0.12)] hover:border-[#3461FF] hover:bg-[#3461FF] text-[rgba(230,236,248,0.75)] hover:text-white transition-all flex items-center gap-1.5"
+                >
+                  View all of our work
+                  <ExternalLink size={11} className="opacity-80" />
+                </a>
+               )}
+
+               {project.brand.name.toLowerCase() === "redefine" && activeTab.toLowerCase() === "campaigns" && (
+                <a
+                  href="https://drive.google.com/drive/folders/1HbqGfjYUbfvvlVyrHLGD2ylPBgPCOxT6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2 text-[0.72rem] font-semibold tracking-[0.1em] uppercase rounded border bg-transparent border-[rgba(230,236,248,0.12)] hover:border-[#3461FF] hover:bg-[#3461FF] text-[rgba(230,236,248,0.75)] hover:text-white transition-all flex items-center gap-1.5"
+                >
+                  View all of our work
+                  <ExternalLink size={11} className="opacity-80" />
+                </a>
+               )}
             </div>
 
             {/* Content Area */}
@@ -639,12 +685,26 @@ export default function ProjectModal({
                         {project.smmDriveLink && (
                           <div className="flex justify-center mt-6 mb-4">
                             <a
-                              href={project.brand.name.toLowerCase() === 'bunkout' ? "https://drive.google.com/drive/folders/1jxXsVWq1FnyegBhdZQLNTS37a-3Gjvez?usp=sharing" : project.smmDriveLink}
+                              href={
+                                project.brand.name.toLowerCase() === 'bunkout' 
+                                  ? "https://drive.google.com/drive/folders/1jxXsVWq1FnyegBhdZQLNTS37a-3Gjvez" 
+                                  : project.brand.name.toLowerCase() === 'utopian villas'
+                                  ? "https://drive.google.com/drive/folders/19ODNOA1j87L1bHgiJWzsxPtwmznyq7Jy"
+                                  : project.brand.name.toLowerCase() === 'the travel library'
+                                  ? "https://drive.google.com/drive/folders/10Kacgp2CZMMXqZBexGSLOWfVaWawiSr6"
+                                  : project.brand.name.toLowerCase() === 'durfshan'
+                                  ? "https://drive.google.com/drive/folders/1msXga11GJ6n7-YtPILOpJb-R9mk757gd"
+                                  : project.brand.name.toLowerCase() === 'nogah'
+                                  ? "https://drive.google.com/drive/folders/1ZGyjxg9NJlJsyGrIAsG8CLmnzFoymVGs"
+                                  : project.brand.name.toLowerCase() === 'redefine'
+                                  ? "https://drive.google.com/drive/folders/16CvuzibJSJtG-foe4DVddzN-Zc81w5lA"
+                                  : project.smmDriveLink
+                              }
                               target="_blank"
                               rel="noopener noreferrer"
                               className="px-6 py-2.5 bg-[rgba(230,236,248,0.02)] hover:bg-[#3461FF] text-white text-[0.7rem] font-bold tracking-[0.1em] uppercase rounded border border-[rgba(230,236,248,0.1)] hover:border-[#3461FF] transition-all flex items-center gap-2 group"
                             >
-                              {project.brand.name.toLowerCase() === 'bunkout' ? 'view more of our brand work' : 'view more of our work'}
+                              {(project.brand.name.toLowerCase() === 'bunkout' || project.brand.name.toLowerCase() === 'utopian villas' || project.brand.name.toLowerCase() === 'the travel library' || project.brand.name.toLowerCase() === 'durfshan' || project.brand.name.toLowerCase() === 'nogah' || project.brand.name.toLowerCase() === 'the green carat' || project.brand.name.toLowerCase() === 'antariksh' || project.brand.name.toLowerCase() === 'redefine') ? 'view all of our work' : 'view more of our work'}
                               <ExternalLink size={12} className="text-[rgba(230,236,248,0.5)] group-hover:text-white transition-colors" />
                             </a>
                           </div>
@@ -655,7 +715,7 @@ export default function ProjectModal({
 
                   {/* SHOOT TAB */}
                   {(activeTab.toLowerCase().includes("shoot") || activeTab === "shoot") && (
-                    project.smmPosts ? (
+                    (project.smmPosts && project.brand.name.toLowerCase() !== 'the green carat') ? (
                       <div className="w-full pr-1 flex flex-col gap-6 pb-6">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                           {project.smmPosts.map((post, i) => (
@@ -678,6 +738,34 @@ export default function ProjectModal({
                               className="px-6 py-2.5 bg-[rgba(230,236,248,0.02)] hover:bg-[#3461FF] text-white text-[0.7rem] font-bold tracking-[0.1em] uppercase rounded border border-[rgba(230,236,248,0.1)] hover:border-[#3461FF] transition-all flex items-center gap-2 group"
                             >
                               view more of our work
+                              <ExternalLink size={12} className="text-[rgba(230,236,248,0.5)] group-hover:text-white transition-colors" />
+                            </a>
+                          </div>
+                        )}
+                      </div>
+                    ) : project.shootPosts ? (
+                      <div className="w-full pr-1 flex flex-col gap-6 pb-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {project.shootPosts.map((post, i) => (
+                            <SMMPostCard 
+                              key={i} 
+                              post={post} 
+                              postIndex={i} 
+                              brandName={project.brand.name}
+                              brandLogo={project.brand.logo}
+                              brandUrl={project.web?.url}
+                            />
+                          ))}
+                        </div>
+                        {project.shootDriveLink && (
+                          <div className="flex justify-center mt-6 mb-4">
+                            <a
+                              href={project.shootDriveLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-6 py-2.5 bg-[rgba(230,236,248,0.02)] hover:bg-[#3461FF] text-white text-[0.7rem] font-bold tracking-[0.1em] uppercase rounded border border-[rgba(230,236,248,0.1)] hover:border-[#3461FF] transition-all flex items-center gap-2 group"
+                            >
+                              {project.brand.name.toLowerCase() === 'the green carat' ? 'view all of our work' : 'view more of our work'}
                               <ExternalLink size={12} className="text-[rgba(230,236,248,0.5)] group-hover:text-white transition-colors" />
                             </a>
                           </div>
@@ -802,8 +890,37 @@ export default function ProjectModal({
                     </div>
                   )}
 
+                  {/* CAMPAIGNS TAB (Redefine) */}
+                  {activeTab.toLowerCase() === "campaigns" && project.campaignPosts && (
+                    <div className="w-full pr-1 flex flex-col gap-6 pb-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {project.campaignPosts.map((post, i) => (
+                          <SMMPostCard 
+                            key={i} 
+                            post={post} 
+                            postIndex={i} 
+                            brandName={project.brand.name}
+                            brandLogo={project.brand.logo}
+                            brandUrl={project.web?.url}
+                          />
+                        ))}
+                      </div>
+                      <div className="flex justify-center mt-6 mb-4">
+                        <a
+                          href="https://drive.google.com/drive/folders/1HbqGfjYUbfvvlVyrHLGD2ylPBgPCOxT6"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-6 py-2.5 bg-[rgba(230,236,248,0.02)] hover:bg-[#3461FF] text-white text-[0.7rem] font-bold tracking-[0.1em] uppercase rounded border border-[rgba(230,236,248,0.1)] hover:border-[#3461FF] transition-all flex items-center gap-2 group"
+                        >
+                          view all of our work
+                          <ExternalLink size={12} className="text-[rgba(230,236,248,0.5)] group-hover:text-white transition-colors" />
+                        </a>
+                      </div>
+                    </div>
+                  )}
+
                   {/* CONCEPT TAB */}
-                  {(activeTab.toLowerCase() === "concept" || activeTab.toLowerCase().includes("campaign")) && (
+                  {(activeTab.toLowerCase() === "concept" || (activeTab.toLowerCase().includes("campaign") && activeTab.toLowerCase() !== "campaigns")) && (
                     project.campaign ? (
                       <div className="flex-1 flex flex-col h-full">
                         <div className="p-5 lg:p-6 rounded-xl border border-[rgba(230,236,248,0.05)] text-center flex-1 flex flex-col justify-between h-full" style={{ background: '#0C1530' }}>

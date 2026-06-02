@@ -43,6 +43,7 @@ export type ProjectData = {
   magazines?: { name: string; link: string; id: string }[];
   conceptText?: string;
   campaignMedia?: { id: string; type: 'image' | 'video'; link: string; name: string }[];
+  campaignPosts?: { id: string; name: string; type: string; link: string; videoUrl?: string }[][];
   shootPosts?: { id: string; name: string; type: string; link: string }[][];
   shootDriveLink?: string;
   airbnb?: {
@@ -1006,6 +1007,36 @@ export const REDEFINE_SMM_POSTS = [
   ]
 ];
 
+export const REDEFINE_CAMPAIGN_POSTS = [
+  // Post 1
+  [
+    {
+      id: '1AgMy0CgIKdqIQ6q0frf1j3QvxeZQkEyP',
+      name: 'row 2 post 4 (1).jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1AgMy0CgIKdqIQ6q0frf1j3QvxeZQkEyP/view?usp=drive_link'
+    }
+  ],
+  // Post 2
+  [
+    {
+      id: '1sJj0X-Ery1GbgO5DRjNZTAJsUCLXhkTm',
+      name: 'row 2 post 5 reel cover.jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1sJj0X-Ery1GbgO5DRjNZTAJsUCLXhkTm/view?usp=drive_link'
+    }
+  ],
+  // Post 3
+  [
+    {
+      id: '1RFR7q1pkV0QWYAqaJM6xDK3qGV-yV4lC',
+      name: 'row 2 post 6.jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1RFR7q1pkV0QWYAqaJM6xDK3qGV-yV4lC/view?usp=drive_link'
+    }
+  ]
+];
+
 export const ANTARIKSH_SMM_POSTS = [
   // Post 1
   [
@@ -1040,59 +1071,33 @@ export const GREEN_CARAT_SMM_POSTS = [
   // Post 1
   [
     {
-      id: '1tNXmpB8Val4cdMBBBmwQNRKoNcy1xGy_',
+      id: '1r-ljxeqkaKREzvuM3_tbW756xul3fNdI',
       name: 'greencarat-post-1',
       type: 'image',
-      link: 'https://drive.google.com/file/d/1tNXmpB8Val4cdMBBBmwQNRKoNcy1xGy_/view?usp=drive_link'
+      link: 'https://drive.google.com/file/d/1r-ljxeqkaKREzvuM3_tbW756xul3fNdI/view?usp=drive_link'
     }
   ],
   // Post 2
   [
     {
-      id: '1e0ENqFVOuP-PLViA7MNVVIZrzeCgCYyG',
+      id: '1Tes9oBc60zUVrCx9ZzFf3ZQVTIW2885u',
       name: 'greencarat-post-2',
       type: 'image',
-      link: 'https://drive.google.com/file/d/1e0ENqFVOuP-PLViA7MNVVIZrzeCgCYyG/view?usp=drive_link'
+      link: 'https://drive.google.com/file/d/1Tes9oBc60zUVrCx9ZzFf3ZQVTIW2885u/view?usp=drive_link'
     }
   ],
   // Post 3
   [
     {
-      id: '1_duKxgoNaz5ng1v-Cq_6zFTzJcs3qylh',
+      id: '1FRSk4FCVgw0-FmANWGS66eny3bUOZ3xO',
       name: 'greencarat-post-3',
       type: 'image',
-      link: 'https://drive.google.com/file/d/1_duKxgoNaz5ng1v-Cq_6zFTzJcs3qylh/view?usp=drive_link'
+      link: 'https://drive.google.com/file/d/1FRSk4FCVgw0-FmANWGS66eny3bUOZ3xO/view?usp=drive_link'
     }
   ]
 ];
 
 export const PROJECTS: Record<string, ProjectData> = {
-  cepa: {
-    title: 'CEPA Council',
-    category: 'B2B · Policy · Branding',
-    web: {
-      url: 'cepacouncil.com',
-      title: 'Government Policy Portal',
-      desc: 'A flagship B2B web platform for CEPA Council, designed for credibility and authority. Clean information architecture, clear user journeys, and a powerful brand presence.',
-      color: 'from #0c1530 to #0f1e45',
-      gradient: 'radial-gradient(ellipse at 60% 30%,rgba(52,97,255,.3) 0%,#050B1A 70%)',
-      meta: [{ l: 'Industry', v: 'Policy / Trade' }, { l: 'Market', v: 'India & UAE' }, { l: 'Deliverables', v: 'Web + Branding' }]
-    },
-    social: [
-      { type: 'Brand Awareness', copy: 'Where Trade Policy Meets Progress.', bg: 'linear-gradient(135deg,#050B1A,#0c1e50)', link: 'https://www.instagram.com/p/C9e_d7dSkyG/?igsh=YjZzczBwZXF2MWdh', image: '/social-previews/cepa-1.jpg' },
-      { type: 'Event Promotion', copy: 'Annual Trade Summit 2024 — Register Now.', bg: 'linear-gradient(135deg,#071040,#1535C8)', link: 'https://www.instagram.com/p/C9cJp4Dp1pQ/?igsh=NXQ4ZTR0cmNtb3Nj', image: '/social-previews/cepa-2.jpg' },
-      { type: 'Insight Post', copy: 'How India-UAE CEPA is reshaping bilateral trade.', bg: 'linear-gradient(135deg,#08103a,#1a2d70)', link: 'https://www.instagram.com/p/C-ZYPxvyRTO/?igsh=b3B3YnVyZjRvNGN5', image: '/social-previews/cepa-3.jpg' },
-    ],
-    brand: {
-      name: 'CEPA Council',
-      colors: ['#1535C8', '#050B1A', '#FFFFFF', '#E6ECF8'],
-      colorNames: ['Royal Blue', 'Navy', 'White', 'Off-White'],
-      font: 'Plus Jakarta Sans',
-      style: 'Corporate · Authoritative · Global',
-      logo: '/brand-logos/cepa.jpg'
-    }
-  },
-
   dressingroom: {
     title: 'The Dressing Room',
     category: 'Fashion · Social Media · Branding',
@@ -1257,7 +1262,7 @@ export const PROJECTS: Record<string, ProjectData> = {
       logo: '/brand-logos/antariksh.jpg',
       details: 'A luxury diamond jewellery brand emphasizing exquisite craftsmanship and timeless designs. The social presence is curated to showcase the brilliance of their statement pieces.'
     },
-    tabs: ['Website', 'Branding & Logo', 'Social Media']
+    tabs: ['Social Media']
   },
   bunkout: {
     title: 'Bunkout',
@@ -1358,7 +1363,7 @@ export const PROJECTS: Record<string, ProjectData> = {
     },
     social: [],
     smmPosts: GREEN_CARAT_SMM_POSTS,
-    smmDriveLink: 'https://drive.google.com/drive/folders/1ZGyjxg9NJlJsyGrIAsG8CLmnzFoymVGs',
+    smmDriveLink: 'https://drive.google.com/drive/folders/1cIy9FFrR6NJQ4vGRcrq0xPJMScdDEINT',
     shootPosts: [
       [
         {
@@ -1410,35 +1415,17 @@ export const PROJECTS: Record<string, ProjectData> = {
     social: [],
     smmPosts: REDEFINE_SMM_POSTS,
     smmDriveLink: 'https://drive.google.com/drive/folders/16CvuzibJSJtG-foe4DVddzN-Zc81w5lA',
-    campaignMedia: [
-      {
-        id: '1AgMy0CgIKdqIQ6q0frf1j3QvxeZQkEyP',
-        type: 'image',
-        name: 'campaign-1',
-        link: 'https://drive.google.com/file/d/1AgMy0CgIKdqIQ6q0frf1j3QvxeZQkEyP/view?usp=drive_link'
-      },
-      {
-        id: '1oBCqidpCT7Ah6C2cvZicZ68MDcb76Buq',
-        type: 'image',
-        name: 'campaign-video',
-        link: 'https://drive.google.com/file/d/1oBCqidpCT7Ah6C2cvZicZ68MDcb76Buq/view?usp=drive_link'
-      },
-      {
-        id: '1KFz515o5bskjchFP6CDt1AnE59ds4V8D',
-        type: 'image',
-        name: 'campaign-2',
-        link: 'https://drive.google.com/file/d/1KFz515o5bskjchFP6CDt1AnE59ds4V8D/view?usp=drive_link'
-      }
-    ],
+    campaignPosts: REDEFINE_CAMPAIGN_POSTS,
     brand: {
       name: 'Redefine',
       colors: ['#FF3E6C', '#050B1A', '#FFFFFF', '#F0E6EA'],
       colorNames: ['Neon Rose', 'Navy', 'White', 'Blush'],
       font: 'Outfit',
       style: 'Energetic · Bold · Futuristic',
+      logo: '/brand-logos/redefine.png',
       details: 'Redefine activewear combines athletic aesthetics with urban fashion. Global campaigns in New York and London position it at the intersection of high fashion and street performance.'
     },
-    tabs: ['Website', 'Social Media', 'Campaigns (NY / London / Etc)']
+    tabs: ['Website', 'Social Media', 'Campaigns']
   },
   soup: {
     title: 'SOUP',

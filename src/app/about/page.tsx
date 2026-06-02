@@ -99,29 +99,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ═══ KEY PORTFOLIO HIGHLIGHTS ═══ */}
-        <section className="py-24 border-t border-[rgba(230,236,248,0.07)]">
-          <Reveal>
-            <div className="text-[0.65rem] tracking-[0.2em] uppercase text-[#3461FF] font-medium mb-12">
-              Portfolio Highlights
-            </div>
-            <h2 className="text-[clamp(2.5rem,4vw,4rem)] font-bold text-white leading-[1] tracking-[-0.02em] mb-16">
-              Brands we've<br/>collaborated with.
-            </h2>
-          </Reveal>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0 border-y border-l border-[rgba(230,236,248,0.07)]">
-            {["Coca Cola", "Tuborg", "Bisleri", "Jaguar Land Rover", "Asics", "JSW"].map((brand, i) => (
-              <Reveal key={i} delay={i * 0.05}>
-                <div className="aspect-square flex items-center justify-center text-center p-6 border-r border-[rgba(230,236,248,0.07)] bg-[rgba(5,11,26,0.5)] transition-colors duration-400 hover:bg-[#080F22] cursor-none group">
-                  <span className="text-[0.85rem] font-bold tracking-wider text-[rgba(255,255,255,0.4)] group-hover:text-white transition-colors duration-400">
-                    {brand}
-                  </span>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </section>
 
       </div>
     </main>

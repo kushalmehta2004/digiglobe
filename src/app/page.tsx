@@ -402,6 +402,8 @@ export default function Home() {
           <div className="port-grid">
             {randomProjects.map(([key, p], i) => {
               const isPlainLogoBrand = p.brand.name.toLowerCase() === 'vinnin' || 
+                                       p.brand.name.toLowerCase() === 'bunkout' ||
+                                       p.brand.name.toLowerCase() === 'utopian villas' ||
                                        p.brand.name.toLowerCase().includes('dressing room') || 
                                        p.brand.name.toLowerCase().includes('avec amour') ||
                                        p.brand.name.toLowerCase() === 'bayroute' ||
@@ -431,11 +433,13 @@ export default function Home() {
                         className={`w-full h-full transition-all duration-500 ${
                           isPlainLogoBrand
                             ? 'object-contain p-8 lg:p-12 opacity-100'
-                            : `opacity-40 group-hover:opacity-75 ${
-                                p.brand.name.toLowerCase() === 'coca-cola' 
-                                  ? 'object-contain p-12 lg:p-16' 
-                                  : 'object-cover'
-                              }`
+                            : (p.brand.name.toLowerCase() === 'the travel library' || p.brand.name.toLowerCase() === 'durfshan' || p.brand.name.toLowerCase() === 'nogah' || p.brand.name.toLowerCase() === 'the green carat' || p.brand.name.toLowerCase() === 'antariksh' || p.brand.name.toLowerCase() === 'redefine')
+                              ? 'object-cover opacity-100 group-hover:opacity-90'
+                              : `opacity-40 group-hover:opacity-75 ${
+                                  p.brand.name.toLowerCase() === 'coca-cola' 
+                                    ? 'object-contain p-12 lg:p-16' 
+                                    : 'object-cover'
+                                }`
                         }`} 
                       />
                     )}

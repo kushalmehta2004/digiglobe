@@ -46,6 +46,8 @@ export default function WorkPage() {
         >
           {Object.entries(PROJECTS).map(([key, p], i) => {
             const isPlainLogoBrand = p.brand.name.toLowerCase() === 'vinnin' || 
+                                     p.brand.name.toLowerCase() === 'bunkout' ||
+                                     p.brand.name.toLowerCase() === 'utopian villas' ||
                                      p.brand.name.toLowerCase().includes('dressing room') || 
                                      p.brand.name.toLowerCase().includes('avec amour') ||
                                      p.brand.name.toLowerCase() === 'bayroute' ||
@@ -76,18 +78,20 @@ export default function WorkPage() {
                       className={`w-full h-full transition-all duration-500 ${
                         isPlainLogoBrand
                           ? 'object-contain p-8 lg:p-12 opacity-100'
-                          : `opacity-40 group-hover:opacity-70 ${
-                              p.brand.name.toLowerCase() === 'coca-cola' 
-                                ? 'object-contain p-12 lg:p-16' 
-                                : 'object-cover'
-                            }`
+                          : (p.brand.name.toLowerCase() === 'the travel library' || p.brand.name.toLowerCase() === 'durfshan' || p.brand.name.toLowerCase() === 'nogah' || p.brand.name.toLowerCase() === 'the green carat' || p.brand.name.toLowerCase() === 'antariksh' || p.brand.name.toLowerCase() === 'redefine')
+                            ? 'object-cover opacity-100 group-hover:opacity-90'
+                            : `opacity-40 group-hover:opacity-70 ${
+                                p.brand.name.toLowerCase() === 'coca-cola' 
+                                  ? 'object-contain p-12 lg:p-16' 
+                                  : 'object-cover'
+                              }`
                       }`} 
                     />
                   )}
                 </div>
                 
                 {/* Dark Overlay */}
-                {!isPlainLogoBrand && (
+                {!isPlainLogoBrand && p.brand.name.toLowerCase() !== 'the travel library' && p.brand.name.toLowerCase() !== 'durfshan' && p.brand.name.toLowerCase() !== 'nogah' && p.brand.name.toLowerCase() !== 'the green carat' && p.brand.name.toLowerCase() !== 'antariksh' && p.brand.name.toLowerCase() !== 'redefine' && (
                   <div className="absolute inset-0 bg-[rgba(5,11,26,0.3)] transition-colors duration-[400ms] group-hover:bg-[rgba(5,11,26,0.5)] z-10" />
                 )}
 
