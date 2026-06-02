@@ -44,68 +44,78 @@ export default function WorkPage() {
           animate="visible"
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
-          {Object.entries(PROJECTS).map(([key, p], i) => (
-            <motion.div
-              key={key}
-              variants={cardVariants}
-              onClick={() => setSelectedProject(p)}
-              className="relative aspect-[4/3] bg-[#080F22] overflow-hidden cursor-none group"
-            >
-              {/* Background Layer / Full Cover Logo */}
-              <div 
-                className="absolute inset-0 transition-transform duration-[400ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.02]"
-                style={{ 
-                  background: (p.brand.name.toLowerCase() === 'vinnin' || p.brand.name.toLowerCase().includes('dressing room'))
-                    ? '#FFFFFF'
-                    : (p.web?.gradient || `radial-gradient(ellipse at 50% 50%, ${p.brand.colors[0]}26 0%, #050B1A 70%)`) 
-                }}
+          {Object.entries(PROJECTS).map(([key, p], i) => {
+            const isPlainLogoBrand = p.brand.name.toLowerCase() === 'vinnin' || 
+                                     p.brand.name.toLowerCase().includes('dressing room') || 
+                                     p.brand.name.toLowerCase().includes('avec amour') ||
+                                     p.brand.name.toLowerCase() === 'bayroute' ||
+                                     p.brand.name.toLowerCase().includes('coca-cola') ||
+                                     p.brand.name.toLowerCase().includes('hyro') ||
+                                     p.brand.name.toLowerCase().includes('etnica') ||
+                                     p.brand.name.toLowerCase() === 'soup';
+            return (
+              <motion.div
+                key={key}
+                variants={cardVariants}
+                onClick={() => setSelectedProject(p)}
+                className="relative aspect-[4/3] bg-[#080F22] overflow-hidden cursor-none group"
               >
-                {p.brand.logo && (
-                  <img 
-                    src={p.brand.logo} 
-                    alt={p.brand.name} 
-                    className={`w-full h-full transition-all duration-500 ${
-                      (p.brand.name.toLowerCase() === 'vinnin' || p.brand.name.toLowerCase().includes('dressing room'))
-                        ? 'object-contain p-8 lg:p-12 opacity-100'
-                        : `opacity-40 group-hover:opacity-70 ${
-                            p.brand.name.toLowerCase() === 'coca-cola' 
-                              ? 'object-contain p-12 lg:p-16' 
-                              : 'object-cover'
-                          }`
-                    }`} 
-                  />
+                {/* Background Layer / Full Cover Logo */}
+                <div 
+                  className="absolute inset-0 transition-transform duration-[400ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.02]"
+                  style={{ 
+                    background: isPlainLogoBrand
+                      ? '#FFFFFF'
+                      : (p.web?.gradient || `radial-gradient(ellipse at 50% 50%, ${p.brand.colors[0]}26 0%, #050B1A 70%)`) 
+                  }}
+                >
+                  {p.brand.logo && (
+                    <img 
+                      src={p.brand.logo} 
+                      alt={p.brand.name} 
+                      className={`w-full h-full transition-all duration-500 ${
+                        isPlainLogoBrand
+                          ? 'object-contain p-8 lg:p-12 opacity-100'
+                          : `opacity-40 group-hover:opacity-70 ${
+                              p.brand.name.toLowerCase() === 'coca-cola' 
+                                ? 'object-contain p-12 lg:p-16' 
+                                : 'object-cover'
+                            }`
+                      }`} 
+                    />
+                  )}
+                </div>
+                
+                {/* Dark Overlay */}
+                {!isPlainLogoBrand && (
+                  <div className="absolute inset-0 bg-[rgba(5,11,26,0.3)] transition-colors duration-[400ms] group-hover:bg-[rgba(5,11,26,0.5)] z-10" />
                 )}
-              </div>
-              
-              {/* Dark Overlay */}
-              {(p.brand.name.toLowerCase() !== 'vinnin' && !p.brand.name.toLowerCase().includes('dressing room')) && (
-                <div className="absolute inset-0 bg-[rgba(5,11,26,0.3)] transition-colors duration-[400ms] group-hover:bg-[rgba(5,11,26,0.5)] z-10" />
-              )}
 
-              {/* Centered Brand Name / Fake Logo (Only if no actual logo image) */}
-              <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-                {!p.brand.logo && (
-                  <span className="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-white tracking-widest uppercase opacity-80 mix-blend-overlay">
+                {/* Centered Brand Name / Fake Logo (Only if no actual logo image) */}
+                <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
+                  {!p.brand.logo && (
+                    <span className="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-white tracking-widest uppercase opacity-80 mix-blend-overlay">
+                      {p.brand.name}
+                    </span>
+                  )}
+                </div>
+                
+                {/* Bottom Strip */}
+                <div className="absolute bottom-0 left-0 right-0 p-8 z-30 flex flex-col items-start bg-gradient-to-t from-[rgba(5,11,26,0.8)] to-transparent">
+                  <div className="text-[0.62rem] font-semibold tracking-[0.1em] uppercase text-[rgba(230,236,248,0.5)] mb-1">
+                    {p.category}
+                  </div>
+                  <div className="text-[1rem] font-bold text-white mb-2">
                     {p.brand.name}
-                  </span>
-                )}
-              </div>
-              
-              {/* Bottom Strip */}
-              <div className="absolute bottom-0 left-0 right-0 p-8 z-30 flex flex-col items-start bg-gradient-to-t from-[rgba(5,11,26,0.8)] to-transparent">
-                <div className="text-[0.62rem] font-semibold tracking-[0.1em] uppercase text-[rgba(230,236,248,0.5)] mb-1">
-                  {p.category}
+                  </div>
+                  <div className="text-[0.72rem] font-semibold tracking-[0.1em] text-[#3461FF] uppercase relative inline-block group-hover:text-white transition-colors duration-[400ms]">
+                    View Case Study →
+                    <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-current scale-x-0 origin-left transition-transform duration-[400ms] group-hover:scale-x-100" />
+                  </div>
                 </div>
-                <div className="text-[1rem] font-bold text-white mb-2">
-                  {p.brand.name}
-                </div>
-                <div className="text-[0.72rem] font-semibold tracking-[0.1em] text-[#3461FF] uppercase relative inline-block group-hover:text-white transition-colors duration-[400ms]">
-                  View Case Study →
-                  <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-current scale-x-0 origin-left transition-transform duration-[400ms] group-hover:scale-x-100" />
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
 

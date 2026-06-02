@@ -400,31 +400,46 @@ export default function Home() {
           </div>
 
           <div className="port-grid">
-            {randomProjects.map(([key, p], i) => (
-              <div 
-                key={key} 
-                onClick={() => setSelectedProject(p)}
-                className="pcard group"
-              >
-                {/* Background Layer / Full Cover Logo */}
+            {randomProjects.map(([key, p], i) => {
+              const isPlainLogoBrand = p.brand.name.toLowerCase() === 'vinnin' || 
+                                       p.brand.name.toLowerCase().includes('dressing room') || 
+                                       p.brand.name.toLowerCase().includes('avec amour') ||
+                                       p.brand.name.toLowerCase() === 'bayroute' ||
+                                       p.brand.name.toLowerCase().includes('coca-cola') ||
+                                       p.brand.name.toLowerCase().includes('hyro') ||
+                                       p.brand.name.toLowerCase().includes('etnica') ||
+                                       p.brand.name.toLowerCase() === 'soup';
+              return (
                 <div 
-                  className="pcard-bg absolute inset-0"
-                  style={{ 
-                    background: p.web?.gradient || `radial-gradient(ellipse at 50% 50%, ${p.brand.colors[0]}26 0%, #050B1A 70%)` 
-                  }}
+                  key={key} 
+                  onClick={() => setSelectedProject(p)}
+                  className="pcard group cursor-none"
                 >
-                  {p.brand.logo && (
-                    <img 
-                      src={p.brand.logo} 
-                      alt={p.brand.name} 
-                      className={`w-full h-full opacity-40 transition-opacity duration-500 group-hover:opacity-75 ${
-                        p.brand.name.toLowerCase() === 'coca-cola' 
-                           ? 'object-contain p-12 lg:p-16' 
-                          : 'object-cover'
-                      }`} 
-                    />
-                  )}
-                </div>
+                  {/* Background Layer / Full Cover Logo */}
+                  <div 
+                    className="pcard-bg absolute inset-0 transition-transform duration-[400ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.02]"
+                    style={{ 
+                      background: isPlainLogoBrand
+                        ? '#FFFFFF'
+                        : (p.web?.gradient || `radial-gradient(ellipse at 50% 50%, ${p.brand.colors[0]}26 0%, #050B1A 70%)`) 
+                    }}
+                  >
+                    {p.brand.logo && (
+                      <img 
+                        src={p.brand.logo} 
+                        alt={p.brand.name} 
+                        className={`w-full h-full transition-all duration-500 ${
+                          isPlainLogoBrand
+                            ? 'object-contain p-8 lg:p-12 opacity-100'
+                            : `opacity-40 group-hover:opacity-75 ${
+                                p.brand.name.toLowerCase() === 'coca-cola' 
+                                  ? 'object-contain p-12 lg:p-16' 
+                                  : 'object-cover'
+                              }`
+                        }`} 
+                      />
+                    )}
+                  </div>
 
                 <span className="pcard-num">0{i + 1}</span>
 
@@ -440,7 +455,8 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            ))}
+            );
+          })}
           </div>
         </div>
       </section>

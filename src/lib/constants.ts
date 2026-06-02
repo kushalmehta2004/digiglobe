@@ -627,6 +627,90 @@ export const DRESSING_ROOM_SMM_POSTS = [
   ]
 ];
 
+export const AVEC_AMOUR_SMM_POSTS = [
+  // Post 1 (1 item)
+  [
+    {
+      id: '1DkFwDBgFnuKLo3ejr_VV146I7z14tArS',
+      name: '2.png',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1DkFwDBgFnuKLo3ejr_VV146I7z14tArS/view?usp=drive_web'
+    }
+  ],
+  // Post 2 (1 item)
+  [
+    {
+      id: '18QumxVmojZGuzxZs6EiZEnmM1CmW1_jK',
+      name: '3.png',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/18QumxVmojZGuzxZs6EiZEnmM1CmW1_jK/view?usp=drive_web'
+    }
+  ],
+  // Post 3 (1 item)
+  [
+    {
+      id: '1EgeItMH9ecDDkYSJ0QffGM3kt6EZoufA',
+      name: '4.png',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1EgeItMH9ecDDkYSJ0QffGM3kt6EZoufA/view?usp=drive_web'
+    }
+  ],
+  // Post 4 (1 item)
+  [
+    {
+      id: '1l2cKJ9ZhjWh09UFdT6AxifjlChLHsvLP',
+      name: '5.png',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1l2cKJ9ZhjWh09UFdT6AxifjlChLHsvLP/view?usp=drive_web'
+    }
+  ],
+  // Post 5 (1 item)
+  [
+    {
+      id: '1gW2bmst1lwBk7uRRalH8_QpcCiSSSYcf',
+      name: '6.png',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1gW2bmst1lwBk7uRRalH8_QpcCiSSSYcf/view?usp=drive_web'
+    }
+  ],
+  // Post 6 (1 item)
+  [
+    {
+      id: '1_cytVQuEjEb7ib4ObLsDZqnrlIIwtdlr',
+      name: '7.png',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1_cytVQuEjEb7ib4ObLsDZqnrlIIwtdlr/view?usp=drive_web'
+    }
+  ],
+  // Post 7 (1 item)
+  [
+    {
+      id: '1vxbnKDEIRF7PqSYg-wB5k1BAwwK35YrX',
+      name: '8.png',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1vxbnKDEIRF7PqSYg-wB5k1BAwwK35YrX/view?usp=drive_web'
+    }
+  ],
+  // Post 8 (1 item)
+  [
+    {
+      id: '11AO5db5UA9d76bF8PjKv_mJgGEJUUK0C',
+      name: '9.png',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/11AO5db5UA9d76bF8PjKv_mJgGEJUUK0C/view?usp=drive_web'
+    }
+  ],
+  // Post 9 (1 item)
+  [
+    {
+      id: '1tGbYb1271qjAfjiVa7-i5-yZbIiCf0lI',
+      name: '10.png',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1tGbYb1271qjAfjiVa7-i5-yZbIiCf0lI/view?usp=drive_web'
+    }
+  ]
+];
+
 export const VININN_SMM_POSTS = [
   // Post 1 (1 item)
   [
@@ -766,6 +850,129 @@ export const NOGAH_SMM_POSTS = [
   ]
 ];
 
+export const BAYROUTE_SMM_POSTS = [
+  // Post 1
+  [
+    {
+      id: '1rhKUEALDrisLpu8O1q-NxTWBW31467ZZ',
+      name: '7 Layer Shawarma.jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1rhKUEALDrisLpu8O1q-NxTWBW31467ZZ/view?usp=drive_web'
+    }
+  ],
+  // Post 2
+  [
+    {
+      id: '1WnIIOAfWYFul6W2wLtHVn1Aegh03SRWM',
+      name: 'Gemista.jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1WnIIOAfWYFul6W2wLtHVn1Aegh03SRWM/view?usp=drive_web'
+    }
+  ],
+  // Post 3
+  [
+    {
+      id: '1LOfRgR3TXHkssC9eRWa2f8t-P4vztYas',
+      name: 'Harissa & Honey Halloumi.jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1LOfRgR3TXHkssC9eRWa2f8t-P4vztYas/view?usp=drive_web'
+    }
+  ]
+];
+
+export const HYRO_SMM_POSTS = [
+  // Post 1
+  [
+    {
+      id: '1fdOWiMNIw56rYG8Qk8wvhhrBLNmvAkLj',
+      name: 'Elevator ride to elevated living.mp4',
+      type: 'video',
+      link: 'https://drive.google.com/file/d/1fdOWiMNIw56rYG8Qk8wvhhrBLNmvAkLj/view?usp=drive_web',
+      videoUrl: '/social-previews/hyro-video-1.mp4'
+    }
+  ],
+  // Post 2
+  [
+    {
+      id: '1fB0C-4E3Ret98RdTNTqp8M6MrbT-fw8R',
+      name: 'One address. Three ways to live it.mp4',
+      type: 'video',
+      link: 'https://drive.google.com/file/d/1fB0C-4E3Ret98RdTNTqp8M6MrbT-fw8R/view?usp=drive_web',
+      videoUrl: '/social-previews/hyro-video-2.mp4'
+    }
+  ],
+  // Post 3
+  [
+    {
+      id: '1gXLceJcxWeIyirlYeBIhBA5koroprgkC',
+      name: 'Karjat Villa Tour.mp4',
+      type: 'video',
+      link: 'https://drive.google.com/file/d/1gXLceJcxWeIyirlYeBIhBA5koroprgkC/view?usp=drive_web',
+      videoUrl: '/social-previews/hyro-video-3.mp4'
+    }
+  ]
+];
+
+export const ETNICA_SMM_POSTS = [
+  // Post 1
+  [
+    {
+      id: '1iK50W3drDfZn6yC9BNJvecWo_-c3HW6E',
+      name: 'row 1 post 2.jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1iK50W3drDfZn6yC9BNJvecWo_-c3HW6E/view?usp=drive_web'
+    }
+  ],
+  // Post 2
+  [
+    {
+      id: '1NF9D8AZOnDbYHgVuAArm50BeIU7FYeWQ',
+      name: 'row 1 post 3.jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1NF9D8AZOnDbYHgVuAArm50BeIU7FYeWQ/view?usp=drive_web'
+    }
+  ],
+  // Post 3
+  [
+    {
+      id: '1uXdwJp19fgnMPd_HJUVFW5BZ8I1Ojvbc',
+      name: 'row 2 post 4 .jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1uXdwJp19fgnMPd_HJUVFW5BZ8I1Ojvbc/view?usp=drive_web'
+    }
+  ]
+];
+
+export const SOUP_SMM_POSTS = [
+  // Post 1
+  [
+    {
+      id: '1oaH4bRZx59b_hNYZsbTRIwnN_C7Cbxkc',
+      name: 'row 1 post 2.jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1oaH4bRZx59b_hNYZsbTRIwnN_C7Cbxkc/view?usp=drive_web'
+    }
+  ],
+  // Post 2
+  [
+    {
+      id: '1U5dmvHb2TrlSYtmqZJvKl1WDXozXn-AL',
+      name: 'row 2 post 4.jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1U5dmvHb2TrlSYtmqZJvKl1WDXozXn-AL/view?usp=drive_web'
+    }
+  ],
+  // Post 3
+  [
+    {
+      id: '1TSi0xicKsGm_krqmXL-I5BTvrWshEqrj',
+      name: 'row 2 post 5.jpg',
+      type: 'image',
+      link: 'https://drive.google.com/file/d/1TSi0xicKsGm_krqmXL-I5BTvrWshEqrj/view?usp=drive_web'
+    }
+  ]
+];
+
 export const PROJECTS: Record<string, ProjectData> = {
   cepa: {
     title: 'CEPA Council',
@@ -838,6 +1045,7 @@ export const PROJECTS: Record<string, ProjectData> = {
     },
     tabs: ['Website', 'Social Media']
   },
+
   bayroute: {
     title: 'Bayroute',
     category: 'F&B · Photography · Branding',
@@ -847,6 +1055,8 @@ export const PROJECTS: Record<string, ProjectData> = {
       { type: 'Ambiance', copy: 'A dining experience designed to transport you.', bg: 'linear-gradient(135deg,#110800,#442200)' },
       { type: 'Signature Dish', copy: 'Flavors that tell a story.', bg: 'linear-gradient(135deg,#0c0600,#331a00)' }
     ],
+    smmPosts: BAYROUTE_SMM_POSTS,
+    smmDriveLink: 'https://drive.google.com/drive/folders/1tGqNiX--dZ_63pVDku_JLeZvjOXNAe3k',
     brand: {
       name: 'Bayroute',
       colors: ['#442200', '#F4F2F0', '#050B1A', '#D2BB95'],
@@ -857,14 +1067,6 @@ export const PROJECTS: Record<string, ProjectData> = {
       logoLink: 'https://drive.google.com/drive/folders/1tGqNiX--dZ_63pVDku_JLeZvjOXNAe3k',
       details: 'A premium Middle Eastern dining experience. We conducted an extensive shoot to capture the rich culinary heritage and exotic ambiance.'
     },
-    shoot: [
-      '/shoot/1.jpg',
-      '/shoot/2.jpg',
-      '/shoot/3.jpg',
-      '/shoot/4.jpg',
-      '/shoot/5.jpg',
-      '/shoot/6.jpg'
-    ],
     conceptText: 'The idea behind the shoot is to celebrate Bayroute’s 8th store launch by transforming the photoshoot into a luxurious Arabian-inspired visual journey. Blending the richness of Middle Eastern culture with Bayroute’s modern, premium identity.\n\nThe concept is not just about showcasing food or drinks, but about creating a world that feels immersive, cinematic, elegant, and rooted in Arabian aesthetics.',
     tabs: ['Concept', 'Shoot']
   },
@@ -931,6 +1133,8 @@ export const PROJECTS: Record<string, ProjectData> = {
       { type: 'Insta Post', copy: 'Visualizing spaces with AI-powered furnishing.', bg: 'linear-gradient(135deg,#080d11,#223344)', link: 'https://www.instagram.com/p/DSb8ldgCHDS/?igsh=MWQ1cDM1OWc4aHlrdQ==', image: '/social-previews/hyro-insta-2.jpg' },
       { type: 'Insta Post', copy: 'Premium amenities that define modern living.', bg: 'linear-gradient(135deg,#06090c,#1a2633)', link: 'https://www.instagram.com/p/DSWnemSCF9V/?igsh=MXExeWZxeTRkanhyaw==', image: '/social-previews/hyro-insta-3.jpg' }
     ],
+    smmPosts: HYRO_SMM_POSTS,
+    smmDriveLink: 'https://drive.google.com/drive/folders/1DWfVAS7Omxdbtyz1OedfZf7q2-5kubfq',
     instaReels: 'https://drive.google.com/drive/folders/1NTW29_J-0m97_OsMKNkkb9DHT6nF_ywi?usp=sharing',
     brand: {
       name: 'Hyro Realty',
@@ -1095,22 +1299,25 @@ export const PROJECTS: Record<string, ProjectData> = {
   },
   soup: {
     title: 'SOUP',
-    category: 'Social Media · Shoot',
+    category: 'Social Media',
     web: null,
     social: [],
+    smmPosts: SOUP_SMM_POSTS,
+    smmDriveLink: 'https://drive.google.com/drive/folders/1QT2qhpY2mY5rop6lmOr9GlzgS1NFIY3V',
     brand: {
       name: 'SOUP',
       colors: ['#E85A4F', '#08080C', '#FFFFFF', '#FAEBEA'],
       colorNames: ['Warm Coral', 'Charcoal Black', 'White', 'Warm Sand'],
       font: 'Inter',
       style: 'Playful · Creative · Raw',
+      logo: '/brand-logos/soup.png',
       details: 'SOUP is a creative content studio producing scroll-stopping visual assets and lifestyle shoots for food and lifestyle brands.'
     },
-    tabs: ['Social Media', 'Shoot']
+    tabs: ['Social Media']
   },
   etnicabasatasalty: {
     title: 'Etnica / Basata / Salty',
-    category: 'Website · Social Media · Shoots',
+    category: 'Website · Shoot',
     web: {
       url: 'etnicaworld.com',
       title: 'Resort & Swimwear Collective',
@@ -1119,6 +1326,8 @@ export const PROJECTS: Record<string, ProjectData> = {
       meta: [{ l: 'Collectives', v: '3 Resort Brands' }, { l: 'Aesthetic', v: 'Sun-Kissed / Boho' }]
     },
     social: [],
+    smmPosts: ETNICA_SMM_POSTS,
+    smmDriveLink: 'https://drive.google.com/drive/folders/1LMGe9G3hgQ182TNMLSA9xbpGtk2vnLqK',
     brand: {
       name: 'Etnica / Basata / Salty',
       colors: ['#D8A47F', '#050B1A', '#FFFFFF', '#FCF8F5'],
@@ -1128,13 +1337,15 @@ export const PROJECTS: Record<string, ProjectData> = {
       logo: '/brand-logos/etnica.png',
       details: 'A unified visual presentation for three sister beachwear brands: Etnica, Basata, and Salty. The design captures the warmth of coastal suns and sandy shorelines.'
     },
-    tabs: ['Website', 'Social Media', 'Shoots']
+    tabs: ['Website', 'Shoot']
   },
   avecamourratherbake: {
     title: 'Avec Amour / Rather Bake',
     category: 'Shoot · Social Media',
     web: null,
     social: [],
+    smmPosts: AVEC_AMOUR_SMM_POSTS,
+    smmDriveLink: 'https://drive.google.com/drive/folders/1H77XlmuI_AmHc79GjwbQFnqhy4GhQUg9',
     brand: {
       name: 'Avec Amour / Rather Bake',
       colors: ['#C06C84', '#0A080E', '#FFFFFF', '#FFF0F5'],
@@ -1144,7 +1355,7 @@ export const PROJECTS: Record<string, ProjectData> = {
       logo: '/brand-logos/Avec Amour.png',
       details: 'Avec Amour and Rather Bake are premium artisanal pastry brands. The brand aesthetic focuses on visual pastry craftsmanship, pastel colorways, and luxury product shoots.'
     },
-    tabs: ['Shoot', 'Social Media']
+    tabs: ['Shoot']
   },
   vinnin: {
     title: 'Vinnin',

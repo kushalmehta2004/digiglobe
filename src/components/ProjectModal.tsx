@@ -380,6 +380,26 @@ export default function ProjectModal({
                   {tab}
                 </button>
               ))}
+
+              {project.smmDriveLink && (
+                project.brand.name.toLowerCase().includes("avec amour") || 
+                project.brand.name.toLowerCase().includes("vinnin") || 
+                (project.brand.name.toLowerCase().includes("dressing room") && activeTab.toLowerCase().includes("social")) ||
+                (project.brand.name.toLowerCase().includes("bayroute") && activeTab.toLowerCase().includes("shoot")) ||
+                (project.brand.name.toLowerCase().includes("hyro") && activeTab.toLowerCase().includes("shoot")) ||
+                (project.brand.name.toLowerCase().includes("etnica") && activeTab.toLowerCase().includes("shoot")) ||
+                (project.brand.name.toLowerCase().includes("soup") && activeTab.toLowerCase().includes("social"))
+              ) && (
+                <a
+                  href={project.smmDriveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2 text-[0.72rem] font-semibold tracking-[0.1em] uppercase rounded border bg-transparent border-[rgba(230,236,248,0.12)] hover:border-[#3461FF] hover:bg-[#3461FF] text-[rgba(230,236,248,0.75)] hover:text-white transition-all flex items-center gap-1.5"
+                >
+                  {(project.brand.name.toLowerCase().includes("etnica") || project.brand.name.toLowerCase().includes("soup")) ? "View All Of Our Work" : "View More Work"}
+                  <ExternalLink size={11} className="opacity-80" />
+                </a>
+              )}
             </div>
 
             {/* Content Area */}
